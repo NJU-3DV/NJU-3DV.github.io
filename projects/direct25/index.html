@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Direct2.5: Diverse Text-to-3D Generation via Multi-view 2.5D Diffusion</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Direct2.5: Diverse Text-to-3D Generation via Multi-view 2.5D Diffusion</h1>
+		  <div class="is-size-5 publication-authors">
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=ZBozF3sAAAAJ&hl=en">Yuanxun Lu</a><sup>1</sup>,</span>
+			<span class="author-block">
+			  <a href="https://scholar.google.com/citations?user=diIjfmMAAAAJ&hl=en">Jingyang Zhang</a><sup>2</sup>,</span>
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=YR1MdT0AAAAJ&hl=en">Shiwei Li</a><sup>2</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=CtpU8mUAAAAJ&hl=en">Tian Fang</a><sup>2</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=IXJm9jAAAAAJ&hl=en">David McKinnon</a><sup>2</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=pa09Db8AAAAJ&hl=en">Yanghai Tsin</a><sup>2</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://www.cse.ust.hk/~quan/">Long Quan</a><sup>3</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html">Xun Cao</a><sup>1</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://yoyo000.github.io/">Yao Yao</a><sup>1 <i class="fa fa-envelope"></i></sup>
+			</span>		  
+		  </div>
+		
+
+		  <div class="is-size-5 publication-authors">
+			<span class="author-block"><sup>1</sup>Nanjing University,</span>
+			<span class="author-block"><sup>2</sup>Apple,</span>
+			<span class="author-block"><sup>3</sup>The Hong Kong University of Science and Technology</span>
+		  </div>
+		   <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+
+            </div>
+
+          </div>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+	  
+    <div class="hero-body">
+	 <h2 class="subtitle has-text-centered">
+      <span class="dnerf"><strong>TL;DR:&nbsp;</strong>&nbsp; </span>Diverse, Janus-free, and high-fidelity 3D content generation in only <strong>10 seconds</strong>. </h2>
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./resources/gallery1.mp4"
+                type="video/mp4">
+      </video>
+		
+	  <p> <strong> Results Gallery</strong>. Given text prompts as description input, our method outputs high-quality textured triangle mesh in only 10 seconds. The generated multi-view normal and RGB images are shown beside the rendered models. </p>
+	  <p> Prompts for the above left column results are R1) a baby bunny sitting on top of a stack of pancakes, R2) a beautiful rainbow fish, R3) a DSLR photo of an astronaut standing on the surface of mars, R4) a steam engine train, high resolution, R5) a DSLR photo of a delicious croissant, and R6) a beautiful dress made out of garbage bags, on a mannequin. Studio lighting, high quality, high resolution. Prompts for the above right column results are R1) a bald eagle carved out of wood, R2) a DSLR photo of a robot tiger, R3) a DSLR photo of a teal moped, R4) a turtle standing on its hind legs, wearing a top hat and holding a cane, R5) a zoomed out DSLR photo of a marble bust of a fox head, and R6) a DSLR photo of a corgi puppy. </p>
+    </div>
+  </div>
+</section>
+	
+	
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>Abstract</center></h2>
+    <div class="hero-body">
+	<div class="content has-text-justified">
+	  <p>
+		Recent advances in generative AI have unveiled significant potential for the creation of 3D content. However, current methods either apply a pre-trained 2D diffusion model with the time-consuming score distillation sampling (SDS), or a direct 3D diffusion model trained on limited 3D data losing generation diversity. In this work, we approach the problem by employing a multi-view 2.5D diffusion fine-tuned from a pre-trained 2D diffusion model. The multi-view 2.5D diffusion directly models the structural distribution of 3D data, while still maintaining the strong generalization ability of the original 2D diffusion model, filling the gap between 2D diffusion-based and direct 3D diffusion-based methods for 3D content generation. During inference, multi-view normal maps are generated using the 2.5D diffusion, and a novel differentiable rasterization scheme is introduced to fuse the almost consistent multi-view normal maps into a consistent 3D model. We further design a normal-conditioned multi-view image generation module for fast appearance generation given the 3D geometry. Our method is a one-pass diffusion process and does not require any SDS optimization as post-processing. We demonstrate through extensive experiments that, our direct 2.5D generation with the specially-designed fusion scheme can achieve diverse, mode-seeking-free, and high-fidelity 3D content generation in only <strong>10 seconds</strong>.
+	   </p>
+      </div>
+	</div>
+  </div>
+</section>	
+	
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>
+      Pipeline
+    </center></h2>
+    <div class="hero-body">
+          <img src="./resources/pipeline.png"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+		<p> <strong> Overview</strong> of our text-to-3D content generation system. The generation is a two-stage process, first generating geoemtry and then appearance. Specifically, the system is composed of the following steps: 1) a single denoising process to simultaneously generate 4 normal maps; 2) fast mesh optimization by differentiable rasterization; 3) a single denoising process to generate 4 images conditioned on rendered normal maps; 4) texture construction from multi-view images. The whole generation process only takes 10 seconds.</p>
+    </div>
+  </div>
+</section>	
+
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>Fast and Explicit Multi-view 2.5D Fusion</center></h2>
+    <div class="hero-body">
+	  <video id="geo-opt" autoplay muted loop playsinline height="100%">
+          <source src="./resources/geo-opt.mp4"
+                type="video/mp4">
+      </video>
+	  <p> Our method fuses the multi-view normal images into an explicit triangle mesh via a fast meshing algorithm. The geometry optimization process via differentiable rasterization only requires only 2-3 seconds to generate a high-quality result. </p>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>
+      Diverse Generation
+    </center></h2>
+    <div class="hero-body">
+          <video id="diversity" autoplay muted loop playsinline height="100%">
+          <source src="./resources/diversity.mp4"
+                type="video/mp4">
+      	  </video>
+		   <p> <strong>Diverse Generation.</strong> Our method avoids the common mode-seeking problem by SDS and generates diverse results. Prompts for the results from top to bottom are: R1) a ceramic lion, R2) a  DSLR photo of a human skull, R3) a  DSLR photo of a corgi puppy, R4) a  DSLR photo of a pirate collie dog, high resolution, R5) a  DSLR photo of a toy robot, R6) a blue motorcycle, R7) a DSLR photo of an ice cream sundae, and R8) a zoomed out DSLR photo of a wizard raccoon casting a spell.</p>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>Geometry-Appearance Disentangled Generation</center></h2>
+    <div class="hero-body">
+          <video id="disentangled" autoplay muted loop playsinline height="100%">
+          <source src="./resources/disentangled-v2.mp4"
+                type="video/mp4">
+      	  </video>
+		   <p> <strong>Geometry-Appearance Disentangled Generation.</strong> Prompts for the results from top to bottom are: R1) a DSLR photo of a bear dressed in medieval armor, R2) a zoomed out DSLR photo of a wizard raccoon casting a spell, R3) a DSLR photo of a robot tiger, and R4) a freshly baked loaf of sourdough bread on a cutting board.</p>
+
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>Comparison to Previous Text-to-3D Methods</center></h2>
+    <div class="hero-body">
+          <video id="compare" autoplay muted loop playsinline height="100%">
+          <source src="./resources/compare.mp4"
+                type="video/mp4">
+      	  </video>
+		   <p> Prompts for the results from top to bottom are: R1) a zoomed out DSLR photo of a wizard raccoon casting a spell, R2) a DSLR photo of a turtle standing on its hind legs, wearing a top hat and holding a cane, R3) a DSLR photo of a pirate collie dog, high resolution, and R4) a DSLR photo of a robot tiger.</p>
+
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>
+      More Results
+    </center></h2>
+    <div class="hero-body">
+          <video id="gallery2" autoplay muted loop playsinline height="100%">
+          <source src="./resources/gallery2-3cols.mp4"
+                type="video/mp4">
+      	  </video>
+		   <p> More generation results. The prompts for the results above can be found at <a href="./resources/more_results_prompts.txt">here</a>. </p>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+			This webpage is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

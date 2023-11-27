@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Relightable 3D Gaussian</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/dics.min.css">
+    <!-- <link rel="stylesheet" href="css/bulma.min.css"> -->
+    <script src="scripts/dics.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', domReady);
+        function domReady() {
+            for (const e of document.querySelectorAll(".b-dics")) {
+                new Dics({
+                    container: e,
+                    textPosition: "top"
+                });
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section>
+        <div class="text-center mt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Relightable 3D Gaussian: Real-time Point Cloud Relighting with BRDF Decomposition and Ray Tracing</h1>
+                        <hr>
+                        <h5> <a href="http://ygaojiany.github.io/" target="_blank">Jian Gao<sup>1*</sup></a>, 
+                            <a href="https://sulvxiangxin.github.io/" target="_blank">Chun Gu<sup>2*</sup></a>, 
+                            <a href="https://scholar.google.com/citations?user=VhhHLhIAAAAJ&hl=en" target="_blank">Youtian Lin<sup>1</sup></a>, 
+                            <a href="http://zhuhao.cc/home/" target="_blank">Hao Zhu<sup>1</sup></a>, 
+                            <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html" target="_blank">Xun Cao<sup>1</sup></a>, 
+                            <a href="https://lzrobots.github.io/" target="_blank">Li Zhang<sup>2<i class="fa fa-envelope"> </i></sup></a>, 
+                            <a href="https://yoyo000.github.io/" target="_blank">Yao Yao<sup>1<i class="fa fa-envelope"> </i></sup></a> </h5>
+                        <h5 style="color:#000000;"><sup>1 </sup>Nanjing University, <sup>2 </sup>Fudan University</h5>
+                        <h5 style="color:#000000;"><sup>*</sup>Equally contributed.</h5>
+                        <br>
+                        <p>
+                            <a class="btn btn-secondary btn-lg" href="" role="button">Paper</a> 
+                            <a class="btn btn-secondary btn-lg" href="" role="button">Code(Coming Soon)</a>    
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/lego_points.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Points</figcaption>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/lego_render.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>PBR with Decomposed BRDF</figcaption>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/lego_visibility.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Ambient Occlusion from Point-based Ray Tracing</figcaption>
+                </figure>
+                
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+
+                    <h2>Abstract</h2>
+                    <hr style="margin-top:0px">
+
+                    <!-- <div class="b-row">
+                        <div class="b-dics" style="width: 100%">
+                            <img src="img/point.png" alt="Point" />
+                            <img src="img/normal.png" alt="Normal" />
+                        </div>
+                        <div class="b-dics" style="width: 100%">
+                            <img src="img/render.png" alt="Render" />
+                            <img src="img/pbr_env.png" alt="Relighting" />
+                        </div>
+                    </div> -->
+                    <br>
+
+                    <p class="text-justify">We present a novel differentiable point-based rendering framework for material
+                        and lighting decomposition from multi-view images, enabling editing, ray-tracing, and real-time
+                        relighting of the 3D point cloud. Specifically, a 3D scene is represented as a set of
+                        relightable 3D Gaussian points, where each point is additionally associated with a normal
+                        direction, BRDF parameters, and incident lights from different directions. To achieve robust
+                        lighting estimation, we further divide incident lights of each point into global and local
+                        components, as well as view-dependent visibilities. The 3D scene is optimized through the
+                        3D Gaussian Splatting technique while BRDF and lighting are decomposed by physically-based
+                        differentiable rendering. Moreover, we introduce an innovative point-based ray-tracing
+                        approach based on the bounding volume hierarchy for efficient visibility baking, enabling
+                        real-time rendering and relighting of 3D Gaussian points with accurate shadow effects.
+                        Extensive experiments demonstrate improved BRDF estimation and novel view rendering results
+                        compared to state-of-the-art material estimation approaches. Our framework showcases the
+                        potential to revolutionize the mesh-based graphics pipeline with a relightable, traceable,
+                        and editable rendering pipeline solely based on point cloud.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <br>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Method Overview</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <img class="img-fluid" src="img/pipeline.png" alt="">
+            <p class="text-justify">
+                <b>The proposed differentiable rendering pipeline.</b> Starting with a collection of 3D Gaussians that embody 
+                geometry, material, and lighting attributes, we first execute the rendering equation at Gaussian level to determine 
+                the outgoing radiance of a designated viewpoint. Following this, we proceed to render the corresponding features by 
+                employing rasterization coupled with alpha blending, thereby producing the vanilla color map, the physically based 
+                rendered color map, the depth map, the normal map, etc. To optimize relightable 3D Gaussians, we utilize the ground 
+                truth image and the pseudo normal map derived from the rendered depth map for supervision.
+            </p>
+            <br>
+            <br>
+
+            <ul>
+                <li>A material and lighting decomposition scheme for <b>3D Gaussian Splatting</b>,
+                    where <b>normal</b>, <b>BRDF</b>, and <b>incident lights</b> are assigned and
+                    optimized for each 3D Gaussian point.
+                </li>
+                <li>A novel point-based <b>ray-tracing</b> approach based on bounding volume hierarchy(<b>BVH</b>), enabling
+                    efficient <b>visibility baking</b> of every 3D Gaussian point and rendering of a 3D scene with realistic
+                    <b>shadow</b> effect.
+                </li>
+                <li> A comprehensive <b>graphics pipeline</b> solely based on a discretized point
+                    representation, supporting <b>relighting</b>, <b>editing</b>, and <b>ray tracing</b> of a reconstructed
+                    3D point cloud.
+                </li>
+            </ul>
+
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Novel View Synthesis</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="img/nvs.png" alt="">
+            <p class="text-center">Qualitative results of novel view synthesis on NeRF synthetic dataset and DTU dataset compared with baselines</p>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Material, Visibility and Normal</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+            <img class="img-fluid" src="img/material.png" alt="">
+            <p class="text-center">Qualitative results of BRDF estimation. Here we visualize the rendered average visibility (ambient occlusion) as well.</p>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Visibility (Ambient Occlusion) through Ray Tracing</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+
+            <div class="b-row">
+                <div class="b-dics" style="width: 100%">
+                    <img src="img/vis/lego_pbr.png" alt="PBR" />
+                    <img src="img/vis/lego_vis.png" alt="Ambient Occlusion" />
+                </div>
+                <div class="b-dics" style="width: 100%">
+                    <img src="img/vis/dtu24_pbr.png" alt="PBR" />
+                    <img src="img/vis/dtu24_vis.png" alt="Ambient Occlusion" />
+                </div>
+                <div class="b-dics" style="width: 100%">
+                    <img src="img/vis/dtu40_pbr.png" alt="PBR" />
+                    <img src="img/vis/dtu40_vis.png" alt="Ambient Occlusion" />
+                </div>
+                <div class="b-dics" style="width: 100%">
+                    <img src="img/vis/dtu65_pbr.png" alt="PBR" />
+                    <img src="img/vis/dtu65_vis.png" alt="Ambient Occlusion" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Multi-object Composition and Relighting</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/base_color.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Base Color</figcaption>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/normal.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Normal</figcaption>
+                </figure>
+            </div>
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source src="img/videos/visibility.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Ambient Occlusion</figcaption>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/render.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Render</figcaption>
+                </figure>
+            </div>
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/pbr_env.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Relighting</figcaption>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source src="img/videos/pbr_light.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Rotating Light</figcaption>
+                </figure>
+            </div>
+
+        </div>
+    </section>
+    <br>
+    <br>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Scene Composition and Relighting</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+            <div class="'b-row">
+                <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="img/videos/pbr_env_tt.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+
+    <!-- <footer class="text-center">
+        <div class="container">
+            <div class="row ">
+                <div class="col-12">
+                    <h2>Citation</h2>
+                    <hr style="margin-top:0px">
+                    <div class="bibtexsection">
+                        <pre><code>
+    @article{zhang2023neilf++,
+        title={NeILF++: Inter-reflectable Light Fields for Geometry and Material Estimation},
+        author={Zhang, Jingyang and Yao, Yao and Li, Shiwei and Liu, Jingbo and Fang, Tian and McKinnon,
+        David and Tsin, Yanghai and Quan, Long},
+        journal={International Conference on Computer Vision (ICCV)},
+        year={2023}
+    }
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <br> -->
+
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <p>
+                Acknowledgements: The website template was borrowed from <a href="https://lioryariv.github.io/idr/">Lior Yariv</a>.
+                Image sliders are based on <a href="https://github.com/abelcabezaroman/definitive-image-comparison-slider">dics</a>.
+            </p>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.4.1.js"></script>
+</body>
+</html>

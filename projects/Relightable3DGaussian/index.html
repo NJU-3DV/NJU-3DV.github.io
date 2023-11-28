@@ -23,6 +23,7 @@
             }
         }
     </script>
+    <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
 </head>
 
 <body>
@@ -55,29 +56,19 @@
 
     <section>
         <div class="container">
-            <div class="b-row">
-                <figure style="text-align: center;">
-                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
-                      <source src="img/videos/lego_points.mp4" type="video/mp4">
-                    </video>
-                    <figcaption>Points</figcaption>
-                </figure>
-                <figure style="text-align: center;">
-                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
-                      <source src="img/videos/lego_render.mp4" type="video/mp4">
-                    </video>
-                    <figcaption>PBR with Decomposed BRDF</figcaption>
-                </figure>
-                <figure style="text-align: center;">
-                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
-                      <source src="img/videos/lego_visibility.mp4" type="video/mp4">
-                    </video>
-                    <figcaption>Ambient Occlusion from Point-based Ray Tracing</figcaption>
-                </figure>
-                
-            </div>
+            <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                <source src="img/videos/teaser.mp4" type="video/mp4">
+            </video>
+            <table style="width:100%; border-collapse: collapse; table-layout: fixed;">
+                <tr>
+                  <td style="width: 33%; text-align: center;">Points</td>
+                  <td style="width: 33%; text-align: center;">PBR with Decomposed BRDF</td>
+                  <td style="width: 33%; text-align: center;">Ambient Occlusion from Point-based Ray Tracing</td>
+                </tr>
+              </table>
         </div>
     </section>
+    <br>
 
     <section>
         <div class="container">

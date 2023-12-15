@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:float="http://www.w3.org/1999/xhtml"><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>NeIF</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/codemirror.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/video_comparison.js"></script>
+    <script src="js/app.js"></script>
+    <style>
+        .container2 {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 25px;
+        }
+        .text_large {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 15px;
+            font-weight: bold;
+            color: #1e3d59;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="header" style="text-align: center; margin: auto;">
+        <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto; display: inline-block">
+            <h2 class="col-md-12 text-center" id="title">
+                <b>LoD-NeuS</b>:  Anti-Aliased Neural Implicit Surfaces  with <br> Encoding Level of Detail<br>
+            </h2>
+        </div>
+
+        <div class="row" id="author-row" style="margin:0 auto;">
+            <div class="col-md-12 text-center" style="display: table; margin:0 auto">
+                <table class="author-table" id="author-table">
+                    <tr>
+
+                        <td>
+                            <p >
+                              Yiyu Zhuang<sup>1*</sup>, Qi Zhang<sup>2*</sup>, Ying Feng<sup>2</sup>, Hao Zhu<sup>1</sup>, Yao Yao<sup>1</sup>
+                                <br> Xiaoyu Li<sup>2</sup>, Yan-Pei Cao<sup>2</sup>, Ying Shan<sup>2</sup>, Xun Cao<sup>1</sup>
+                            </p>
+                            <br><sup>1</sup> Nanjing University, Nanjing, China   <sup>2</sup> Tencent AI Lab, Shenzhen, China
+                        </td>
+
+                    </tr>
+                </table>
+
+            </div>
+            <image src="img/logo.png" class="img-responsive" alt="method" width="60%"  style="margin:auto;"></image>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/pdf/2309.10336.pdf">
+                            <img src="img/icon_paper.png" width="50%">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/yiyuzhuang/LoD-NeuS" target="_blank">
+                            <image src="img/icon_code.png" width="40%">
+                                <h4><strong>Code(Coming Soon)</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        document.getElementById('author-row').style.maxWidth = document.getElementById("title-row").clientWidth + 'px';
+    </script>
+    <div class="container" id="main">
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+    We present LoD-NeuS, an efficient neural representation for high-frequency geometry detail recovery and anti-aliased novel view rendering. Drawing inspiration from voxel-based representations with the level of detail (LoD), we introduce a multi-scale tri-plane-based scene representation that is capable of capturing the LoD of the signed distance function (SDF) and the space radiance. Our representation aggregates space features from a multi-convolved featurization within a conical frustum along a ray and optimizes the LoD feature volume through differentiable rendering. Additionally, we propose an error-guided sampling strategy to guide the growth of the SDF during the optimization. Both qualitative and quantitative evaluations demonstrate that our method achieves superior surface reconstruction and photorealistic view synthesis compared to state-of-the-art approaches.      </div>
+
+        <image src="img/Fig_teaser.jpg" class="img-responsive" alt="overview" width="70%"  style="margin:auto;"></image>
+
+
+        <br>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Overview
+                </h3>
+                    <div class="center">
+                        <video  width="90%" playsinline poster controls loop muted >
+                        <source src="video/LoD-NeuS_Fast-forwardVideo.mp4" type="video/mp4"  />
+                    </video>
+                    </div>
+                <br>
+                <div class="text-justify">
+
+
+
+Our method reveals the importance of addressing aliasing for achieving high-fidelity reconstruction:
+ <ul>
+<li>	We present a tri-plane position encoding, optimizing multiscale features, to effectively capture different levels of detail;
+ <li>	We design a multi-convolved featurization within a conical frustum, to approximate cone sampling along a ray, which enables the anti-aliasing recovery with finer 3D geometric details;
+  <li>	We develop a refinement strategy, involving error-guided sampling, to facilitate SDF growth for thin surfaces.
+</ul>
+                    In experiments, our method outperforms state-of-the-art NeuS based approaches at high-quality surface reconstruction and view synthesis, particularly for objects and scenes with high-frequency details and thin surfaces.
+Please refer to our paper for more implementation details.
+                    <br><br>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Method
+                </h3>
+                <div class="text-justify">
+                    Aggregation of LoD feature, including multi-convolved featurization and cone discrete sampling. We obtain the feature of any sample within the conical frustum by blending the features of vertices. Additionally, considering the size of the sampled points, we introduce multi-convolved features by Gaussian Kernel to efficiently represent ray sampling within a cone. Combining both of them, we aggregate the LoD feature of any sample in a continuous manner.              </div>
+                <div class="center" >
+                     <image src="img/Fig_pipeline.png" class="img-responsive" alt="method" width="55%"  style="margin:auto;"></image>
+
+                </div>
+
+			</div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                   Comparision
+                </h3>
+
+                    <div class="text-justify">
+                       We compare the visual quality of our reconstructed mesh with the state-of-the-art baseline, demonstrating that our approach can reconstruct superior details.
+                     </div>
+
+                     <div class="center" >
+                        <div class="container2">
+                            <div class="text_large" >NeuS</div>
+                            <div class="text_large">HF-NeuS</div>
+                            <div class="text_large">Ours</div>
+                        </div>
+                         <video width="100%" playsinline poster  autoplay loop muted> //controls
+                            <source src="video/comp_video1.mp4" type="video/mp4" />
+                        </video>
+
+                    </div>
+
+                     <div class="center" >
+                         <video width="100%" playsinline poster autoplay loop muted>
+                            <source src="video/comp_video2.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                     <div class="center" >
+                         <video width="100%" playsinline poster autoplay loop muted>
+                            <source src="video/comp_video3.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                     <div class="center" >
+                         <video width="100%" playsinline poster autoplay loop muted>
+                            <source src="video/comp_video4.mp4" type="video/mp4" />
+                        </video>
+                    </div>
+                <h3>
+                   Novel View Synthesis
+                </h3>
+
+                    <div class="text-justify">
+                      We showcase a comparison of our novel view synthesis with the ground truth.
+                     </div>
+
+                    <div class="container2">
+                        <div class="text_large" >Ours</div>
+                        <div class="text_large">Normal</div>
+                        <div class="text_large">Ground Truth</div>
+                    </div>
+                    <div class="center" >
+                         <image src="img/house_31.png" class="img-responsive" alt="method" width="100%"  style="margin:auto;"></image>
+                         <image src="img/house_39.png" class="img-responsive" alt="method" width="100%"  style="margin-left: -8%;"></image>
+                         <image src="img/stone.png" class="img-responsive" alt="method" width="100%"  style="margin:auto;"></image>
+                         <image src="img/bear.png" class="img-responsive" alt="method" width="100%"  style="margin:auto;"></image>
+                         <image src="img/bird.png" class="img-responsive" alt="method" width="100%"  style="margin:auto;"></image>
+                    </div>
+
+
+
+
+			</div>
+        </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                        Citation
+                    </h3>
+                    <div class="form-group col-md-10 col-md-offset-0">
+                        <textarea id="bibtex" class="form-control" readonly>
+@article{zhuang2023anti,
+  title={Anti-Aliased Neural Implicit Surfaces with Encoding Level of Detail},
+  author={Zhuang, Yiyu and Zhang, Qi and Feng, Ying and Zhu, Hao and Yao, Yao and Li, Xiaoyu and Cao, Yan-Pei and Shan, Ying and Cao, Xun},
+  journal={arXiv preprint arXiv:2309.10336},
+  year={2023}
+}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                        Acknowledgements
+                    </h3>
+                    <p class="text-justify">
+        The website template was kindly provided by <a href="http://mgharbi.com/">Michaël Gharbi</a>. <br>
+        Special thanks to Master Yayuan Wang for her support.<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+            <br><br><br><br>
+    </div>
+</body></html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Spatial-Temporal Anchored Generative 4D Gaussians">
+  <meta name="keywords" content="Stag4D, 4D generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>STAG4D: Spatial-Temporal Anchored Generative 4D Gaussians</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://github.com/zeng-yifei">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://consistent4d.github.io/">
+            Consistent4D
+          </a>
+          <a class="navbar-item" href="https://sudo-ai-3d.github.io/One2345plus_page/">
+            One-2-3-45++
+          </a>
+          <a class="navbar-item" href="https://guanjunwu.github.io/4dgs/index.html">
+            4DGS
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!--say sth-->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">STAG4D: Spatial-Temporal Anchored Generative 4D Gaussians</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+            <a href="https://github.com/zeng-yifei">Yifei Zeng*</a><sup>1</sup>,</span>
+              <span class="author-block">
+              <a href="https://github.com/yanqinJiang">Yanqin Jiang*</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://sites.google.com/site/zhusiyucs/home/">Siyu Zhu</a><sup>3</sup>,</span>
+                <span class="author-block">
+              <a href="https://github.com/YuanxunLu">Yuanxun Lu</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://linyou.github.io/">Youtian Lin</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="http://zhuhao.cc/">Hao Zhu</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://people.ucas.ac.cn/~huweiming">Weiming Hu</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html">Xun Cao</a><sup>1</sup>,
+              <span class="author-block">
+                <a href="https://yoyo000.github.io/">Yao Yao</a><sup>1✉</sup> </span>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Nanjing University, </span>
+            <span class="author-block"><sup>2</sup>CASIA, </span>
+            <span class="author-block"><sup>3</sup>Fudan University, </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. TODO -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2403.14939/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2403.14939.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. TODO-->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=YJkFMIV2OyQ"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link.  TODO-->
+              <span class="link-block">
+                <a href="https://github.com/zeng-yifei/STAG4D"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code(To be released)</span>
+                  </a>
+              </span>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="subtitle has-text-centered">
+        TL; DR: high-fidelity 4D generation from diverse inputs (text, image, and video) with pre-trained diffusion models and dynamic 3D Gaussian splatting.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-shiba">
+          <img src="./static/gifs2/bear1_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+
+        <div class="item item-shiba">
+          <img src="./static/gifs2/boy_mara_mc_006_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/cat-dance_012_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/running_triceratops_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/squirrel_exercise_008_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/dog_lowpoly_016_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/rabbit-1_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/walking_siamese_cat_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/mouse_boxing3_009_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/ohuvxcxa_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/panda_chef_019_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/dog_music_lowpoly_015_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/cat_phone_lp_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/dancing_patrick_star_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/teddy_walking_001_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/duck_sing_016_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+        <div class="item item-shiba">
+          <img src="./static/gifs2/yemvxenj_magic_compare.gif" alt="none" loop playsinline height="100%">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!--TODO: Paper video. -->
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/YJkFMIV2OyQ"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+    <!--/ Paper video. -->
+  </div>
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            
+            Recent progress in pre-trained diffusion models and 3D generation have spurred interest in 4D content creation. However, achieving high-fidelity 4D generation with spatial-temporal consistency remains a challenge. 
+            In this work, we propose STAG4D, a novel framework that combines pre-trained diffusion models with dynamic 3D Gaussian splatting for high-fidelity 4D generation. 
+          </p>
+          <p>
+            Drawing inspiration from 3D generation techniques, we utilize a multi-view diffusion model to initialize multi-view images anchoring on the input video frames, where the video can be either real-world captured or generated by a video diffusion model. 
+            To ensure the temporal consistency of the multi-view sequence initialization, we introduce a simple yet effective fusion strategy to leverage the first frame as a temporal anchor in the self-attention computation. 
+            With the almost consistent multi-view sequences 
+            , we then apply the score distillation sampling to optimize the 4D Gaussian point cloud.
+            The 4D Gaussian spatting is specially crafted for the generation task, where an adaptive densification strategy is proposed to mitigate the unstable Gaussian gradient for robust optimization. 
+          </p>
+          <p>
+            Notably, the proposed pipeline does not require any pre-training or fine-tuning of diffusion networks, offering a more accessible and practical solution for the 4D generation task.
+            Extensive experiments demonstrate that our method outperforms prior 4D generation works in rendering quality, spatial-temporal consistency, and generation robustness, setting a new state-of-the-art for 4D generation from diverse inputs, including text, image, and video. 
+        
+          </p>
+          <img src="./static/images/pipeline.png">
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Video-to-4D</h2>
+          <p>
+            Using <i>STAG4D</i>, you can create high-quality 4D content from a monocular front-view video.
+          </p>
+          <!--<img src="./static/images/exhibit.jpg" alt="Video-to-4D"> -->
+        </div>
+      </div>
+
+
+
+      
+      </div>
+    </div>
+
+
+    <div class="container is-max-desktop">
+      
+      <div class="columns is-centered">
+  
+        <!-- Visual Effects. -->
+        <div class="column">
+          <video id="messi" autoplay controls muted loop playsinline>
+              <source src="./static/videos/videoto4d.mp4"
+                      type="video/mp4">
+          </video>
+        </div>
+        <!--/ Visual Effects. -->
+  
+      </div>
+    </div>
+    <!--/ Matting. -->
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered">
+  
+
+  
+        <!-- Visual Effects. -->
+        <div class="column">
+          <div class="content">
+            <h2 class="title is-3">Text-to-4D</h2>
+            <p>
+              Our method is designed to be readily adaptable to text and image inputs, 
+              offering novel capabilities such as directly generating video sequences from textual descriptions or static images.
+            </p>
+            <!--<img src="./static/images/exhibit_mode23.jpg" alt="Video-to-4D">-->
+          </div>
+        </div>
+        <!--/ Visual Effects. -->
+  
+        
+        </div>
+      </div>
+=
+        <div class="container is-max-desktop">
+      
+          <div class="columns is-centered">
+      
+            <!-- Visual Effects. -->
+            <div class="column">
+              <video id="messi" autoplay controls muted loop playsinline>
+                  <source src="./static/videos/textto4d3.mp4"
+                          type="video/mp4">
+              </video>
+            </div>
+            <!--/ Visual Effects. -->
+      
+          </div>
+        </div>
+=
+    <!-- Animation. -->
+    <div class="container is-max-desktop">
+      <div class="column is-centered">
+        
+        <h2 class="title is-3">Application 1</h2>
+
+
+        <h3 class="title is-4">Multi-view & Normal Generation</h3>
+        <div class="content has-text-justified">
+          <p>
+            Building upon our attention mechanism, we have integrated our design with the newly introduced normal map model by Zero123++. 
+            As far as we know, this is the first time that people can generate temporal-coherent multiview images with corresponding normal maps.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+  </div>
+
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <video id="messi" autoplay controls muted loop playsinline>
+            <source src="./static/videos/pistol.mp4"
+                    type="video/mp4">
+        </video>
+      </div>
+      <!--/ Visual Effects. -->
+      <div class="column">
+        <video id="trump" autoplay controls muted loop playsinline>
+            <source src="./static/videos/teddy.mp4"
+                    type="video/mp4">
+        </video>
+      </div>
+      <!-- Matting. -->
+
+    </div>
+  </div>
+
+
+    <!-- Animation. -->
+    <div class="container is-max-desktop">
+      <div class="column is-centered">
+        
+        <h2 class="title is-3">Application 2</h2>
+
+
+        <h3 class="title is-4">Scene Composition</h3>
+        <div class="content has-text-justified">
+          <p>
+            Our method also support compose different result together. Building upon this, we could create a scene from a video containing multiple object.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+  </div>
+
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <video id="messi" autoplay controls muted loop playsinline>
+            <source src="./static/videos/minion_demo.mp4"
+                    type="video/mp4">
+        </video>
+      </div>
+
+
+    </div>
+  </div>
+
+</section>  
+
+
+
+
+
+
+<section class="section" id="BibTeX">
+
+    <div class="container is-max-desktop content">
+  
+    <h2 class="title">BibTeX</h2>
+  
+      <pre><code>@article{zeng2024stag4d,
+    title={STAG4D: Spatial-Temporal Anchored Generative 4D Gaussians}, 
+    author={Yifei Zeng and Yanqin Jiang and Siyu Zhu and Yuanxun Lu and Youtian Lin and Hao Zhu and Weiming Hu and Xun Cao and Yao Yao},
+    year={2024}
+}</code></pre>
+  
+   </div>
+  
+  </section>
+
+
+<!--/TODO: insert citation. -->
+<!--TODO: modeify bibtex-->
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/zeng-yifei" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Thanks for Nerfie for release their project page code. We borrow their <a
+              href="https://github.com/nerfies/nerfies.github.io">website code</a> to construct this website.
+            
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Direct3D</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/dics.min.css">
+    <!-- <link rel="stylesheet" href="css/bulma.min.css"> -->
+    <script src="scripts/dics.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', domReady);
+        function domReady() {
+            for (const e of document.querySelectorAll(".b-dics")) {
+                new Dics({
+                    container: e,
+                    textPosition: "top"
+                });
+            }
+        }
+    </script>
+    <link rel="shortcut icon" href="assets/icon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <section>
+        <div class="text-center mt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Direct3D: Scalable Image-to-3D Generation via 3D Latent Diffusion Transformer</h1>
+                        <img src="assets/undercon.png" alt="Page Under Construction", float="left", height="60">
+                        <!-- <span >Page Under Construction</span> -->
+                        <p>We're currently working on this page. Please check back soon.</p>
+                        <hr>
+                        <h5><a href="https://scholar.google.com/citations?N&user=SN8J78EAAAAJ&hl=en" target="_blank">Shuang Wu<sup>1,2*</sup></a>, 
+                            <a href="https://scholar.google.com/citations?user=VhhHLhIAAAAJ&hl=en" target="_blank">Youtian Lin<sup>2*</sup></a>, 
+                            <a href="http://www.feihuzhang.com/" target="_blank">Feihu Zhang<sup>1</sup></a>, 
+                            <a href="https://github.com/zeng-yifei" target="_blank">Yifei Zeng<sup>1,2</sup></a>, 
+                            <a href="" target="_blank">Jinxi Xu<sup>1</sup></a>,
+                            <a href="https://scholar.google.com/citations?user=kPxa2w0AAAAJ&hl=en" target="_blank">Philip Torr<sup>1</sup></a>, 
+                            <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html" target="_blank">Xun Cao<sup>2</sup></a>, 
+                            <a href="https://yoyo000.github.io/" target="_blank">Yao Yao<sup>2<i class="fa fa-envelope"> </i></sup></a> </h5>
+                        <h5 style="color:#000000;"><sup>1 </sup>DreamTech, <sup>2 </sup>Nanjing University</h5>
+                        <!-- <h5 style="color:#000000;"><sup>*</sup>Equally contributed.</h5> -->
+                        <br>
+                        <p>
+                            <a class="btn btn-secondary btn-lg" href="" role="button">Paper</a> 
+                            <a class="btn btn-secondary btn-lg" href="" role="button">video</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- <section>
+        <div class="container">
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video height="370" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source src="assets/vid/chickchicken.mp4" type="video/mp4">
+                    </video>
+                    <figcaption>Chick-Chicken</figcaption>
+                </figure>
+                <figure style="text-align: center;">
+                    <video height="370" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="assets/vid/espresso_lr.mov" type="video/mp4">
+                    </video>
+                    <figcaption>Espresso</figcaption>
+                </figure>
+                <figure style="text-align: center;">
+                    <video height="370" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="assets/vid/split_cookie_lr.mov" type="video/mp4">
+                    </video>
+                    <figcaption>Split-Cookie</figcaption>
+                </figure>
+                <figure style="text-align: center;">
+                    <video height="370" playsinline="" autoplay="" loop="" preload="" muted="">
+                    <source src="assets/vid/flame_steak.mov" type="video/mp4">
+                    </video>
+                    <figcaption>Flame-Steak</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+    <br> -->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+
+                    <h2>Abstract</h2>
+                    <hr style="margin-top:0px">
+                    <br>
+
+                    <p class="text-justify">Generating high-quality 3D assets from text and images has long been challenging, primarily due to the absence of scalable 3D representations capable of capturing intricate geometry distributions. In this work, we introduce <b>Direct3D</b>, a native 3D generative model scalable to in-the-wild input images, without requiring a multi-view diffusion model or SDS optimization. Our approach comprises two primary components: a Direct 3D Variational Auto-Encoder (<b>D3D-VAE</b>) and a Direct 3D Diffusion Transformer (<b>D3D-DiT</b>). D3D-VAE efficiently encodes high-resolution 3D shapes into a compact and continuous latent triplane space. Notably, our method directly supervises the decoded geometry using a semi-continuous surface sampling strategy, diverging from previous methods relying on rendered images as supervision signals. D3D-DiT models the distribution of encoded 3D latents and is specifically designed to fuse positional information from the three feature maps of the triplane latent, enabling a native 3D generative model scalable to large-scale 3D datasets. Additionally, we introduce an innovative image-to-3D generation pipeline incorporating semantic and pixel-level image conditions, allowing the model to produce 3D shapes consistent with the provided conditional image input. Extensive experiments demonstrate the superiority of our large-scale pre-trained Direct3D over previous image-to-3D approaches, achieving significantly better generation quality and generalization ability, thus establishing a new state-of-the-art for 3D content creation.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <br>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Method Overview</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <img class="img-fluid" src="assets/pipeline.png" alt="">
+            <p class="text-justify">
+                The framework of our <b>Direct3D</b>.  (a) We utilize transformer to encode point cloud sampled from 3D model, along with a set of learnable tokens, into an explicit triplane latent space. Subsequently, a CNN-based decoder is employed to upsample these latent representations into high-resolution triplane feature maps. The occupancy values of queried points can be decoded through a geometric mapping network. (b) Then we train the image conditioned latent diffusion transformer in the 3D latent space obtained by VAE. Pixel-level information and semantic-level information from images are extracted using DINO-v2 and CLIP, respectively, and then injected into each DiT block.
+            </p>
+            <br>
+            <br>
+
+
+
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+
+
+    <!-- <footer class="text-center">
+        <div class="container">
+            <div class="row ">
+                <div class="col-12">
+                    <h2>Citation</h2>
+                    <hr style="margin-top:0px">
+                    <div class="bibtexsection">
+                        <pre><code>
+    @article{,
+        author    = {Shuang Wu and Youtian Lin and Feihu Zhang and Yifei Zeng and Jinxi Xu and Philip Torr and Xun Cao and Yao Yao},
+        title     = {Direct3D: Scalable Image-to-3D Generation via 3D Latent Diffusion Transformer},
+        journal   = {arXiv:},
+        year      = {2024},
+    }
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <br> -->
+
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <p>
+                Acknowledgements: The website template was borrowed from <a href="https://lioryariv.github.io/idr/">Lior Yariv</a>.
+                <!-- Image sliders are based on <a href="https://github.com/abelcabezaroman/definitive-image-comparison-slider">dics</a>. -->
+            </p>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.4.1.js"></script>
+</body>
+</html>

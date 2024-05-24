@@ -1,5 +1,6 @@
 .b-row {
     display: flex;
+    width: 100%;
 }
   
 
@@ -225,3 +226,14 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
 }
+
+
+.video-wrapper {
+text-align: center;
+}
+
+.video-wrapper video {
+width: 100%;
+height: auto;
+}
+  

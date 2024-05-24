@@ -49,7 +49,7 @@
                         <!-- <h5 style="color:#000000;"><sup>*</sup>Equally contributed.</h5> -->
                         <br>
                         <p>
-                            <a class="btn btn-secondary btn-lg" href="" role="button">Paper</a> 
+                            <a class="btn btn-secondary btn-lg" href="https://arxiv.org/abs/2405.14832" role="button">Paper</a> 
                             <a class="btn btn-secondary btn-lg" href="" role="button">video</a>
                         </p>
                     </div>
@@ -59,37 +59,18 @@
     </section>
 
 
-    <!-- <section>
+    <section>
         <div class="container">
             <div class="b-row">
-                <figure style="text-align: center;">
-                    <video height="370" playsinline="" autoplay="" loop="" preload="" muted="">
-                        <source src="assets/vid/chickchicken.mp4" type="video/mp4">
+                <figure class="video-wrapper">
+                    <video playsinline autoplay loop preload muted>
+                      <source src="assets/video/teaser.mov" type="video/mp4">
                     </video>
-                    <figcaption>Chick-Chicken</figcaption>
-                </figure>
-                <figure style="text-align: center;">
-                    <video height="370" playsinline="" autoplay="" loop="" preload="" muted="">
-                    <source src="assets/vid/espresso_lr.mov" type="video/mp4">
-                    </video>
-                    <figcaption>Espresso</figcaption>
-                </figure>
-                <figure style="text-align: center;">
-                    <video height="370" playsinline="" autoplay="" loop="" preload="" muted="">
-                    <source src="assets/vid/split_cookie_lr.mov" type="video/mp4">
-                    </video>
-                    <figcaption>Split-Cookie</figcaption>
-                </figure>
-                <figure style="text-align: center;">
-                    <video height="370" playsinline="" autoplay="" loop="" preload="" muted="">
-                    <source src="assets/vid/flame_steak.mov" type="video/mp4">
-                    </video>
-                    <figcaption>Flame-Steak</figcaption>
                 </figure>
             </div>
         </div>
     </section>
-    <br> -->
+    <br>
 
     <section>
         <div class="container">
@@ -122,22 +103,38 @@
                 </div>
             </div>
             <img class="img-fluid" src="assets/pipeline.png" alt="">
-            <p class="text-justify">
-                The framework of our <b>Direct3D</b>.  (a) We utilize transformer to encode point cloud sampled from 3D model, along with a set of learnable tokens, into an explicit triplane latent space. Subsequently, a CNN-based decoder is employed to upsample these latent representations into high-resolution triplane feature maps. The occupancy values of queried points can be decoded through a geometric mapping network. (b) Then we train the image conditioned latent diffusion transformer in the 3D latent space obtained by VAE. Pixel-level information and semantic-level information from images are extracted using DINO-v2 and CLIP, respectively, and then injected into each DiT block.
-            </p>
+            <!-- <p class="text-justify">
+                The framework of our Direct3D.
+            </p> -->
             <br>
             <br>
-
-
-
         </div>
     </section>
     <br>
     <br>
     <br>
 
+    <section>
+        <div class="container">
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Textured Meshes</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <div class="b-row">
+                <figure class="video-wrapper">
+                    <video playsinline autoplay loop preload muted>
+                      <source src="assets/video/texture.mov" type="video/mp4">
+                    </video>
+                </figure>
+            </div>
+        </div>
+    </section>
+    <br>
 
-    <!-- <footer class="text-center">
+
+    <footer class="text-center">
         <div class="container">
             <div class="row ">
                 <div class="col-12">
@@ -145,10 +142,11 @@
                     <hr style="margin-top:0px">
                     <div class="bibtexsection">
                         <pre><code>
-    @article{,
-        author    = {Shuang Wu and Youtian Lin and Feihu Zhang and Yifei Zeng and Jinxi Xu and Philip Torr and Xun Cao and Yao Yao},
+    @article{wu2024direct3d,
+        author    = {Shuang Wu and Youtian Lin and Feihu Zhang and Yifei Zeng and Jingxi Xu and Philip Torr
+            and Xun Cao and Yao Yao},
         title     = {Direct3D: Scalable Image-to-3D Generation via 3D Latent Diffusion Transformer},
-        journal   = {arXiv:},
+        journal   = {arXiv:2405.14832},
         year      = {2024},
     }
                         </code>
@@ -157,7 +155,7 @@
             </div>
         </div>
     </footer>
-    <br> -->
+    <br>
 
 
     <div class="row">

@@ -24,6 +24,7 @@
         }
     </script>
     <link rel="shortcut icon" href="assets/icon.ico" type="image/x-icon" />
+    <script type="module" src="./js/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -33,9 +34,9 @@
                 <div class="row">
                     <div class="col-12">
                         <h1>Direct3D: Scalable Image-to-3D Generation via 3D Latent Diffusion Transformer</h1>
-                        <img src="assets/undercon.png" alt="Page Under Construction", float="left", height="60">
+                        <!-- <img src="assets/undercon.png" alt="Page Under Construction", float="left", height="60"> -->
                         <!-- <span >Page Under Construction</span> -->
-                        <p>We're currently working on this page. Please check back soon.</p>
+                        <!-- <p>We're currently working on this page. Please check back soon.</p> -->
                         <hr>
                         <h5><a href="https://scholar.google.com/citations?N&user=SN8J78EAAAAJ&hl=en" target="_blank">Shuang Wu<sup>1,2*</sup></a>, 
                             <a href="https://linyou.github.io" target="_blank">Youtian Lin<sup>2*</sup></a>, 
@@ -92,22 +93,93 @@
     <br>
     <br>
     <br>
-
     <section>
         <div class="container">
-
             <div class="row" style="margin-top:5px">
                 <div class="col-12 text-center">
-                    <h2>Method Overview</h2>
+                    <h2>Meshes Viewer</h2>
                     <hr style="margin-top:0px">
                 </div>
             </div>
-            <img class="img-fluid" src="assets/pipeline.png" alt="" style="width: 70%;margin-right: auto;margin-left: auto;display: block;">
-            <!-- <p class="text-justify">
-                The framework of our Direct3D.
-            </p> -->
-            <br>
-            <br>
+            <div class="b-row">
+                <div>
+                    <p class="text-center"> Reference Image </p>
+                    <img src="./assets/models/pikachu.png" style="width: 100%;">
+                </div>
+                <div class="wrapper"> 
+                    <p class="text-center"> Output Mesh </p>
+                    <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%"
+                        src="./assets/models/pikachu.glb" style="height: 90%;">
+                    </model-viewer>
+                </div>
+                <div>
+                    <p class="text-center"> Reference Image </p>
+                    <img src="./assets/models/statue_of_liberty.jpg" style="width: 100%;">
+                </div>
+                <div class="wrapper">
+                    <p class="text-center"> Output Mesh </p>
+                    <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%"
+                        src="./assets/models/statue_of_liberty.glb" style="height: 90%;">
+                    </model-viewer>
+                </div>
+            </div>
+            <div class="b-row">
+                <div>
+                    <img src="./assets/models/a_Brazilian_man.jpg" style="width: 100%;">
+                </div>
+                <div class="wrapper"> 
+                    <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%"
+                        src="./assets/models/a_Brazilian_man.glb" style="height: 90%;">
+                    </model-viewer>
+                </div>
+                <div>
+                    <img src="./assets/models/Iron_Man,_in_a_darkened_state_no_bg.jpg" style="width: 100%;">
+                </div>
+                <div class="wrapper">
+                    <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%"
+                        src="./assets/models/Iron_Man,_in_a_darkened_state_no_bg.glb" style="height: 90%;">
+                    </model-viewer>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <section>
+        <div class="container">
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Textured Meshes Viewer</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <div class="b-row">
+                <div class="wrapper center"> 
+                    <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="30deg 75deg 100%" max-camera-orbit="auto auto 100%"
+                        src="./assets/models/icecream.glb" style="height: 150pt;">
+                    </model-viewer>
+                    <p class="text-center"> Icecream </p>
+                </div>
+                <div class="wrapper center"> 
+                    <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="30deg 75deg 100%" max-camera-orbit="auto auto 100%"
+                        src="./assets/models/king-kong.glb" style="height: 150pt;"></model-viewer>
+                    </model-viewer>
+                    <p class="text-center"> King kong atop the empire state building, the movie king kong </p>
+                </div>
+                <div class="wrapper center"> 
+                    <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="30deg 75deg 100%" max-camera-orbit="auto auto 100%"
+                        src="./assets/models/pistol.glb" style="height:150pt;">
+                    </model-viewer>
+                    <p class="text-center"> Iron man </p>
+                </div>
+                <div class="wrapper center"> 
+                    <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="30deg 75deg 100%" max-camera-orbit="auto auto 100%"
+                        src="./assets/models/spider.glb" style="height: 150pt;">
+                    </model-viewer>
+                    <p class="text-center"> Spider </p>
+                </div>
+            </div>
         </div>
     </section>
     <br>
@@ -118,7 +190,7 @@
         <div class="container">
             <div class="row" style="margin-top:5px">
                 <div class="col-12 text-center">
-                    <h2>Textured Meshes</h2>
+                    <h2>More Textured Meshes Results</h2>
                     <hr style="margin-top:0px">
                 </div>
             </div>
@@ -132,6 +204,26 @@
         </div>
     </section>
     <br>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Method Overview</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <img class="img-fluid" src="assets/pipeline_final.png" alt="" style="width: 100%;margin-right: auto;margin-left: auto;display: block;">
+            <!-- <p class="text-justify">
+                The framework of our Direct3D.
+            </p> -->
+            <br>
+            <br>
+        </div>
+    </section>
 
 
     <footer class="text-center">

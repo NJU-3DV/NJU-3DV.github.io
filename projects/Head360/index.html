@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Learning a Parametric 3D Full-Head for Free-View Synthesis in 360°">
+  <meta name="keywords" content="3DGS, Talking Head, Multi-View Synthesis (MVS)">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 这是网页标题，记得也要改 -->
+  <title>Head360: Learning a Parametric 3D Full-Head for Free-View Synthesis in 360°</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- 这是网页标题的图片,原来是个乌克兰国旗,我给改成南大校徽,可以自己改成喜欢的样子 -->
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="http://zhuhao.cc/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More research of our team (ECCV 2024)
+        </a>
+        <!-- 请把剩下几个工作都链接都放这里头 -->
+        <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/Head360/">
+              Head360
+            </a >
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/EmoTalk3D/">
+              EmoTalk3D
+            </a >
+            <a class="navbar-item" href="https://fudan-generative-vision.github.io/champ/">
+              Champ
+            </a >
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/STAG4D/">
+              STAG4D
+            </a >
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/Relightable3DGaussian/">
+              Relightable 3D Gaussian
+            </a >
+          </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- 这里整个section都要改 -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Head360: Learning a Parametric 3D Full-Head for Free-View Synthesis in 360°</h1>
+          <div class="is-size-5 publication-authors">
+            <!-- 没有链接的名称样式 -->
+            <span class="author-block">
+              Yuxiao He<sup>1,2</sup>,</span>
+            </span>
+            <!-- 有链接的名称样式 -->
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=hk-3z3UAAAAJ&hl=en">Yiyu Zhuang</a><sup>1,2</sup>,</span>
+            </span>
+            <span class="author-block">
+              Yanwen Wang<sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://yoyo000.github.io/">Yao Yao</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://sites.google.com/site/zhusiyucs/home">Siyu Zhu</a><sup>3</sup>,</span>
+            </span>
+            <span class="author-block">
+              <a href="https://xiaoyu258.github.io/">Xiaoyu Li</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://qzhang-cv.github.io/">Qi Zhang</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html">Xun Cao</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://zhuhao.cc/home/">Hao Zhu</a><sup>+ 1,2</sup>
+            </span>
+          </div><br>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>State Key Laboratory for Novel Software Technology, Nanjing, China</span><br>
+            <span class="author-block"><sup>2</sup>Nanjing University, Nanjing & Suzhou, China</span><br>
+            <span class="author-block"><sup>3</sup>Fudan University, Shanghai, China</span><br>
+            <span class="author-block"><sup>4</sup>Tencent AI Lab, Shenzhen, China</span><br>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. 请上传完arxiv后更新这两条 -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper(Coming soon)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv(Coming soon)</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1gfKByud4NiGkIV2eHypVyIZUa-6_JVPc/view?usp=drive_link"#todo
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 元数据和摘要，注意要改的 -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- 主视频，记得上传链接 -->
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/07318.mp4"
+                type="video/mp4">
+      </video>
+      <!-- 主视频的题注。记得更改。 -->
+       <!-- 注意：要想要用专有名词，记得在css/index.css注释部分将class更改 -->
+      <h2 class="subtitle has-text-centered">
+        Supplementary video
+        <!-- <span class="head360">Synhead360</span> dataset and our architecture. -->
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- 其余实验的视频，记得上传到static中，并更改链接和题注。 
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <img src="./static/images/title.jpg" width="1080" alt="">
+        <div class="content has-text-justified">
+          <p>
+            We have constructed a dataset of artist-designed, high-fidelity human heads, 
+            and developed a novel framework to learn this parametric model using synthetic <span class="head360">Synhead360</span>datasets . 
+
+          </p>
+          <p>
+            Creating a 360◦ parametric model of a human head is a very
+            challenging task. While recent advancements have demonstrated the efficacy of leveraging synthetic data for building such parametric head
+            models, their performance remains inadequate in crucial areas such as expression-driven animation, hairstyle editing, and text-based modifica-
+            tions. 
+          </p>
+          <p>
+            In this paper, we build a dataset of artist-designed high-fidelity human heads and propose to create a novel parametric 360-degree renderable parametric head model from it. 
+            Our scheme decouples the facial motion/shape and facial appearance, 
+            which are represented by a classic
+            parametric 3D mesh model and an attached neural texture, respectively. 
+            We further propose a training method for decompositing hairstyle and facial appearance, 
+            allowing free-swapping of the hairstyle. A novel inversion fitting method is presented based on single image input with high generalization and fidelity. 
+          </p>
+          <p>
+            Moreover, our model extracts emotion labels from the input speech and enables controllable emotion
+            in the generated talking heads.  Our method exhibits improved rendering quality and stability in
+            lip motion generation while capturing dynamic facial details such as wrinkles and subtle expressions.
+            Experiments demonstrate the effectiveness of our approach in generating high-fidelity and emotion-controllable
+            3D talking heads.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. 
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+     -->
+    
+  </div>
+</section>
+
+<!--sections-->
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+
+      <!-- [ dataset.] -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3"><span class="head360">Synhead360</span>  Datasets</h2>
+          <img src="./static/images/data1.jpg" width="1080" alt="">
+          <div class="content has-text-justified">
+          <p>
+            We create a high-quality artist-designed 3D head dataset, containing 100 different subjects with various hairstyles. 
+            The ratio of males to females in
+            the dataset is 1:1, and the age is fairly evenly distributed between 16 and 70.
+          </p >
+        <!-- </div>
+          <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p> -->
+          <!-- <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div> -->
+      </div>
+      <!-- [/ Visual Effects.] -->
+
+      <!-- [Matting.] 
+      <div class="column">
+        <h2 class="title is-3">Matting</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div> -->
+    </div>
+    <!-- [/ Matting. ] -->
+
+    <!-- [Animation.] -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <!-- <h2 class="title is-3">Presentation</h2> -->
+
+        <!-- [Interpolating.] -->
+        <!-- <h3 class="title is-4">Interpolating states</h3> -->
+        <img src="./static/images/data5.jpg" width="1080" alt="">
+        <div class="content has-text-justified">
+          <p>
+            The <span class="head360">Synhead360</span> dataset encompasses 374, 400 calibrated high-resolution images and 5, 200 mesh
+            models for each identity under 52 expressions. The 3D heads are rendered by 72 head-centric virtual cameras covering 3 pitch
+            angles and 24 horizontal rotation angles.
+          </p>
+        </div>
+        <p>
+        <strong>If you need the complete dataset, please sign this <a href='./static/downloads/LicenseAgreement_synhead100.docx' download>License</a> and contact yuxiaohe@smail.nju.edu.com.</strong>
+        </p>
+          We provide some <a href="https://drive.google.com/file/d/1gfKByud4NiGkIV2eHypVyIZUa-6_JVPc/view?usp=drive_link">demo data</a> for preview.
+          <!-- todo -->
+
+        <!-- <div class="columns is-vcentered interpolation-panel">
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_start.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+            <p>Start Frame</p>
+          </div>
+          <div class="column interpolation-video-column">
+            <div id="interpolation-image-wrapper">
+              Loading...
+            </div>
+            <input class="slider is-fullwidth is-large is-info"
+                   id="interpolation-slider"
+                   step="1" min="0" max="100" value="0" type="range">
+          </div>
+          <div class="column is-3 has-text-centered">
+            <img src="./static/images/interpolate_end.jpg"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+            <p class="is-bold">End Frame</p>
+          </div>
+        </div> -->
+        <!-- <br/> -->
+        <!-- [/ Interpolating.] -->
+
+        <!-- [ Re-rendering. ] -->
+        <!-- <h3 class="title is-3">Method</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/replay.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        [/ Re-rendering.] -->
+
+      </div>
+    </div>
+    <!-- [/ dataset.] -->
+
+
+    <!-- [Method.] -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="columns is-centered has-text-centered"></div>
+        <h2 class="title is-3">Method</h2>
+        <img src="./static/images/pipeline.jpg" width="1080" alt="">
+
+        <div class="content has-text-justified">
+          <p>
+            Our model is represented by a neural radiance field with hexlanes, 
+            conditioned on a generative neural texture and a parametric 3D mesh model. 
+            In this way, the facial appearance, shape, and motion are parameterized as texture code t,
+            shape code s, and blendshapes parameter b, respectively. The RefineNet, a conditional
+            GAN, is introduced to further improve the details of the generated faces.
+          </p>
+          <!-- <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p> -->
+        </div>
+      </div>
+    </div> 
+    <!-- [/ Concurrent Work.] -->
+
+  </div>
+</section>
+-->
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{he2024head360,
+  author    = {He, Yuxiao and Zhuang, Yiyu and Wang, Yanwen and Yao, Yao and Zhu, Siyu and Li, Xiaoyu and Zhang, Qi and Cao, Xun and Zhu, Hao},
+  title     = {Head360: Learning a Parametric 3D Full-Head for Free-View Synthesis in 360°},
+  journal   = {European Conference on Computer Vision (ECCV)},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- 这一部分主要是链接pdf文档和GitHub，如果建好了可以把链接改好上传上去 -->
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website template was borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies</a>. Thanks to <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+          <p>
+            Like <a
+            href="https://github.com/nerfies/nerfies.github.io">nerfies</a>, this website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

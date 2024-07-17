@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="High-Fidelity Free-view synthesis of emotional 3D talking head.">
+  <meta name="keywords" content="3DGS, Talking Head, Multi-View Synthesis (MVS)">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 这是网页标题，记得也要改 -->
+  <title>EmoTalk3D: High-Fidelity Free-View Synthesis of Emotional 3D Talking Head</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="http://zhuhao.cc/">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Research of our team (ECCV 2024)
+          </a>
+          <!-- 请把剩下几个工作都链接都放这里头 -->
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/Head360/">
+              Head360
+            </a>
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/EmoTalk3D/">
+              EmoTalk3D
+            </a>
+            <a class="navbar-item" href="https://fudan-generative-vision.github.io/champ/">
+              Champ
+            </a>
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/STAG4D/">
+              STAG4D
+            </a>
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/Relightable3DGaussian/">
+              Relightable 3D Gaussian
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- 这里整个section都要改 -->
+
+  <section class="hero">
+
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title"><span class="emotalk">EmoTalk3D</span>: High-Fidelity Free-View
+              Synthesis of Emotional 3D Talking Head</h1>
+
+            <div class="is-size-6 publication-authors">
+              <!-- 没有链接的名称样式 -->
+              <span class="author-block">
+                Qianyun He<sup>1,2</sup>,</span>
+              </span>
+              <!-- 有链接的名称样式 -->
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=sy_WtmcAAAAJ">Xinya Ji</a><sup>1,2</sup>,</span>
+              </span>
+              <span class="author-block">
+                Yicheng Gong<sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=ZBozF3sAAAAJ">Yuanxun Lu</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=lXidlSUAAAAJ">Zhengyu Diao</a><sup>1,2</sup>,</span>
+              </span>
+              <span class="author-block">
+                Linjia Huang<sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://yoyo000.github.io/">Yao Yao</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://sites.google.com/site/zhusiyucs/home">Siyu Zhu</a><sup>3</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://vision.nju.edu.cn/fc/d3/c29470a457939/page.htm">Zhan Ma</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://ieeexplore.ieee.org/author/37089011822">Songcen Xu</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?hl=zh-CN&user=CseafDAAAAAJ">Xiaofei Wu</a><sup>4</sup>,
+              </span> <span class="author-block">
+                Zixiao Zhang<sup>4</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html">Xun Cao</a><sup>1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="http://zhuhao.cc/home/">Hao Zhu</a><sup>1,2</sup>
+              </span>
+            </div><br>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>1</sup>State Key Laboratory for Novel Software Technology, Nanjing,
+                China,</span>
+              <span class="author-block"><sup>2</sup>Nanjing University, Nanjing & Suzhou, China</span>
+              <span class="author-block"><sup>3</sup>Fudan University, Shanghai, China</span>
+              <span class="author-block"><sup>4</sup>Huawei Noak, Shenzhen, China</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. 请上传完arxiv后更新这两条 -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper (Coming soon)</span>
+                  </a>
+                </span>
+
+                <!-- <span class="link-block">
+                  <a href="https://arxiv.org/abs/2011.12948" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv (Coming soon)</span>
+                  </a>
+                </span> -->
+
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="#our_video"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming soon)</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="mailto:zhuhao@nju.edu.cn" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data Aquisition<sup>*</sup></span>
+                  </a>
+                  <div class="content is-5">
+                    <sup>* Due to privacy and copyright issues, please click this button to send us an email with a
+                      non-commercial use request.</sup>
+
+                  </div>
+              </div>
+              <img src="./static/images/fig_identity.svg" width="960" alt="">
+              <!-- Abstract. -->
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-max-desktop">
+                  <h2 class="title is-4">Abstract</h2>
+                  <div class="content has-text-justified">
+                    <p>
+                      Despite significant progress in the field of 3D talking heads, prior methods still suffer from
+                      multi-view consistency and a lack of emotional expressiveness. To address these issues, we collect
+                      <span class="emotalk">EmoTalk3D</span> dataset with calibrated multi-view videos, emotional
+                      annotations, and per-frame 3D geometry. Besides, We present a novel approach for synthesizing
+                      emotion-controllable, featuring enhanced lip synchronization and rendering quality.
+                    </p>
+                    <p>
+                      By training on the <span class="emotalk">EmoTalk3D</span> dataset, we propose a
+                      <i>"Speech-to-Geometry-to-Appearance"</i>
+                      mapping framework that first predicts faithful 3D geometry sequence from the audio features, then
+                      the appearance of a 3D talking head represented by 4D Gaussians is synthesized from the predicted
+                      geometry. The appearance is further disentangled into canonical and dynamic Gaussians, learned
+                      from multi-view videos, and fused to render free-view talking head animation.
+                    </p>
+                    <p>
+                      Moreover, our model extracts emotion labels from the input speech and enables controllable emotion
+                      in the generated talking heads. Our method exhibits improved rendering quality and stability in
+                      lip motion generation while capturing dynamic facial details such as wrinkles and subtle
+                      expressions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!--/ Abstract. -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Method. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Method</h2>
+          <img src="./static/images/Method.svg" width="1080" alt="">
+          <div class="content has-text-justified">
+            <p>
+              Overall Pipeline.The pipeline consists of five modules:
+              1) Emotion-content;
+              Disentangle Encoder that parses content features and emotion features from input speech;
+              2) Speech-to-Geometry Network (S2GNet) that predicts dynamic 3D pointclouds from the features;
+              3) Gaussian Optimization and Completion Module for establishing a canonical appearance;
+              4) Geometry-to-Appearance Network (G2ANet) that synthesizes facial appearance based on dynamic 3D point
+              cloud;
+              and 5) Rendering module for rendering dynamic Gaussians into free-view animations.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Dataset. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Dataset</h2>
+          <video id="dataset_video" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dataset_cut.mp4" type="video/mp4">
+          </video>
+          <div class="content has-text-justified">
+            <p>
+              We establish EmoTalk3D dataset, an emotion-annotated multi-view talking head dataset with per-frame 3D
+              facial shapes.
+              EmoTalk3D dataset provides audio, per-frame multi-view images, camera paramters and corresponding
+              reconstructed 3D shapes.
+              The data have been released to public for non-commercial research purpose.
+            </p>
+            <p>
+              For data acquisition, please send an e-mail by clicking <a href="mailto:zhuhao@nju.edu.cn">this link</a>.
+              We recommend to apply using a *.edu e-mail, which is more likely to be authorized.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Dataset. -->
+      <!-- Results. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Results</h2>
+          <div class="result_1">
+            <video id="result_1" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/result_1.mp4" type="video/mp4">
+            </video>
+            <div class="content has-text-justified">
+              <p>
+                Up: GroundTruth Down: Ours; Input Emotion: Angry
+              </p>
+            </div>
+          </div>
+
+          <div class="result_2">
+            <video id="result_2" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/result_2.mp4" type="video/mp4">
+            </video>
+            <div class="content has-text-justified">
+              <p>
+                Up: GroundTruth Down: Ours; Input Emotion: Disgusted
+              </p>
+            </div>
+          </div>
+
+          <div class="result_3">
+            <video id="result_3" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/result_3.mp4" type="video/mp4">
+            </video>
+            <div class="content has-text-justified">
+              <p>
+                Up: GroundTruth Down: Ours; Input Emotion: Happy
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Results. -->
+
+      <!-- In-the-wild Audio-driven. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">In-the-wild Audio-driven</h2>
+          <div class="novel_results_video">
+            <div class="novel_result_1">
+              <video id="novel_result_1" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/novel_result_1_cut.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="novel_result_2">
+              <video id="novel_result_2" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/novel_result_2_cut.mp4" type="video/mp4">
+              </video>
+            </div>
+
+            <div class="novel_result_3">
+              <video id="novel_result_3" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/novel_result_3_cut.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ In-the-wild Audio-driven. -->
+
+      <!-- Free-viewpoint Animation. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Free-viewpoint Animation</h2>
+          <div class="free_view_audio">
+            <video id="free_view_audio" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/free_view.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!--/ Free-viewpoint Animation. -->
+      </div>
+  </section>
+
+  <!-- Video. -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+
+        <div class="column column is-max-desktop">
+          <h2 id="our_video" class="title is-4">Our video</h2>
+          <!-- 主视频 -->
+
+          <div class="teaser-video-container">
+            <video id="teaser" autoplay muted controls playsinline height="100%">
+              <source src="./static/videos/paper_video.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+        
+      </div>
+      <div class="is-size-6 is-centered has-text-centered">
+        <a class="back-to-top" href="#" onclick="scrollToTop(); return false;">(back to top)</a>
+      </div>
+      
+    </div><br>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{he2024emotalk3d,
+  author    = {He, Qianyun and Ji, Xinya and Gong, Yicheng and Lu, Yuanxun and Diao, Zhengyu and Huang, Linjia and Yao, Yao and Zhu, Siyu and Ma, Zhan and Xu, Songchen and Wu, Xiaofei and Zhang, Zixiao and Cao, Xun and Zhu, Hao},
+  title     = {EmoTalk3D: High-Fidelity Free-View Synthesis of Emotional 3D Talking Head},
+  journal   = {ECCV},
+  year      = {2024},
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <!-- 这一部分主要是链接pdf文档和GitHub，如果建好了可以把链接改好上传上去 -->
+      <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              The website template was borrowed from <a href="https://nerfies.github.io/">Nerfies</a>.
+              Thanks to <a href="https://nerfies.github.io/">Nerfies</a>.
+            </p>
+            <p>
+              Like <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>, this website is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

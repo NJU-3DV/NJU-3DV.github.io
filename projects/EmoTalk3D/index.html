@@ -60,24 +60,29 @@
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
-            Research of our team (ECCV 2024)
+            More our research
           </a>
           <!-- 请把剩下几个工作都链接都放这里头 -->
           <div class="navbar-dropdown">
             <a class="navbar-item" href="https://nju-3dv.github.io/projects/Head360/">
-              Head360
+              Head360 (ECCV2024)
             </a>
-            <a class="navbar-item" href="https://nju-3dv.github.io/projects/EmoTalk3D/">
-              EmoTalk3D
-            </a>
-            <a class="navbar-item" href="https://fudan-generative-vision.github.io/champ/">
-              Champ
-            </a>
-            <a class="navbar-item" href="https://nju-3dv.github.io/projects/STAG4D/">
-              STAG4D
-            </a>
-            <a class="navbar-item" href="https://nju-3dv.github.io/projects/Relightable3DGaussian/">
-              Relightable 3D Gaussian
+            <a class="navbar-item" href="https://mhwu2017.github.io/">
+              Describe3D (CVPR2023) 
+            </a>            <a class="navbar-item" href="https://longwg.github.io/projects/RAFaRe/">
+              RAFaRe (AAAI 2023) 
+            </a>            <a class="navbar-item" href="https://yiyuzhuang.github.io/mofanerf/">
+              MoFaNeRF (ECCV2022) 
+            </a>            <a class="navbar-item" href="https://humanaigc.github.io/vivid-talk/">
+              VividTalk
+            </a>            <a class="navbar-item" href="https://jixinya.github.io/projects/EAMM/">
+              EAMM (SIGGRAPH Conf. 2022) 
+            </a>            <a class="navbar-item" href="https://yuanxunlu.github.io/projects/LiveSpeechPortraits/">
+              LSP (SIGGRAPH Asia 2021) 
+            </a>            <a class="navbar-item" href="https://jixinya.github.io/projects/evp/">
+              EVP (CVPR 2021) 
+            </a>            <a class="navbar-item" href="https://github.com/zhuhao-nju/facescape/">
+              FaceScape
             </a>
           </div>
         </div>
@@ -87,9 +92,7 @@
   </nav>
 
   <!-- 这里整个section都要改 -->
-
   <section class="hero">
-
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -146,9 +149,9 @@
             </div><br>
 
             <div class="is-size-6 publication-authors">
-              <span class="author-block"><sup>1</sup>State Key Laboratory for Novel Software Technology, Nanjing University, China,</span><br>
-              <span class="author-block"><sup>2</sup>Fudan University, Shanghai, China</span>
-              <span class="author-block"><sup>3</sup>Huawei Noah's Ark Lab</span>
+              <span class="author-block"><sup>1</sup> State Key Laboratory for Novel Software Technology, Nanjing University, China,</span><br>
+              <span class="author-block"><sup>2</sup> Fudan University, Shanghai, China &nbsp;&nbsp;</span>
+              <span class="author-block"><sup>3</sup> Huawei Noah's Ark Lab</span>
             </div>
 
             <div class="column has-text-centered">
@@ -193,70 +196,66 @@
                 </span>
                 <!-- Dataset Link. -->
                 <span class="link-block">
-                  <a href="mailto:emotalk@gmail.com" class="external-link button is-normal is-rounded is-dark">
+                  <a href="#Data_Acquisition" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="far fa-images"></i>
                     </span>
-                    <span>Data Aquisition<sup>*</sup></span>
+                    <span>Data Aquisition</span>
                   </a>
-                  <div class="content is-5">
+                  <!-- <div class="content is-5">
                     <sup>* Due to privacy and copyright issues, please fill in the
                       <a href="./static/license/License_Agreement_EmoTalk3D.docx" download>License Agreement</a>, then click this button to send us an email with a
                       non-commercial use request.</sup>
 
-                  </div>
+                  </div> -->
               </div>
               <img src="./static/images/fig_identity.svg" width="960" alt="">
-              <!-- Abstract. -->
-              <div class="columns is-centered has-text-centered">
-                <div class="column is-max-desktop">
-                  <h2 class="title is-4">Abstract</h2>
-                  <div class="content has-text-justified">
-                    <p>
-                      Despite significant progress in the field of 3D talking heads, prior methods still suffer from
-                      multi-view consistency and a lack of emotional expressiveness. To address these issues, we collect
-                      <span class="emotalk">EmoTalk3D</span> dataset with calibrated multi-view videos, emotional
-                      annotations, and per-frame 3D geometry. Besides, We present a novel approach for synthesizing
-                      emotion-controllable, featuring enhanced lip synchronization and rendering quality.
-                    </p>
-                    <p>
-                      By training on the <span class="emotalk">EmoTalk3D</span> dataset, we propose a
-                      <i>"Speech-to-Geometry-to-Appearance"</i>
-                      mapping framework that first predicts faithful 3D geometry sequence from the audio features, then
-                      the appearance of a 3D talking head represented by 4D Gaussians is synthesized from the predicted
-                      geometry. The appearance is further disentangled into canonical and dynamic Gaussians, learned
-                      from multi-view videos, and fused to render free-view talking head animation.
-                    </p>
-                    <p>
-                      Moreover, our model extracts emotion labels from the input speech and enables controllable emotion
-                      in the generated talking heads. Our method exhibits improved rendering quality and stability in
-                      lip motion generation while capturing dynamic facial details such as wrinkles and subtle
-                      expressions.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!--/ Abstract. -->
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  </section>
-
-
-
-  <section class="section">
     <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Despite significant progress in the field of 3D talking heads, prior methods still suffer from
+              multi-view consistency and a lack of emotional expressiveness. To address these issues, we collect
+              <span class="emotalk">EmoTalk3D</span> dataset with calibrated multi-view videos, emotional
+              annotations, and per-frame 3D geometry. Besides, We present a novel approach for synthesizing
+              emotion-controllable, featuring enhanced lip synchronization and rendering quality.
+            </p>
+            <p>
+              By training on the <span class="emotalk">EmoTalk3D</span> dataset, we propose a
+              <i>"Speech-to-Geometry-to-Appearance"</i>
+              mapping framework that first predicts faithful 3D geometry sequence from the audio features, then
+              the appearance of a 3D talking head represented by 4D Gaussians is synthesized from the predicted
+              geometry. The appearance is further disentangled into canonical and dynamic Gaussians, learned
+              from multi-view videos, and fused to render free-view talking head animation.
+            </p>
+            <p>
+              Moreover, our model extracts emotion labels from the input speech and enables controllable emotion
+              in the generated talking heads. Our method exhibits improved rendering quality and stability in
+              lip motion generation while capturing dynamic facial details such as wrinkles and subtle
+              expressions.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
       <!-- Method. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
-          <h2 class="title is-4">Method</h2>
+          <h2 class="title is-3">Method</h2>
           <img src="./static/images/Method.png" width="1080" alt="">
           <div class="content has-text-justified">
             <p>
-              Overall Pipeline.The pipeline consists of five modules:
+              <strong>Overall Pipeline.</strong>The pipeline consists of five modules:
               1) Emotion-content;
               Disentangle Encoder that parses content features and emotion features from input speech;
               2) Speech-to-Geometry Network (S2GNet) that predicts dynamic 3D pointclouds from the features;
@@ -268,64 +267,78 @@
           </div>
         </div>
       </div>
+      <!-- Method. -->
+
       <!-- Dataset. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
-          <h2 class="title is-4">Dataset</h2>
+          <h2 class="title is-3">Dataset</h2>
           <video id="dataset_video" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/dataset_cut.mp4" type="video/mp4">
           </video>
           <div class="content has-text-justified">
             <p>
-              We establish EmoTalk3D dataset, an emotion-annotated multi-view talking head dataset with per-frame 3D
+              We establish <span class="emotalk">EmoTalk3D</span> dataset, an emotion-annotated multi-view talking head dataset with per-frame 3D
               facial shapes.
-              EmoTalk3D dataset provides audio, per-frame multi-view images, camera paramters and corresponding
+              <span class="emotalk">EmoTalk3D</span> dataset provides audio, per-frame multi-view images, camera paramters and corresponding
               reconstructed 3D shapes.
               The data have been released to public for non-commercial research purpose.
-            </p>
-            <p>
-              For data acquisition, please fill up the <a href="./static/license/License_Agreement_EmoTalk3D.docx" download>License Agreement</a>
-              and send it via email by clicking <a href="mailto:emotalk3d@gmail.com">this link</a>.
-              We recommend to apply using a *.edu e-mail, which is more likely to be authorized.
             </p>
           </div>
         </div>
       </div>
       <!--/ Dataset. -->
+
+      <!-- Data Acquisition. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 id="Data_Acquisition" class="title is-3">Data Acquisition</h2>
+          <div class="content has-text-justified">
+            <p>
+              For data acquisition, please fill up the <a href="./static/license/License_Agreement_EmoTalk3D.docx" download>License Agreement</a>
+              and send it to <strong><a href="mailto:nju3dv@nju.edu.cn">nju3dv@nju.edu.cn</a></strong>.
+              The email subject format is <strong>[EmoTalk3D Dataset Request]</strong>.
+              We recommend to apply using a *.edu e-mail, which is more likely to be authorized.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Data Acquisition. -->
+
       <!-- Results. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
-          <h2 class="title is-4">Results</h2>
+          <h2 class="title is-3">Results</h2>
           <div class="result_1">
-            <video id="result_1" autoplay controls muted loop playsinline height="100%">
+            <video id="result_1" autoplay controls muted loop playsinline height="100%" width="60%">
               <source src="./static/videos/result_1.mp4" type="video/mp4">
             </video>
             <div class="content has-text-justified">
-              <p>
-                Up: GroundTruth Down: Ours; Input Emotion: Angry
-              </p>
+              <span><center>
+                <strong>Up: GroundTruth &emsp;&emsp; Down: Ours &emsp;&emsp; Input Emotion: Angry</strong>
+              </center></span>
             </div>
           </div>
 
           <div class="result_2">
-            <video id="result_2" autoplay controls muted loop playsinline height="100%">
+            <video id="result_2" autoplay controls muted loop playsinline height="100%" width="60%">
               <source src="./static/videos/result_2.mp4" type="video/mp4">
             </video>
             <div class="content has-text-justified">
-              <p>
-                Up: GroundTruth Down: Ours; Input Emotion: Disgusted
-              </p>
+              <span><center>
+                <strong>Up: GroundTruth &emsp;&emsp; Down: Ours &emsp;&emsp; Input Emotion: Disgusted</strong>
+              </center></span>
             </div>
           </div>
 
           <div class="result_3">
-            <video id="result_3" autoplay controls muted loop playsinline height="100%">
+            <video id="result_3" autoplay controls muted loop playsinline height="100%" width="60%">
               <source src="./static/videos/result_3.mp4" type="video/mp4">
             </video>
             <div class="content has-text-justified">
-              <p>
-                Up: GroundTruth Down: Ours; Input Emotion: Happy
-              </p>
+              <span><center>
+                <strong>Up: GroundTruth &emsp;&emsp; Down: Ours &emsp;&emsp; Input Emotion: Happy</strong>
+              </center></span>
             </div>
           </div>
         </div>
@@ -335,7 +348,7 @@
       <!-- In-the-wild Audio-driven. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
-          <h2 class="title is-4">In-the-wild Audio-driven</h2>
+          <h2 class="title is-3">In-the-wild Audio-driven</h2>
           <div class="novel_results_video">
             <div class="novel_result_1">
               <video id="novel_result_1" autoplay controls muted loop playsinline height="100%">
@@ -362,50 +375,45 @@
       <!-- Free-viewpoint Animation. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
-          <h2 class="title is-4">Free-viewpoint Animation</h2>
+          <h2 class="title is-3">Free-viewpoint Animation</h2>
           <div class="free_view_audio">
             <video id="free_view_audio" autoplay controls muted loop playsinline height="100%">
               <source src="./static/videos/free_view.mp4" type="video/mp4">
             </video>
           </div>
         </div>
-        <!--/ Free-viewpoint Animation. -->
       </div>
-  </section>
+      <!--/ Free-viewpoint Animation. -->
 
-  <!-- Video. -->
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
+      <!-- Video. -->
       <div class="columns is-centered has-text-centered">
-
         <div class="column column is-max-desktop">
-          <h2 id="our_video" class="title is-4">Our video</h2>
+          <h2 id="our_video" class="title is-3">Our video</h2>
           <!-- 主视频 -->
 
           <div class="teaser-video-container">
-            <video id="teaser" autoplay muted controls playsinline height="100%">
+            <video id="teaser" autoplay muted controls playsinline height="100%" width="80%">
               <source src="./static/videos/paper_video.mp4" type="video/mp4">
             </video>
           </div>
-
-        </div>
-        
+        </div>       
       </div>
+      <!-- Video. -->
+
       <div class="is-size-6 is-centered has-text-centered">
         <a class="back-to-top" href="#" onclick="scrollToTop(); return false;">(back to top)</a>
-      </div>
-      
-    </div><br>
+      </div>    
+    <br>
   </section>
 
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{he2024emotalk3d,
-  author    = {He, Qianyun and Ji, Xinya and Gong, Yicheng and Lu, Yuanxun and Diao, Zhengyu and Huang, Linjia and Yao, Yao and Zhu, Siyu and Ma, Zhan and Xu, Songchen and Wu, Xiaofei and Zhang, Zixiao and Cao, Xun and Zhu, Hao},
-  title     = {EmoTalk3D: High-Fidelity Free-View Synthesis of Emotional 3D Talking Head},
-  journal   = {ECCV},
-  year      = {2024},
+      <pre><code>@inproceedings{he2024emotalk3d,
+        title={EmoTalk3D: High-Fidelity Free-View Synthesis of Emotional 3D Talking Head},
+        author={He, Qianyun and Ji, Xinya and Gong, Yicheng and Lu, Yuanxun and Diao, Zhengyu and Huang, Linjia and Yao, Yao and Zhu, Siyu and Ma, Zhan and Xu, Songchen and Wu, Xiaofei and Zhang, Zixiao and Cao, Xun and Zhu, Hao},
+        booktitle={European Conference on Computer Vision (ECCV)},
+        year={2024}      
 }</code></pre>
     </div>
   </section>

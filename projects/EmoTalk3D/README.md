@@ -5,11 +5,11 @@ This is the repository that contains source code for the [EmoTalk3D website](htt
 
 If you find EmoTalk3D useful for your work please cite:
 ```
-@article{he2024emotalk3d,
-  author    = {He, Qianyun and Ji, Xinya and Gong, Yicheng and Lu, Yuanxun and Diao, Zhengyu and Huang, Linjia and Yao, Yao and Zhu, Siyu and Ma, Zhan and Xu, Songchen and Wu, Xiaofei and Zhang, Zixiao and Cao, Xun and Zhu, Hao},
-  title     = {EmoTalk3D: High-Fidelity Free-View Synthesis of Emotional 3D Talking Head},
-  journal   = {ECCV},
-  year      = {2024},
+@inproceedings{he2024emotalk3d,
+  title={EmoTalk3D: High-Fidelity Free-View Synthesis of Emotional 3D Talking Head},
+  author={He, Qianyun and Ji, Xinya and Gong, Yicheng and Lu, Yuanxun and Diao, Zhengyu and Huang, Linjia and Yao, Yao and Zhu, Siyu and Ma, Zhan and Xu, Songchen and Wu, Xiaofei and Zhang, Zixiao and Cao, Xun and Zhu, Hao},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  year={2024}      
 }
 ```
 

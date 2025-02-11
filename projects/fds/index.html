@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,490;1,490&display=swap" rel="stylesheet">
+
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.2.0/model-viewer.min.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async="" src="./assets/js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-9VZKE74FPW');
+  </script>
+  <title>Flow Distillation Sampling: Regularizing 3D Gaussians with Pre-trained Matching Priors</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link href="./assets/css" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/tab_gallery.css">
+  <!-- <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css"> -->
+  <link rel="stylesheet" href="./assets/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/juxtapose.css">
+  <link rel="stylesheet" href="./assets/css/image_card_fader.css">
+  <link rel="stylesheet" href="./assets/css/image_card_slider.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Akronim' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Sofia ' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=VT323 ' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Playfair Display ' rel='stylesheet'>
+
+</head>
+
+
+<body data-new-gr-c-s-check-loaded="14.1098.0" data-gr-ext-installed="">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">Flow Distillation Sampling: Regularizing 3D Gaussians with Pre-trained Matching Priors</h1>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">
+                <a href="https://linzhuo.xyz">Lin-Zhuo Chen</a><sup><img src="./assets/icons/jinmao.svg" width="18"/>,<img src="./assets/icons/star.png" width="12"/></sup>&nbsp
+              </span>
+              <span class="author-block">
+                Kangjie Liu</a><sup><img src="./assets/icons/jinmao.svg" width="18"/>,<img src="./assets/icons/star.png" width="12"/></sup>&nbsp</span>
+              <span class="author-block">
+                <a href="https://jbhuang0604.github.io/">Youtian
+                  Lin</a><sup><img src="./assets/icons/jinmao.svg" width="18"/></sup>&nbsp
+              </span>
+              <span class="author-block">
+                <a href="https://www.cs.umd.edu/~djacobs/">Zhihao
+                  Li</a><sup><img src="./assets/icons/chaiquan.svg" width="18"/></sup>&nbsp</span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block">
+                <a href="https://people.eecs.berkeley.edu/~efros/">
+                  Siyu Zhu</a><sup><img src="./assets/icons/jumao.svg" width="18"/></sup>&nbsp
+              </span>
+              <span class="author-block">
+                <a href="https://holynski.org/">
+                  Xun Cao</a><sup><img src="./assets/icons/jinmao.svg" width="18"/></sup>&nbsp
+              </span>
+              <span class="author-block">
+                <a href="https://people.eecs.berkeley.edu/~kanazawa/">
+                  Yao Yao</a><sup><img src="./assets/icons/jinmao.svg" width="18"/></sup>&nbsp
+              </span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup><img src="./assets/icons/star.png" width="12"/></sup>equal contribution &nbsp</span>
+              <span class="author-block"><sup><img src="./assets/icons/jinmao.svg" width="18"/></sup>Nanjing University &nbsp</span>
+              <span class="author-block"><sup><img src="./assets/icons/chaiquan.svg" width="18"/></sup>Huawei Noah's Ark Lab</span>
+              <span class="author-block"><sup><img src="./assets/icons/jumao.svg" width="18"/></sup>Fudan University</span>
+            </div>
+
+
+            <div class="is-size-5 publication-venue">
+              ICLR 2025
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="./fds.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false"
+                        data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
+                        </path>
+                      </svg><!-- <i class="fas fa-file-pdf"></i> Font Awesome fontawesome.com -->
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="./fds.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/NJU-3DV/fds"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false"
+                        data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 496 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                        </path>
+                      </svg>
+                    </span>
+                    <span>Code (comming soon)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://nju-3dv.github.io/projects/fds/#bibtex"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-obp"></i>
+                    </span>
+                    <span>BibTex</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <div class="container has-text-justified">
+          <p style="text-align: center;">
+            <span class="title is-2 publication-title" style="font-size:1.5em;">Abstract</span><br><br>
+          </p>
+          <div class="columns is-centered" id="div_livingroom" style="display: true;">
+            <div class="column">
+              <div class="container has-text-justified">
+                <p>
+                  <span style="font-size:1.1em;">3D Gaussian Splatting (3DGS) has achieved excellent rendering quality with fast training and rendering speed. However, its optimization process lacks explicit geometric constraints, leading to suboptimal geometric reconstruction in regions with sparse or no observational input views. In this work, we try to mitigate the issue by incorporating a pre-trained matching prior to the 3DGS optimization process. We introduce Flow Distillation Sampling (FDS), a technique that leverages pre-trained geometric knowledge to bolster the accuracy of the Gaussian radiance field. Our method employs a strategic sampling technique to target unobserved views adjacent to the input views, utilizing the optical flow calculated from the matching model (Prior Flow) to guide the flow analytically calculated from the 3DGS geometry (Radiance Flow). Comprehensive experiments in depth rendering, mesh reconstruction, and novel view synthesis showcase the significant advantages of FDS over state-of-the-art methods. Additionally, our interpretive experiments and analysis aim to shed light on the effects of FDS on geometric accuracy and rendering quality, potentially providing readers with insights into its performance.
+                  </span>
+                  <br>
+                </p>
+              </div>
+              <!-- 添加居中的图片和caption -->
+            <div style="text-align: center; margin-top: 20px;">
+              <img src="./image_assets/FDS.png" alt="Description of the image" style="max-width: 100%; height: auto;">
+              <p style="font-size: 0.9em; margin-top: 10px; color: #666;">Pipeline of the proposed FDS.</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Painting-to-Real -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="container has-text-centered">
+            <h2 class="title is-2 publication-title" style="font-size:1.7em;">More Visual Comparisons</h2>
+          </div>
+          <br>
+          <span style="font-size:1.1em;"> 
+          </span>
+          <br>
+        </div>
+      </div>
+      <div class="container is-max-desktop has-text-centered">
+        <!-- Row 1 -->
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <div class="content">
+              <div class="tab_container">
+                <img src="./video_assets/compare1/gt_rgb/frame_00137.jpg" alt="" data-label="Painting">
+              </div>
+            </div>
+          </div>
+            <div class="column is-4">
+              <div class="content">
+                <div class="tab_container">
+                  <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                    <div class="jx-slider">
+                      <div class="jx-handle " style="left: 54.53%;">
+                        <div class="jx-arrow jx-left"></div>
+                        <div class="jx-control">
+                          <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                        </div>
+                        <div class="jx-arrow jx-right"></div>
+                      </div>
+                      <div class="jx-image jx-left " style="width: 54.53%;">
+                        <img src="./video_assets/compare1/3DGS/frame_00137.jpg" alt="" data-label="3DGS">
+                      </div>
+                      <div class="jx-image jx-right " style="width: 45.47%;"><img
+                          src="./video_assets/compare1/3DGS+FDS/frame_00137.jpg" alt="" data-label="3DGS+FDS">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="content">
+                <div class="tab_container">
+                  <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                    <div class="jx-slider">
+                      <div class="jx-handle " style="left: 54.53%;">
+                        <div class="jx-arrow jx-left"></div>
+                        <div class="jx-control">
+                          <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                        </div>
+                        <div class="jx-arrow jx-right"></div>
+                      </div>
+                      <div class="jx-image jx-left " style="width: 54.53%;">
+                        <img src="./video_assets/compare1/2DGS/frame_00137.jpg" alt="" data-label="2DGS">
+                      </div>
+                      <div class="jx-image jx-right " style="width: 45.47%;"><img
+                          src="./video_assets/compare1/2DGS+FDS/frame_00137.jpg" alt="" data-label="2DGS+FDS">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <div class="content">
+              <div class="tab_container">
+                <img src="./video_assets/compare2/gt_rgb/frame_00262.jpg" alt="" data-label="Painting">
+              </div>
+            </div>
+          </div>
+            <div class="column is-4">
+              <div class="content">
+                <div class="tab_container">
+                  <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                    <div class="jx-slider">
+                      <div class="jx-handle " style="left: 54.53%;">
+                        <div class="jx-arrow jx-left"></div>
+                        <div class="jx-control">
+                          <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                        </div>
+                        <div class="jx-arrow jx-right"></div>
+                      </div>
+                      <div class="jx-image jx-left " style="width: 54.53%;">
+                        <img src="./video_assets/compare2/3DGS/frame_00262.jpg" alt="" data-label="3DGS">
+                      </div>
+                      <div class="jx-image jx-right " style="width: 45.47%;"><img
+                          src="./video_assets/compare2/3DGS+FDS/frame_00262.jpg" alt="" data-label="3DGS+FDS">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div class="content">
+                <div class="tab_container">
+                  <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                    <div class="jx-slider">
+                      <div class="jx-handle " style="left: 54.53%;">
+                        <div class="jx-arrow jx-left"></div>
+                        <div class="jx-control">
+                          <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                        </div>
+                        <div class="jx-arrow jx-right"></div>
+                      </div>
+                      <div class="jx-image jx-left " style="width: 54.53%;">
+                        <img src="./video_assets/compare2/2DGS/frame_00262.jpg" alt="" data-label="2DGS">
+                      </div>
+                      <div class="jx-image jx-right " style="width: 45.47%;"><img
+                          src="./video_assets/compare2/2DGS+FDS/frame_00262.jpg" alt="" data-label="2DGS+FDS">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+      <!-- Row 3 -->
+      <div class="columns is-centered">
+        <div class="column is-4">
+          <div class="content">
+            <div class="tab_container">
+              <img src="./video_assets/compare3/gt_rgb/frame_00522.jpg" alt="" data-label="Painting">
+            </div>
+          </div>
+        </div>
+          <div class="column is-4">
+            <div class="content">
+              <div class="tab_container">
+                <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                  <div class="jx-slider">
+                    <div class="jx-handle " style="left: 54.53%;">
+                      <div class="jx-arrow jx-left"></div>
+                      <div class="jx-control">
+                        <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <div class="jx-arrow jx-right"></div>
+                    </div>
+                    <div class="jx-image jx-left " style="width: 54.53%;">
+                      <img src="./video_assets/compare3/3DGS/frame_00522.jpg" alt="" data-label="3DGS">
+                    </div>
+                    <div class="jx-image jx-right " style="width: 45.47%;"><img
+                        src="./video_assets/compare3/3DGS+FDS/frame_00522.jpg" alt="" data-label="3DGS+FDS">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="content">
+              <div class="tab_container">
+                <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                  <div class="jx-slider">
+                    <div class="jx-handle " style="left: 54.53%;">
+                      <div class="jx-arrow jx-left"></div>
+                      <div class="jx-control">
+                        <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <div class="jx-arrow jx-right"></div>
+                    </div>
+                    <div class="jx-image jx-left " style="width: 54.53%;">
+                      <img src="./video_assets/compare3/2DGS/frame_00522.jpg" alt="" data-label="2DGS">
+                    </div>
+                    <div class="jx-image jx-right " style="width: 45.47%;"><img
+                        src="./video_assets/compare3/2DGS+FDS/frame_00522.jpg" alt="" data-label="2DGS+FDS">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="columns is-centered">
+        <div class="column is-4">
+          <div class="content">
+            <div class="tab_container">
+              <img src="./video_assets/compare4/gt_rgb/frame00000.png" alt="" data-label="Painting">
+            </div>
+          </div>
+        </div>
+          <div class="column is-4">
+            <div class="content">
+              <div class="tab_container">
+                <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                  <div class="jx-slider">
+                    <div class="jx-handle " style="left: 54.53%;">
+                      <div class="jx-arrow jx-left"></div>
+                      <div class="jx-control">
+                        <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <div class="jx-arrow jx-right"></div>
+                    </div>
+                    <div class="jx-image jx-left " style="width: 54.53%;">
+                      <img src="./video_assets/compare4/3DGS/frame00000.png" alt="" data-label="3DGS">
+                    </div>
+                    <div class="jx-image jx-right " style="width: 45.47%;"><img
+                        src="./video_assets/compare4/3DGS+FDS/frame00000.png" alt="" data-label="3DGS+FDS">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="content">
+              <div class="tab_container">
+                <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                  <div class="jx-slider">
+                    <div class="jx-handle " style="left: 54.53%;">
+                      <div class="jx-arrow jx-left"></div>
+                      <div class="jx-control">
+                        <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <div class="jx-arrow jx-right"></div>
+                    </div>
+                    <div class="jx-image jx-left " style="width: 54.53%;">
+                      <img src="./video_assets/compare4/2DGS/frame00000.png" alt="" data-label="2DGS">
+                    </div>
+                    <div class="jx-image jx-right " style="width: 45.47%;"><img
+                        src="./video_assets/compare4/2DGS+FDS/frame00000.png" alt="" data-label="2DGS+FDS">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+       <!-- Row 5 -->
+       <div class="columns is-centered">
+        <div class="column is-4">
+          <div class="content">
+            <div class="tab_container">
+              <img src="./video_assets/compare5/gt_rgb/frame00080.png" alt="" data-label="Painting">
+            </div>
+          </div>
+        </div>
+          <div class="column is-4">
+            <div class="content">
+              <div class="tab_container">
+                <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                  <div class="jx-slider">
+                    <div class="jx-handle " style="left: 54.53%;">
+                      <div class="jx-arrow jx-left"></div>
+                      <div class="jx-control">
+                        <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <div class="jx-arrow jx-right"></div>
+                    </div>
+                    <div class="jx-image jx-left " style="width: 54.53%;">
+                      <img src="./video_assets/compare5/3DGS/frame00080.png" alt="" data-label="3DGS">
+                    </div>
+                    <div class="jx-image jx-right " style="width: 45.47%;"><img
+                        src="./video_assets/compare5/3DGS+FDS/frame00080.png" alt="" data-label="3DGS+FDS">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="content">
+              <div class="tab_container">
+                <div id="juxtapose-embed1" data-startingposition="30%" data-animate="true" class="juxtapose">
+                  <div class="jx-slider">
+                    <div class="jx-handle " style="left: 54.53%;">
+                      <div class="jx-arrow jx-left"></div>
+                      <div class="jx-control">
+                        <div class="jx-controller" tabindex="0" role="slider" aria-valuenow="50" aria-valuemin="0"
+                          aria-valuemax="100"></div>
+                      </div>
+                      <div class="jx-arrow jx-right"></div>
+                    </div>
+                    <div class="jx-image jx-left " style="width: 54.53%;">
+                      <img src="./video_assets/compare5/2DGS/frame00080.png" alt="" data-label="2DGS">
+                    </div>
+                    <div class="jx-image jx-right " style="width: 45.47%;"><img
+                        src="./video_assets/compare5/2DGS+FDS/frame00080.png" alt="" data-label="2DGS+FDS">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="container is-max-desktop">
+
+            <!-- Acknowledgements. -->
+            <div class="columns is-centered">
+              <div class="column is-full-width">
+                <h2 class="title is-3 has-text-centered">Acknowledgment</h2>
+                <div class="content has-text-justified">
+                  <p>
+                    This work was supported by 
+                    National Key R&D Program of China (2023YFB3209702), 
+                    the National Natural Science Foundation of 
+                    China (62441204, 62472213), and Gusu 
+                    Innovation & Entrepreneurship Leading Talents Program (ZXL2024361)
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!--/ Acknowledgements. -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title"><a id="bibtex">BibTeX</a></h2>
+      <pre><code>@inproceedings{chen2024fds, 
+        title={Flow Distillation Sampling: Regularizing 3D Gaussians with Pre-trained Matching Priors}, 
+        author={Lin-Zhuo Chen and Kangjie Liu and Youtian Lin and  Zhihao Li and Siyu Zhu and Xun Cao and Yao Yao}, 
+        booktitle={ICLR}, 
+        year={2025}
+      }
+  </code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website adapted from the following <a href="https://sds-bridge.github.io/">source code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="./assets/js/sample.js"></script>
+  <script src="./assets/js/juxtapose.js"></script>
+  <script src="./assets/js/popper.min.js"></script>
+  <script src="./assets/js/jquery.min.js"></script>
+  <script src="./assets/js/bootstrap.min.js"></script>
+  <script defer="" src="./assets/js/fontawesome.all.min.js"></script>
+  <script src="./assets/js/bulma-carousel.min.js"></script>
+  <script src="./assets/js/bulma-slider.min.js"></script>
+  <script src="./assets/js/magnifier.js"></script>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>

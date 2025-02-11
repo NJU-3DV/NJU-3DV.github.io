@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Matrix3D: Large Photogrammetry Model All-in-One</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+	
+  <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/dics.min.css">
+	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script type="module" src="./static/js/model-viewer.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Matrix3D: Large Photogrammetry Model<br>
+All-in-One</h1>
+<div class="is-size-4 publication-authors">
+			<p> <span class="author-block"><strong>arXiv 2025</strong></span></p>
+</div>
+			
+		  <div class="is-size-5 publication-authors">
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=ZBozF3sAAAAJ&hl=en">Yuanxun Lu</a><sup>1*</sup>,</span>
+			<span class="author-block">
+			  <a href="https://scholar.google.com/citations?user=diIjfmMAAAAJ&hl=en">Jingyang Zhang</a><sup>2*</sup>,</span>
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=CtpU8mUAAAAJ&hl=en">Tian Fang</a><sup>2</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://www.linkedin.com/in/jnahmias">Jean-Daniel Nahmias</a><sup>2</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=pa09Db8AAAAJ&hl=en">Yanghai Tsin</a><sup>2</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://www.cse.ust.hk/~quan/">Long Quan</a><sup>3</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html">Xun Cao</a><sup>1</sup>,
+			</span>
+			<span class="author-block">
+			  <a href="https://yoyo000.github.io/">Yao Yao</a><sup>1 <i class="fa fa-envelope"></i></sup>,
+			</span>	
+			<span class="author-block">
+			  <a href="https://scholar.google.com.hk/citations?user=YR1MdT0AAAAJ&hl=en">Shiwei Li</a><sup>2</sup>
+			</span>
+		  </div>
+
+		  <div class="is-size-5 publication-authors">
+			<span class="author-block"><sup>1</sup>Nanjing University,</span>
+			<span class="author-block"><sup>2</sup>Apple,</span>
+			<span class="author-block"><sup>3</sup>The Hong Kong University of Science and Technology</span> <br>
+			<span class="author-block"><sup>*</sup>Equal Contribution&nbsp; </span>
+			<span class="author-block"><sup><i class="fa fa-envelope"></i></sup>Corresponding Author</span
+		  </div>
+		   <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/****.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/****"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+			  <span class="link-block">
+                <a href="https://github.com/apple/ml-****"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+			  <h1> <span class="dnerf"><strong><br>
+		      TL;DR:&nbsp;</strong>&nbsp; </span>We present <strong>Matrix3D</strong>, a <strong>unified model</strong> that performs several photogrammetry subtasks, including pose estimation, depth prediction, and novel view synthesis using <strong>the same model</strong>. </h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+	
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>Abstract</center></h2>
+    <div class="hero-body">
+	<div class="content has-text-justified">
+	  <p>
+		We present <strong>Matrix3D</strong>, a unified model that performs several photogrammetry subtasks, including pose estimation, depth prediction, and novel view synthesis using just the same model. Matrix3D utilizes a multi-modal diffusion transformer (DiT) to integrate transformations across several modalities, such as images, camera parameters, and depth maps. The key to Matrix3D's large-scale multi-modal training lies in the incorporation of a mask learning strategy. This enables full-modality model training even with partially complete data, such as bi-modality data of image-pose and image-depth pairs, thus significantly increases the pool of available training data. Matrix3D demonstrates state-of-the-art performance in pose estimation and novel view synthesis tasks. Additionally, it offers fine-grained control through multi-round interactions, making it an innovative tool for 3D content creation. </p>
+      </div>
+	</div>
+  </div>
+</section>	
+
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>
+      Compositional Inference Pipeline for Hybrid Tasks
+    </center></h2>
+    <div class="hero-body">
+          <img src="./resources/inference-pipe.png"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+		<p> An example of utilizing <strong>Matrix3D</strong> for single/few-shot reconstruction. Before 3DGS optimization, we complete the input set by pose estimation, depth estimation and novel view synthesis, all of which are done by the <strong>same</strong> model. </p>
+    </div>
+  </div>
+</section>
+
+	  
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3"><center>Example: Unposed 3D Reconstruction</center></h2>
+        <div class="content has-text-justified">
+          <p>
+			Matrix3D enables hybrid tasks like <strong>unposed sparse-view 3d reconstruction</strong> by compositing several sub-tasks. <br>
+		  Users could generate several novel views RGBs &amp; Depths observations under certain splined camera trajectories, which could be later sent to a 3DGS reconstruction pipeline for final reconstruction. </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+  </div>
+</section>
+
+	  
+	  
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-1">
+          <video poster="" id="1" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs1.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-2">
+          <video poster="" id="2" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-3">
+          <video poster="" id="3" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-4">
+          <video poster="" id="4" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs4.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-5">
+          <video poster="" id="5" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-6">
+          <video poster="" id="6" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs6.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-7">
+          <video poster="" id="7" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs7.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-8">
+          <video poster="" id="8" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs8.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-9">
+          <video poster="" id="9" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs9.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-10">
+          <video poster="" id="10" autoplay controls muted loop playsinline height="200%">
+            <source src="./resources/3dgs10.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+	  
+<section class="hero teaser">
+ <div class="container is-max-desktop">
+    <h2 class="title is-3"><center>
+      <br>
+      How it works?
+    </center></h2>
+    <div class="hero-body">
+          <img src="./resources/training-pipe.png"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+		<p> We train the Matrix3D by <strong>masked learning</strong>. Multi-modal data are randomly masked by noise corruption. Observations and noisy maps are fed into the encoder and the decoder respectively. The model learns to denoise the corrupted maps regardless of their types. Therefore, different tasks could be represented as different <strong>masked inference</strong>.</p>
+    </div>
+  </div>
+</section>	
+
+	  
+<section class="section">
+ <div class="container is-max-desktop">
+  <h2 class="title is-3"><center>
+      Sub-Task Examples
+    </center></h2>
+    <!-- Animation. -->
+<div class="columns is-centered">
+  <div class="column is-full-width">
+    <h2 class="title is-3">Depth Prediction</h2>
+    <div class="content has-text-justified">
+      <p>
+        Matrix3D enables depth prediction from images and poses. We could unproject the depth predictions into point clouds. <br>
+        Here we show depth prediction results from 3-view posed images. </p>
+
+      <!-- Flexbox layout to keep items in one line -->
+      <div class="wrapper" style="display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <img src="./resources/models/197_21239_42788-2024.png" style="width: 26%;">
+        <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%" src="./resources/models/197_21239_42788-2024.glb" style="width: 20%;">
+        </model-viewer>
+
+        <img src="./resources/models/101_11754_20739-2024.png" style="width: 26%;">
+        <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%" src="./resources/models/101_11754_20739-2024.glb" style="width: 20%;">
+        </model-viewer>
+	  </div>
+	  <div class="wrapper" style="display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <img src="./resources/models/118_13848_27594-2024.png" style="width: 26%;">
+        <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%" src="./resources/models/118_13848_27594-2024.glb" style="width: 20%;">
+        </model-viewer>
+
+        <img src="./resources/models/147_16374_32167-2024.png" style="width: 26%;">
+        <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%" src="./resources/models/147_16374_32167-2024.glb" style="width: 20%;">
+        </model-viewer>
+      </div>
+		
+      <div class="wrapper" style="display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <img src="./resources/models/000c3ab189999a83.png" style="width: 26%;">
+        <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%" src="./resources/models/000c3ab189999a83.glb" style="width: 20%;">
+        </model-viewer>
+
+        <img src="./resources/models/00a5a2af678f37d5.png" style="width: 26%;">
+        <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%" src="./resources/models/00a5a2af678f37d5.glb" style="width: 20%;">
+        </model-viewer>
+	  </div>
+	  <div class="wrapper" style="display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <img src="./resources/models/00cfc0ecd345deb4.png" style="width: 26%;">
+        <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%" src="./resources/models/00cfc0ecd345deb4.glb" style="width: 20%;">
+        </model-viewer>
+
+        <img src="./resources/models/00e8df74b6805da7.png" style="width: 26%;">
+        <model-viewer exposure="0.5" camera-controls enable-pan shadow-intensity="2" camera-orbit="0deg 75deg 100%" max-camera-orbit="auto auto 100%" src="./resources/models/00e8df74b6805da7.glb" style="width: 20%;">
+        </model-viewer>
+      </div>
+
+    </div>
+    <br/>
+  </div>
+</div>
+
+
+    <!--/ Animation. -->	  
+
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Pose Estimation</h2>
+          <p>
+          Predict camera poses of sparse-view images. Colored denotes predictions while black denotes groundtruth poses.</p>
+          <video id="pose" autoplay controls muted loop playsinline height="100%">
+            <source src="./resources/pose_x264.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-3">Novel View Synthesis</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+		    Given any input views, our method is able to synthesize novel views of arbitrary poses.</p>
+            <video id="nvs-video" autoplay controls muted loop playsinline height="100%">
+              <source src="./resources/nvs_x264.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+
+
+  </div>
+</section>
+
+	  
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+			This webpage is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

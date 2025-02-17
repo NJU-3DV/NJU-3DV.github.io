@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <!-- <meta name="description" content="DESCRIPTION META TAG"> -->
+    <meta property="og:title"
+        content="PIXART-&alpha;:Fast Training of Diffusion Transformer for Photorealistic Text-to-Image Synthesis" />
+    <!-- <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG" /> -->
+    <meta property="og:url" content="https://pixart-alpha.github.io/" />
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="assets/teaser.001.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+    <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+    <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> -->
+    <!-- <meta name="twitter:card" content="summary_large_image"> -->
+    <!-- Keywords for your paper to be indexed by-->
+    <!-- <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>PIXART-&alpha;</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.1.1/gradio.js"></script>
+</head>
+
+<body>
+
+
+    <section class="hero banner">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title"><i class="pixart-alpha-icon"></i>PIXART-&alpha;:<br />
+                            Fast Training of Diffusion
+                            Transformer for Photorealistic Text-to-Image Synthesis</h1>
+                        <h1 class="title is-4 publication-title">
+                            ICLR 2024 Spotlight</h1>
+                        <div class="is-size-5 publication-authors">
+                            <!-- Paper authors -->
+                            <span class="author-block">
+                                <a href="https://lawrence-cj.github.io/" target="_blank">Junsong
+                                    Chen</a><sup>1,2,3,*</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://lovesykun.cn/about.html" target="_blank">Jincheng
+                                    Yu</a><sup>1,4,*</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://chongjiange.github.io" target="_blank">Chongjian
+                                    Ge</a><sup>1,3,*</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=hqDyTg8AAAAJ" target="_blank">Lewei
+                                    Yao</a><sup>1,4,*</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://xieenze.github.io/" target="_blank">Enze Xie</a><sup>1,‡</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://yuewuhkust.github.io/" target="_blank">Yue Wu</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://zhongdao.github.io/" target="_blank">Zhongdao Wang</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://www.cse.ust.hk/~jamesk/" target="_blank">James Kwok</a><sup>4</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="http://luoping.me/" target="_blank">Ping Luo</a><sup>3</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?hl=en&user=D3nE0agAAAAJ"
+                                    target="_blank">Huchuan Lu</a><sup>2</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=XboZC1AAAAAJ" target="_blank">Zhenguo
+                                    Li</a><sup>1</sup>
+                            </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Huawei Noah's Ark Lab,</span>
+                            <span class="author-block"><sup>2</sup>Dalian University of Technology,</span>
+                            <span class="author-block"><sup>3</sup>The University of Hong Kong,</span>
+                            <span class="author-block"><sup>4</sup>The Hong Kong University of Science and
+                                Technology</span>
+                            <span class="eql-cntrb"><small><br><sup>*</sup>Equal contribution. Work done during the
+                                    internships of the four students at Huawei Noah's Ark Lab.</small></span>
+                            <span class="eql-cntrb"><small><br><sup>‡</sup><a
+                                        href="mailto:xie.enze@huawei.com">Corresponding author.</a></small></span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://github.com/PixArt-alpha/PixArt-alpha" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/PixArt-alpha/SAM-LLaVA-Captions10M" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">🤗</span>
+                                        <span>SAM-LLaVA-Captions</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/docs/diffusers/main/en/api/pipelines/pixart" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">🧨</span>
+                                        <span>Diffusers</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2310.00426" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv-PixArt-α</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2401.05252" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv-PixArt-δ</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://discord.gg/rde6eaE5Ta" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">
+                                            <i class="fab fa-discord"></i>
+                                        </span>
+                                        <span>Discord</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/spaces/PixArt-alpha/PixArt-alpha" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">🤗</span>
+                                        <span>HF Demo: PixArt-α</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/spaces/PixArt-alpha/PixArt-LCM" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">🤗</span>
+                                        <span>HF Demo: PixArt-LCM</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://openxlab.org.cn/apps/detail/PixArt-alpha/PixArt-alpha" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">X</span>
+                                        <span>OpenXLab Demo: PixArt-α</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://openxlab.org.cn/apps/detail/houshaowei/PixArt-LCM" target="_blank"
+                                        class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">X</span>
+                                        <span>OpenXLab Demo: PixArt-LCM</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://colab.research.google.com/drive/1jZ5UZXk7tcpTfVwnX33dDuefNMcnW9ME?usp=sharing" target="_blank"
+                                       class="external-link button is-normal is-rounded is-white">
+                                        <span class="icon">
+                                            <i class="fab fa-google"></i>
+                                        </span>
+                                        <span>Colab Demo</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image carousel -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container">
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/carousel1.png" alt="carousel1" />
+                        </div>
+                        <div class="card-content has-text-centered">A small cactus with a happy face in the Sahara
+                            desert.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/carousel2.png" alt="carousel2" />
+                        </div>
+                        <div class="card-content has-text-centered">A alpaca made of colorful building blocks,
+                            cyberpunk.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/carousel3.png" alt="carousel3" />
+                        </div>
+                        <div class="card-content has-text-centered">Real beautiful woman.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/carousel4.png" alt="carousel4" />
+                        </div>
+                        <div class="card-content has-text-centered">Luffy from ONEPIECE, handsome face, fantasy.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/carousel5.png" alt="carousel5" />
+                        </div>
+                        <div class="card-content has-text-centered">Poster of a mechanical cat, techical Schematics
+                            viewed from front.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/carousel6.png" alt="carousel6" />
+                        </div>
+                        <div class="card-content has-text-centered">Nature vs human nature, surreal, UHD, 8k, hyper
+                            details, rich colors, photograph.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/carousel7.png" alt="carousel7" />
+                        </div>
+                        <div class="card-content has-text-centered">artistic</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="static/images/carousel/carousel8.png" alt="carousel8" />
+                        </div>
+                        <div class="card-content has-text-centered">Bright scene, aerial view,ancient city, fantasy,
+                            gorgeous light, mirror reflection, high detail, wide angle lens.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End image carousel -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            The most advanced text-to-image (T2I) models require significant training costs (e.g.,
+                            millions of GPU hours), seriously hindering the fundamental innovation for the AIGC
+                            community while increasing CO<sub>2</sub> emissions. This paper introduces PIXART-&alpha;, a
+                            Transformer-based T2I diffusion model whose image generation quality is competitive with
+                            state-of-the-art image generators (e.g., Imagen, SDXL, and even Midjourney), reaching
+                            near-commercial application standards. Additionally, it supports high-resolution image
+                            synthesis up to 1024px resolution with low training cost, as shown in Figure 1 and 2. To
+                            achieve this goal, three core designs are proposed: (1) Training strategy decomposition: We
+                            devise three distinct training steps that separately optimize pixel dependency, text-image
+                            alignment, and image aesthetic quality; (2) Efficient T2I Transformer: We incorporate
+                            cross-attention modules into Diffusion Transformer (DiT) to inject text conditions and
+                            streamline the computation-intensive class-condition branch; (3) High-informative data: We
+                            emphasize the significance of concept density in text-image pairs and leverage a large
+                            Vision-Language model to auto-label dense pseudo-captions to assist text-image alignment
+                            learning. As a result, PIXART-&alpha;'s training speed markedly surpasses existing
+                            large-scale T2I models, e.g., PIXART-&alpha; only takes 10.8% of Stable Diffusion v1.5's
+                            training time (~675 vs. ~6,250 A100 GPU days), saving nearly $300,000 ($26,000 vs. $320,000)
+                            and reducing 90% CO<sub>2</sub> emissions. Moreover, compared with a larger SOTA model,
+                            RAPHAEL, our
+                            training cost is merely 1%. Extensive experiments demonstrate that PIXART-&alpha; excels in
+                            image quality, artistry, and semantic control. We hope PIXART-&alpha; will provide new
+                            insights to the AIGC community and startups to accelerate building their own high-quality
+                            yet low-cost generative models from scratch.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-centered has-text-centered">
+                <h2 class="title is-3">Online Demo</h2>
+                <gradio-app src="https://pixart-alpha-pixart-alpha.hf.space" style="display: flex; justify-content: center;"></gradio-app>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Training Efficiency</h2>
+                <p>Comparisons of CO<sub>2</sub> emissions and training cost among T2I generators. PIXART-&alpha;
+                    achieves an exceptionally low training cost of $26,000. Compared to RAPHAEL, our CO<sub>2</sub>
+                    emissions
+                    and training costs are merely 1.1% and 0.85%, respectively.
+                </p>
+                <img loading="lazy" src="static/images/efficiency.svg" alt="efficiency" />
+            </div>
+        </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">ControlNet</h2>
+                <h2>ControlNet customization samples from PIXART-&alpha;. We use the reference images to
+                    generate the corresponding HED edge images and use them as the control signal for PIXART-&alpha;
+                    ControlNet.
+                </h2>
+                <img loading="lazy" src="static/images/controlnet/controlnet_huawei.svg" alt="huawei" />
+                <img loading="lazy" src="static/images/controlnet/controlnet_lenna.svg" alt="lenna" />
+                <!-- <img loading="lazy" src="static/images/controlnet/controlnet_iclr.svg" alt="iclr" /> -->
+            </div>
+        </div>
+    </section>
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">Dreambooth</h2>
+                <h2>PIXART-&alpha; can be combined with Dreambooth. Given a few images and text prompts,
+                    PIXART-&alpha; can generate high-fidelity images, that exhibit natural interactions with the
+                    environment, precise modification of the object colors, demonstrating that PIXART-&alpha; can
+                    generate images with exceptional quality, and has a strong capability in customized extension.
+                </h2>
+                <img loading="lazy" src="static/images/dreambooth/dreambooth_dog.svg" alt="dog" />
+                <img loading="lazy" src="static/images/dreambooth/dreambooth_m5.svg" alt="Wenjie M5" />
+            </div>
+        </div>
+    </section>
+
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3">More Samples</h2>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column">
+                        <div id="modal-sample1" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-card">
+                                <img loading="lazy" src="static/images/samples/1.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample1">
+                                <img loading="lazy" src="static/images/samples/1.png" alt="sample1" />
+                            </div>
+                            <div class="card-content">8k uhd A man looks up at the starry sky, lonely and ethereal,
+                                Minimalism, Chaotic
+                                composition Op Art</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="modal-sample2" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/2.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample2">
+                                <img loading="lazy" src="static/images/samples/2.png" alt="sample2">
+                            </div>
+                            <div class="card-content">A baby painter trying to draw very simple picture, white
+                                background</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column">
+                        <div id="modal-sample3" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/3.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample3">
+                                <img loading="lazy" src="static/images/samples/3.png" alt="sample3" />
+                            </div>
+                            <div class="card-content">A dog that has been meditating all the time</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="modal-sample4" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/4.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample4">
+                                <img loading="lazy" src="static/images/samples/4.png" alt="sample4">
+                            </div>
+                            <div class="card-content">A snowy mountain</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column">
+                        <div id="modal-sample5" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/5.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample5">
+                                <img loading="lazy" src="static/images/samples/5.png" alt="sample5" />
+                            </div>
+                            <div class="card-content">A worker that looks like a mixture of cow and horse is working
+                                hard to type code</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="modal-sample6" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/6.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample6">
+                                <img loading="lazy" src="static/images/samples/6.png" alt="sample6">
+                            </div>
+                            <div class="card-content">Half human, half robot, repaired human</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column">
+                        <div id="modal-sample7" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/7.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample7">
+                                <img loading="lazy" src="static/images/samples/7.png" alt="sample7" />
+                            </div>
+                            <div class="card-content">knolling of a drawing tools for painter</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="modal-sample8" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/8.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample8">
+                                <img loading="lazy" src="static/images/samples/8.png" alt="sample8">
+                            </div>
+                            <div class="card-content">Van Gogh painting of a teacup on the desk</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column">
+                        <div id="modal-sample9" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/9.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample9">
+                                <img loading="lazy" src="static/images/samples/9.png" alt="sample9" />
+                            </div>
+                            <div class="card-content">Chinese painting of grapes</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="modal-sample10" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/10.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample10">
+                                <img loading="lazy" src="static/images/samples/10.png" alt="sample10">
+                            </div>
+                            <div class="card-content">Stars, water, brilliantly, gorgeous large scale scene</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column">
+                        <div id="modal-sample11" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/11.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample11">
+                                <img loading="lazy" src="static/images/samples/11.png" alt="sample11" />
+                            </div>
+                            <div class="card-content">
+                                A sureal parallel world where mankind avoid extinction
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="modal-sample12" class="modal">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <img loading="lazy" src="static/images/samples/12.png" />
+                            </div>
+                            <button class="modal-close is-large" aria-label="close"></button>
+                        </div>
+                        <div class="card">
+                            <div class="card-image js-modal-trigger" data-target="modal-sample12">
+                                <img loading="lazy" src="static/images/samples/12.png" alt="sample12">
+                            </div>
+                            <div class="card-content">
+                                Pirate ship trapped in a cosmic maelstrom nebula
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@misc{chen2023pixartalpha,
+    title={PixArt-$\alpha$: Fast Training of Diffusion Transformer for Photorealistic Text-to-Image Synthesis}, 
+    author={Junsong Chen and Jincheng Yu and Chongjian Ge and Lewei Yao and Enze Xie and Yue Wu and Zhongdao Wang and James Kwok and Ping Luo and Huchuan Lu and Zhenguo Li},
+    year={2023},
+    eprint={2310.00426},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}</code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            You are free to borrow the of this website, we just ask that you link back to this page in
+                            the footer. <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                        <p class="has-text-centered">Total clicks: <span id="busuanzi_value_site_pv"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>

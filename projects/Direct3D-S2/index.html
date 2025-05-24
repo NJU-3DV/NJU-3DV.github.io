@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Direct3D‑S2 high resolution 3D generation from image">
+  <meta name="keywords" content="3D Moments, view synthesis">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Direct3D‑S2 high resolution 3D generation from image</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+<style>
+  /* ─── Load-mesh / Load-video toggle button ─── */
+  .toggle-btn {
+    display: block;          /* take the whole line */
+    width: 100%;             /* edge-to-edge */
+    padding: 1rem 0;         /* top/bottom space, no side padding */
+    background: #f2f2f2;     /* light grey like the screenshot */
+    border: none;            /* no border */
+    border-radius: 0;        /* square corners */
+    font-size: 1.25rem;      /* readable label */
+    font-weight: 500;
+    color: #000;             /* solid black text */
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  /* subtle hover / active feedback */
+  .toggle-btn:hover   { background: #e5e5e5; }
+  .toggle-btn:active  { background: #d9d9d9; }
+
+  /* optional: remove Bulma’s focus outline but keep accessibility */
+  .toggle-btn:focus-visible {
+    outline: 3px solid #3273dc;   /* Bulma primary blue */
+    outline-offset: 2px;
+  }
+
+  /* --- keep video & model-viewer in lock-step --- */
+  .media-wrapper {
+    width: 100%;        /* whatever the carousel gives us        */
+    max-width: 100%;    /* stay responsive                       */
+  }
+  .media-wrapper > video,
+  .media-wrapper > model-viewer {
+    width: 100%;        /* fill the wrapper pixel-for-pixel      */
+    height: auto;       /* let each keep its own aspect ratio    */
+    display: block;
+  }
+</style>
+
+
+
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title-name"><span class="grad1">Direct3D‑S2</span></h1>
+          <h1 class="title is-1 publication-title">Gigascale 3D Generation Made Easy with <span class="grad2">Spatial&nbsp;Sparse&nbsp;Attention</span></h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=SN8J78EAAAAJ&hl=en">Shuang&nbsp;Wu</a><sup>1,2*</sup>, </span>
+            <span class="author-block">
+              <a href="https://linyou.github.io">Youtian&nbsp;Lin</a><sup>1,2*</sup>, </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=qwrmvRQAAAAJ&hl=en">Yifei&nbsp;Zeng</a><sup>1,2</sup>, </span>
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Yikang_Yang2">Yikang&nbsp;Yang</a><sup>1</sup>, </span>
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~yajie_bao5">Yajie&nbsp;Bao</a><sup>2</sup>, </span>
+    
+            <span class="author-block">
+              <a href="https://openreview.net/profile?id=~Jiachen_Qian2">Jiachen&nbsp;Qian</a><sup>2</sup>, </span>
+            </br>
+            <span class="author-block">
+              <a href="https://sites.google.com/site/zhusiyucs">Siyu&nbsp;Zhu</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=nWT4vFcAAAAJ&hl=en">Feihu&nbsp;Zhang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/jannekontkanen/">Philip&nbsp;Torr</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cite.nju.edu.cn">Xun&nbsp;Cao</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/jannekontkanen/">Yao&nbsp;Yao</a><sup>1†</sup>
+            </span>
+          </div>
+          </br>
+          <div class="is-size-5 publication-authors">
+            <!-- <table class="author-logo-table">
+            <colgroup>
+              <col style="width: 6%;">
+              <col style="width: 1%;">
+              <col style="width: 6%;">
+              <col style="width: 1%;">
+              <col style="width: 6%;">
+              <col style="width: 1%;">
+              <col style="width: 6%;">
+            </colgroup>
+              <tr>
+                <td><img src="assets/logos/nju.jpg" alt="NJU Logo" class="author-logo"></td>
+                <td></td>
+                <td><img src="assets/logos/dreamtech.png" alt="DreamTech Logo" class="author-logo"></td>
+                <td></td>
+                <td><img src="assets/logos/fudan.png" alt="Fudan Logo" class="author-logo"></td>
+                <td></td>
+                <td><img src="assets/logos/oxford.png" alt="Oxford Logo" class="author-logo"></td>
+              </tr>
+            </table> -->
+
+            <span class="author-block"><sup>1</sup>Nanjing University&nbsp;&nbsp;&nbsp; </span>
+            <span class="author-block"><sup>2</sup>DreamTech&nbsp;&nbsp;&nbsp; </span>
+            <span class="author-block"><sup>3</sup>Fudan University&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block"><sup>4</sup>University of Oxford&nbsp;&nbsp;&nbsp;</span>
+
+          </div>
+          
+          <p style="text-align:center"><sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>†</sup>Corresponding author</p>
+          
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2205.06255"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="#overview_video"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="static/pdfs/supp.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-rocket"></i>
+                  </span>
+                  <span>Demo</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google-research/3d-moments"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="static/pdfs/supp.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <img src="assets/imgs/hf-logo.svg">
+                  </span>
+                  <span>Model</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="teaser-image">
+  <div class="teaser-box">
+    <img id="teaser" src="assets/imgs/teaserv6.png" alt="Teaser image of Direct3D-S2"/>
+  </div>
+  <h2 class="subtitle has-text-centered">
+    <span class="dnerf">Direct3D‑S2</span>: high resolution 3D generation from image
+  </h2>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+
+        <!-- ───────── Item 1 ───────── -->
+        <div class="item item-fullbody">
+          <div class="media-wrapper" style="width:100%;">
+            <!-- video -->
+            <video id="meshy_jester-video" autoplay playsinline controls muted loop style="width:100%;">
+              <source src="assets/videos/meshy_jester.mp4" type="video/mp4">
+            </video>
+          </div>
+          <!-- toggle button -->
+          <button class="toggle-btn"
+                  data-video="meshy_jester-video"
+                  data-model="assets/objs/meshy_jester.drc"> 
+            Load Mesh
+          </button>
+        </div>
+
+        <!-- ───────── Item 2 ───────── -->
+        <div class="item item-shiba">
+          <div class="media-wrapper">
+            <video id="civitai_house0-video" autoplay playsinline controls muted loop style="width:100%">
+              <source src="assets/videos/civitai_house0.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <button class="toggle-btn"
+                  data-video="civitai_house0-video"
+                  data-model="assets/objs/civitai_house0.drc">
+            Load Mesh
+          </button>
+        </div>
+
+        <!-- ───────── Item 3 ───────── -->
+        <div class="item item-toby">
+          <div class="media-wrapper">
+            <video id="meshy_monster1-video" autoplay playsinline controls muted loop style="width:100%">
+              <source src="assets/videos/meshy_monster1.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <button class="toggle-btn"
+                  data-video="meshy_monster1-video"
+                  data-model="assets/objs/meshy_monster1.drc">
+            Load Mesh
+          </button>
+        </div>
+
+        <!-- ───────── Item 4 ───────── -->
+        <div class="item item-chair-tp-1">
+          <div class="media-wrapper">
+            <video id="civitai_man0-video" autoplay playsinline controls muted loop style="width:100%">
+              <source src="assets/videos/civitai_man0.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <button class="toggle-btn"
+                  data-video="civitai_man0-video"
+                  data-model="assets/objs/civitai_man0.drc">
+            Load Mesh
+          </button>
+        </div>
+
+        <!-- ───────── Item 5 ───────── -->
+        <div class="item item-chair-tp-2">
+          <div class="media-wrapper">
+            <video id="civitai_monster1-video" autoplay playsinline controls muted style="width:100%">
+              <source src="assets/videos/civitai_monster1.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <button class="toggle-btn"
+                  data-video="civitai_monster1-video"
+                  data-model="assets/objs/civitai_monster1.drc">
+            Load Mesh
+          </button>
+        </div>
+
+        <!-- ───────── Item 6 ───────── -->
+        <div class="item item-chair-tp-2">
+          <div class="media-wrapper">
+            <video id="civitai_robot13-video" autoplay playsinline controls muted loop width="100%">
+              <source src="assets/videos/civitai_robot13.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <button class="toggle-btn"
+                  data-video="civitai_robot13-video"
+                  data-model="assets/objs/civitai_robot13.drc">
+            Load Mesh
+          </button>
+        </div>
+
+        <!-- ───────── Item 7 ───────── -->
+        <div class="item item-chair-tp-2">
+          <div class="media-wrapper">
+            <video id="lexica_character2-video" autoplay playsinline controls muted loop width="100%">
+              <source src="assets/videos/lexica_character2.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <button class="toggle-btn"
+                  data-video="lexica_character2-video"
+                  data-model="assets/objs/lexica_character2.drc">
+            Load Mesh
+          </button>
+        </div>
+
+      </div> <!-- /carousel -->
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Toggle logic (place anywhere after the HTML above) ───────── -->
+<script>
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+  const video = document.getElementById(btn.dataset.video);
+
+  /* container that will hold the iframe */
+  let iframeBox = null;         // we’ll lazily build it once
+  let iframe     = null;
+
+  /* helper – copy the video’s on-screen size */
+  const syncSize = () => {
+    const { width, height } = video.getBoundingClientRect();
+    if (iframe) {
+      iframe.style.width  = width  + 'px';
+      iframe.style.height = height + 'px';
+    }
+  };
+
+  /* run once so the iframe is correct on first swap */
+  window.addEventListener('resize', syncSize);
+
+  btn.addEventListener('click', () => {
+    const showingVideo = video.style.display !== 'none';
+
+    if (showingVideo) {                     // → show mesh
+      /* 1️⃣ create the iframe on-demand */
+      if (!iframeBox) {
+        iframeBox        = document.createElement('div');
+        iframe           = document.createElement('iframe');
+        iframe.src       = `render_glb.html?sequence=${btn.dataset.model}`;
+        iframe.style.border = '0';
+        iframeBox.appendChild(iframe);
+        video.parentNode.insertBefore(iframeBox, video.nextSibling);
+      }
+
+      syncSize();                           // 2️⃣ give it exact pixels
+
+      video.style.display   = 'none';
+      iframeBox.style.display = 'block';
+      video.pause?.();
+
+      btn.textContent = 'Load Video';
+    } else {                                // → show video
+      iframeBox.style.display = 'none';
+      video.style.display     = 'block';
+      video.play?.();
+
+      btn.textContent = 'Load Mesh';
+    }
+  });
+});
+</script>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Generating high‑resolution 3D shapes using volumetric representations such as Signed Distance Functions (SDFs) presents substantial computational and memory challenges. We introduce <strong class="has-text-weight-bold">Direct3D‑S2</strong>, a scalable 3D generation framework based on sparse volumes that achieves superior output quality with dramatically reduced training costs. Our key innovation is the <strong class="has-text-weight-bold">Spatial Sparse Attention (SSA)</strong> mechanism, which greatly enhances the efficiency of Diffusion Transformer (DiT) computations on sparse volumetric data. SSA allows the model to effectively process large token sets within sparse volumes, yielding a <em>3.9&times;</em> speed‑up in the forward pass and a <em>9.6&times;</em> speed‑up in the backward pass. The framework also includes a variational autoencoder (VAE) that maintains a consistent sparse volumetric format across input, latent, and output stages. Compared with prior 3D VAEs that rely on heterogeneous representations, this unified design markedly improves training efficiency and stability. Trained on publicly available datasets, <strong class="has-text-weight-bold">Direct3D‑S2</strong> not only surpasses state‑of‑the‑art methods in generation quality and efficiency, but also enables <strong class="has-text-weight-bold">training at 1024<sup>3</sup>  resolution with just 8 GPUs</strong>—a task that previously required at least 32 GPUs for 256<sup>3</sup> volumetric training—making gigascale 3D generation both practical and accessible.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+<!-- <div align="center" style="margin-top:80px;" style="margin-bottom:120px;">
+<img style='height: auto; width: 75%; object-fit: contain' src="static/images/overview.png" alt="overview_image">
+</div>  -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <a id="overview_video"></a>
+          <video id="teaser" playsinline controls width="100%">
+            <source src="assets/comp1.m4v" type="video/mp4">
+          </video>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+<!-- </div> -->
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">A hundred thousand tokens? hold my beer 🍺</h2>
+    <div class="teaser-box">
+      <img id="teaser" src="assets/imgs/pipeline-speed.png" alt="speed‑up"/>
+    </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="section"> 
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3"> Comparison</h2>
+    </div>
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <table class="comp-media-table">
+          <colgroup>
+            <col style="width: 16.5%;">
+            <col style="width: 16.5%;">
+            <col style="width: 16.5%;">
+            <col style="width: 16.5%;">
+            <col style="width: 16.5%;">
+            <col style="width: 16.5%;">
+          </colgroup>
+          <thead style="text-align:center;">
+            <tr>
+              <th>Image</th>
+              <th>Trellis&nbsp;</th>
+              <th>Hunyuan-2.0&nbsp;</th>
+              <th>TripoSG&nbsp;</th>
+              <th>Hi3DGen&nbsp;</th>
+              <th>Ours&nbsp;</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- ───────── first row ───────── -->
+            <tr>
+              <td>
+                <div class="cond-image-block">
+                  <img src="assets/imgs/civitai_man0.png" alt="civitai_man0_o" class="cond-image">
+                </div>
+              </td>
+              <!-- one video stretches across the five model cells -->
+              <td colspan="5">
+                <video src="assets/videos/civitai_man0_o.mp4" autoplay playsinline controls muted loop class="round-box"></video>
+              </td>
+            </tr>
+
+            <!-- ───────── more rows (copy-paste) ───────── -->
+            <tr>
+              <td>
+                <div class="cond-image-block">
+                  <img src="assets/imgs/meshy_jester.png" alt="meshy_jester" class="cond-image">
+                </div>
+              </td>
+              <!-- one video stretches across the five model cells -->
+              <td colspan="5">
+                <video src="assets/videos/meshy_jester_o.mp4" autoplay playsinline controls muted loop class="round-box"></video>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cond-image-block">
+                  <img src="assets/imgs/civitai_animal4.png" alt="civitai_animal4" class="cond-image">
+                </div>
+              </td>
+              <!-- one video stretches across the five model cells -->
+              <td colspan="5">
+                <video src="assets/videos/civitai_animal4_o.mp4" autoplay playsinline controls muted loop class="round-box"></video>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cond-image-block">
+                  <img src="assets/imgs/car0.png" alt="car0" class="cond-image">
+                </div>
+              </td>
+              <!-- one video stretches across the five model cells -->
+              <td colspan="5">
+                <video src="assets/videos/car0_o.mp4" autoplay playsinline controls muted loop class="round-box"></video>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3"> Method Overview</h2>
+  </div>
+  <br>
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="assets/imgs/pipeline-arm.png" alt="dit Comparasions">
+        <div class="content has-text-justified">
+          <p>
+          The framework of our Direct3D-S2. We propose a fully end-to-end sparse SDF VAE (SS-VAE), which employs a symmetric encoder-decoder network to efficiently encode high-resolution sparse SDF volumes into sparse latent representations. Then we train an image-conditioned diffusion transformer (SS-DiT) with a novel Spatial Sparse Attention (SSA) mechanism that significantly improves the training and inference efficiency of the DiT.
+          </p>
+        </div>
+        <br>
+        <img src="assets/imgs/pipeline-SSA-v4.png" alt="dit Comparasions" width=85%>
+        <br>
+        <div class="content has-text-justified">
+          <p>
+          The design of our Spatial Sparse Attention (SSA). We partition the input tokens into blocks based on their 3D coordinates, and then construct key-value pairs through three distinct modules. For each query token, we utilize sparse 3D compression module to capture global information, while the spatial blockwise selection module selects important blocks based on compression attention scores to extract fine-grained features, and the sparse 3D window module injects local features. Ultimately, we aggregate the final output of SSA from the three modules using predicted gate scores.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="columns is-centered has-text-centered is-four-fifths">
+    <h2 class="title">BibTeX</h2>
+  </div>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <pre><code>
+@inproceedings{shuang2025direct3d,
+  title     = {Direct3D-S2: Gigascale 3D Generation Made Easy with Spatial Sparse Attention},
+  author    = {Shuang Wu, Youtian Lin, Yifei Zeng, Yikang Yang, Yajie Bao, Jiachen Qian, Siyu Zhu, Feihu Zhang, Philip Torr, Xun Cao, Yao Yao},
+  booktitle = {Arxiv},
+  year      = {2025}
+}
+      </code></pre>
+    </div>
+  </div>
+</div>
+</section>
+
+
+
+<footer class="footer">
+  <div align="center" class="container">
+    <div class="columns is-centered">
+        <div class="content">
+            This website is borrowed from <a href="https://github.com/3d-moments/3d-moments.github.io">3d-moments</a>.
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

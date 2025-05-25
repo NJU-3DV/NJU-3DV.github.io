@@ -3,6 +3,23 @@ body {
   /* background-color: rgb(235, 222, 229); */
 }
 
+/* Works in Chrome/Edge/Opera */
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-enclosure {
+    background: transparent !important;   /* kill the gradient */
+    box-shadow: none !important;          /* kill the drop-shadow */
+    -webkit-box-shadow: none !important;  /* legacy prefix */
+}
+
+/* Optional: tighten the control bar height a bit */
+video::-webkit-media-controls-panel {
+    padding: 0 !important;
+}
+
+/* Hide track-settings gear icon if it keeps its own backdrop */
+video::-webkit-media-controls-treatment {
+    background: transparent !important;
+}
 
 .footer .icon-link {
     font-size: 25px;

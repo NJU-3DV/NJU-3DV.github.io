@@ -475,7 +475,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/civitai_man0_o.mp4" autoplay playsinline controls muted loop class="round-box"></video>
+                <video src="assets/videos/civitai_man0_o.mp4" autoplay playsinline controls muted class="round-box"></video>
               </td>
             </tr>
 
@@ -488,7 +488,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/meshy_jester_o.mp4" autoplay playsinline controls muted loop class="round-box"></video>
+                <video src="assets/videos/meshy_jester_o.mp4" autoplay playsinline controls muted class="round-box"></video>
               </td>
             </tr>
             <tr>
@@ -499,7 +499,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/civitai_animal4_o.mp4" autoplay playsinline controls muted loop class="round-box"></video>
+                <video src="assets/videos/civitai_animal4_o.mp4" autoplay playsinline controls muted class="round-box"></video>
               </td>
             </tr>
             <tr>
@@ -510,7 +510,29 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/car0_o.mp4" autoplay playsinline controls muted loop class="round-box"></video>
+                <video src="assets/videos/car0_o.mp4" autoplay playsinline controls muted class="round-box"></video>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cond-image-block">
+                  <img src="assets/imgs/civitai_robot13.png" alt="car0" class="cond-image">
+                </div>
+              </td>
+              <!-- one video stretches across the five model cells -->
+              <td colspan="5">
+                <video src="assets/videos/civitai_robot13_o.mp4" autoplay playsinline controls muted class="round-box"></video>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="cond-image-block">
+                  <img src="assets/imgs/lexica_character2.png" alt="car0" class="cond-image">
+                </div>
+              </td>
+              <!-- one video stretches across the five model cells -->
+              <td colspan="5">
+                <video src="assets/videos/lexica_character2_o.mp4" autoplay playsinline controls muted class="round-box"></video>
               </td>
             </tr>
           </tbody>
@@ -519,6 +541,37 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
     </div>
   </div>
 </section>
+
+<script>
+/**
+ * Show native controls while the pointer (or keyboard focus) is inside
+ * a <video>; hide them when it leaves.
+ */
+function wireVideo(v) {
+  v.addEventListener('pointerenter', () => v.setAttribute('controls', ''));
+  v.addEventListener('pointerleave', () => v.removeAttribute('controls'));
+
+  // Keyboard users still need access to the controls
+  v.addEventListener('focus', () => v.setAttribute('controls', ''));
+  v.addEventListener('blur',  () => v.removeAttribute('controls'));
+}
+
+// 1. Wire up every <video> that exists when the script runs
+document.querySelectorAll('video').forEach(wireVideo);
+
+// 2. If your page creates videos after load (e.g. via AJAX/React),
+//    observe the DOM so the new ones get the same treatment.
+const observer = new MutationObserver(muts => {
+  muts.forEach(m => {
+    m.addedNodes.forEach(node => {
+      if (node.tagName === 'VIDEO') wireVideo(node);
+      // Catch <video> nested deeper (e.g. <div><video/></div>)
+      node.querySelectorAll?.('video').forEach(wireVideo);
+    });
+  });
+});
+observer.observe(document.documentElement, { childList: true, subtree: true });
+</script>
 
 <section>
   <div class="columns is-centered has-text-centered">

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +9,19 @@
   <meta name="keywords" content="3D Moments, view synthesis">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MKXKR65E15"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Bootstrap -->
+  <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  gtag('config', 'G-MKXKR65E15');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKXKR65E15"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MKXKR65E15');
+  </script>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -628,11 +632,11 @@ new MutationObserver(muts => {
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <pre><code>
-@inproceedings{shuang2025direct3d,
-  title     = {Direct3D-S2: Gigascale 3D Generation Made Easy with Spatial Sparse Attention},
-  author    = {Shuang Wu, Youtian Lin, Yifei Zeng, Yikang Yang, Yajie Bao, Jiachen Qian, Siyu Zhu, Feihu Zhang, Philip Torr, Xun Cao, Yao Yao},
-  booktitle = {Arxiv},
-  year      = {2025}
+@article{wu2025direct3ds2gigascale3dgeneration,
+  title={Direct3D-S2: Gigascale 3D Generation Made Easy with Spatial Sparse Attention}, 
+  author={Shuang Wu and Youtian Lin and Feihu Zhang and Yifei Zeng and Yikang Yang and Yajie Bao and Jiachen Qian and Siyu Zhu and Philip Torr and Xun Cao and Yao Yao},
+  journal={arXiv preprint arXiv:2505.17412},
+  year={2025}
 }
       </code></pre>
     </div>

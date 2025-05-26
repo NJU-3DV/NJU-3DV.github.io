@@ -443,7 +443,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container">
   <div class="columns is-centered has-text-centered">
     <div class="column is-four-fifths">
       <h2 class="title is-3">A hundred thousand tokens? Hold my beer 🍺</h2>
@@ -456,12 +456,12 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
 </section>
 
 <section class="section"> 
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
+  <!-- <div class="container"> -->
+    <div class="is-centered has-text-centered">
       <h2 class="title is-3"> Comparison</h2>
     </div>
     <br>
-    <div class="columns is-centered has-text-centered">
+    <div class=" is-centered has-text-centered">
       <!-- <div class="column is-four-fifths"> -->
         <table class="comp-media-table">
           <colgroup>
@@ -612,10 +612,10 @@ new MutationObserver(muts => {
     <h2 class="title is-3"> Method Overview</h2>
   </div>
   <br>
-  <div class="container is-max-desktop">
+  <div class="container">
     <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+    <div class="is-centered has-text-centered">
+      <!-- <div class="column is-four-fifths"> -->
         <img src="assets/imgs/pipeline-arm.png" alt="dit Comparasions">
         <div class="content has-text-justified">
           <p>
@@ -630,17 +630,17 @@ new MutationObserver(muts => {
           The design of our Spatial Sparse Attention (SSA). We partition the input tokens into blocks based on their 3D coordinates, and then construct key-value pairs through three distinct modules. For each query token, we utilize sparse 3D compression module to capture global information, while the spatial blockwise selection module selects important blocks based on compression attention scores to extract fine-grained features, and the sparse 3D window module injects local features. Ultimately, we aggregate the final output of SSA from the three modules using predicted gate scores.
           </p>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
 </section>
 
 <section class="section">
-  <div class="columns is-centered has-text-centered is-four-fifths">
+  <div class="is-centered has-text-centered">
     <h2 class="title">BibTeX</h2>
   </div>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
+  <div class="container">
+    <div class="is-centered">
+      <!-- <div class="column is-four-fifths"> -->
         <pre><code>
 @article{wu2025direct3ds2gigascale3dgeneration,
   title={Direct3D-S2: Gigascale 3D Generation Made Easy with Spatial Sparse Attention}, 
@@ -649,7 +649,7 @@ new MutationObserver(muts => {
   year={2025}
 }
       </code></pre>
-    </div>
+    <!-- </div> -->
   </div>
 </div>
 </section>

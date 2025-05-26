@@ -272,7 +272,7 @@ video::-webkit-media-controls-treatment {
 }
 
 .comp-media-table{
-  max-width: 1080px;          /* fills the box it lives in               */
+  max-width: 1380px;          /* fills the box it lives in               */
   margin:0 auto;       /* centers it horizontally when narrower    */
   border-collapse:collapse;
   table-layout:fixed;
@@ -280,7 +280,7 @@ video::-webkit-media-controls-treatment {
 }
 
 .cond-image-block {
-  height: 180px; 
+  height: 300px; 
   width: auto; 
   display: flex; 
   align-items: center; 

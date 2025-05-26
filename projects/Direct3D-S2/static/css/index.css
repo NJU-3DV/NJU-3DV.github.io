@@ -328,3 +328,28 @@ video::-webkit-media-controls-treatment {
   /* overflow: hidden; */
   display: inline-block;            /* keeps the box tight to the image    */
 }
+
+.announcement-box {
+  background-color: #f0f4ff;
+  border: 1px solid #a3c4f3;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-family: "Helvetica Neue", sans-serif;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.announcement-text {
+  font-size: 16px;
+  color: #0000009b;
+  margin: 0;
+}
+
+.announcement-text a {
+  color: #3366cc;
+  text-decoration: underline;
+}
+
+.announcement-text a:hover {
+  color: #0033aa;
+}

@@ -2,11 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <title>Direct3D‑S2 high resolution 3D generation from image</title>
+  <link rel="icon" type="image/x-icon" href="assets/imgs/sparse_icon.ico">
   <meta name="description"
         content="Direct3D‑S2 high resolution 3D generation from image">
   <meta name="keywords" content="3D Moments, view synthesis">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Direct3D‑S2 high resolution 3D generation from image</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -158,16 +159,17 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://nju-3dv.github.io/projects/Direct3D-S2/"
+                <a href="https://arxiv.org/pdf/2505.17412"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="ai ai-arxiv"></i>
+                      <!-- <i class="ai ai-arxiv"></i> -->
+                      <img src="assets/imgs/arxiv-logomark-small.svg" style="height: 80%;">
                   </span>
                   <span>arXiv</span>
                 </a>
               </span>
               <!-- Video Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://nju-3dv.github.io/projects/Direct3D-S2/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -175,9 +177,9 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <span class="link-block">
-                <a href="https://nju-3dv.github.io/projects/Direct3D-S2/"
+                <a href="https://huggingface.co/spaces/wushuang98/Direct3D-S2-v1.0-demo"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-rocket"></i>
@@ -187,7 +189,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://nju-3dv.github.io/projects/Direct3D-S2/"
+                <a href="https://github.com/DreamTechAI/Direct3D-S2"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -196,7 +198,7 @@
                   </a>
               </span>
               <span class="link-block">
-                <a href="https://nju-3dv.github.io/projects/Direct3D-S2/"
+                <a href="https://huggingface.co/spaces/wushuang98/Direct3D-S2-v1.0-demo"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <img src="assets/imgs/hf-logo.svg">
@@ -205,8 +207,14 @@
                 </a>
               </span>
             </div>
-
           </div>
+
+          <div class="column has-text-centered">
+            <div class="announcement-text">
+              <p> 🚀 The code and model will be released by <strong>May 30th</strong>. Stay tuned, and feel free to try our <a href="https://huggingface.co/spaces/wushuang98/Direct3D-S2-v1.0-demo">demo</a> in the meantime!</p>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -548,29 +556,45 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
  * a <video>; hide them when it leaves.
  */
 function wireVideo(v) {
-  v.addEventListener('pointerenter', () => v.setAttribute('controls', ''));
-  v.addEventListener('pointerleave', () => v.removeAttribute('controls'));
+  const show = () => (v.controls = true);   // property is the authoritative switch
+  const hide = () => (v.controls = false);
 
-  // Keyboard users still need access to the controls
-  v.addEventListener('focus', () => v.setAttribute('controls', ''));
-  v.addEventListener('blur',  () => v.removeAttribute('controls'));
+  /* pointer / keyboard focus logic ----------------------------------- */
+  v.addEventListener('pointerenter', show);
+  v.addEventListener('pointerleave', hide);
+  v.addEventListener('focus',        show);
+  v.addEventListener('blur',         hide);
+
+  /* when playback finishes ------------------------------------------- */
+  v.addEventListener('ended', () => {
+    /* wait one macrotask so the browser can add its overlay first,
+       then yank the controls back off */
+    setTimeout(hide, 0);
+  });
 }
 
-// 1. Wire up every <video> that exists when the script runs
+/* Wire every <video> that exists now … */
 document.querySelectorAll('video').forEach(wireVideo);
+
+let hideTimer = null;
+v.addEventListener('pointerdown', () => {
+  v.setAttribute('controls', '');
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(() => v.removeAttribute('controls'), 4000);
+});
+
 
 // 2. If your page creates videos after load (e.g. via AJAX/React),
 //    observe the DOM so the new ones get the same treatment.
-const observer = new MutationObserver(muts => {
+new MutationObserver(muts => {
   muts.forEach(m => {
     m.addedNodes.forEach(node => {
-      if (node.tagName === 'VIDEO') wireVideo(node);
-      // Catch <video> nested deeper (e.g. <div><video/></div>)
-      node.querySelectorAll?.('video').forEach(wireVideo);
+      if (node.nodeType !== 1) return;                  // not an element
+      if (node.tagName === 'VIDEO') wireVideo(node);    // video itself
+      node.querySelectorAll?.('video').forEach(wireVideo); // or nested one
     });
   });
-});
-observer.observe(document.documentElement, { childList: true, subtree: true });
+}).observe(document.documentElement, { childList:true, subtree:true });
 </script>
 
 <section>

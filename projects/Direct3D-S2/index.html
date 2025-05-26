@@ -3,10 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Direct3D‑S2 high resolution 3D generation from image</title>
-  <meta name="description"
-        content="Direct3D‑S2 high resolution 3D generation from image">
-  <meta name="keywords" content="3D Moments, view synthesis">
+  <title>Direct3D-S2 high resolution 3D generation from image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap -->
@@ -39,6 +36,19 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <script src="static/js/dics.min.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', domReady);
+      function domReady() {
+          for (const e of document.querySelectorAll(".b-dics")) {
+              new Dics({
+                  container: e,
+                  textPosition: "top"
+              });
+          }
+      }
+  </script>
   <link rel="shortcut icon" href="assets/imgs/sparse_icon.ico" type="image/x-icon" />
 <style>
   /* ─── Load-mesh / Load-video toggle button ─── */
@@ -90,7 +100,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title-name"><span class="grad1">Direct3D‑S2</span></h1>
+          <h1 class="title is-1 publication-title-name"><span class="grad1">Direct3D-S2</span></h1>
           <h1 class="title is-1 publication-title">Gigascale 3D Generation Made Easy with <span class="grad2">Spatial&nbsp;Sparse&nbsp;Attention</span></h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -226,7 +236,7 @@
     <img id="teaser" src="assets/imgs/teaserv6.png" alt="Teaser image of Direct3D-S2"/>
   </div>
   <h2 class="subtitle has-text-centered">
-    <span class="dnerf">Direct3D‑S2</span>: high resolution 3D generation from image
+    <span class="dnerf">Direct3D-S2</span>: high resolution 3D generation from image
   </h2>
 </section>
 
@@ -407,7 +417,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Generating high‑resolution 3D shapes using volumetric representations such as Signed Distance Functions (SDFs) presents substantial computational and memory challenges. We introduce <strong class="has-text-weight-bold">Direct3D‑S2</strong>, a scalable 3D generation framework based on sparse volumes that achieves superior output quality with dramatically reduced training costs. Our key innovation is the <strong class="has-text-weight-bold">Spatial Sparse Attention (SSA)</strong> mechanism, which greatly enhances the efficiency of Diffusion Transformer (DiT) computations on sparse volumetric data. SSA allows the model to effectively process large token sets within sparse volumes, yielding a <em>3.9&times;</em> speed‑up in the forward pass and a <em>9.6&times;</em> speed‑up in the backward pass. The framework also includes a variational autoencoder (VAE) that maintains a consistent sparse volumetric format across input, latent, and output stages. Compared with prior 3D VAEs that rely on heterogeneous representations, this unified design markedly improves training efficiency and stability. Trained on publicly available datasets, <strong class="has-text-weight-bold">Direct3D‑S2</strong> not only surpasses state‑of‑the‑art methods in generation quality and efficiency, but also enables <strong class="has-text-weight-bold">training at 1024<sup>3</sup>  resolution with just 8 GPUs</strong>—a task that previously required at least 32 GPUs for 256<sup>3</sup> volumetric training—making gigascale 3D generation both practical and accessible.
+            Generating high-resolution 3D shapes using volumetric representations such as Signed Distance Functions (SDFs) presents substantial computational and memory challenges. We introduce <strong class="has-text-weight-bold">Direct3D-S2</strong>, a scalable 3D generation framework based on sparse volumes that achieves superior output quality with dramatically reduced training costs. Our key innovation is the <strong class="has-text-weight-bold">Spatial Sparse Attention (SSA)</strong> mechanism, which greatly enhances the efficiency of Diffusion Transformer (DiT) computations on sparse volumetric data. SSA allows the model to effectively process large token sets within sparse volumes, yielding a <em>3.9&times;</em> speed-up in the forward pass and a <em>9.6&times;</em> speed-up in the backward pass. The framework also includes a variational autoencoder (VAE) that maintains a consistent sparse volumetric format across input, latent, and output stages. Compared with prior 3D VAEs that rely on heterogeneous representations, this unified design markedly improves training efficiency and stability. Trained on publicly available datasets, <strong class="has-text-weight-bold">Direct3D-S2</strong> not only surpasses state-of-the-art methods in generation quality and efficiency, but also enables <strong class="has-text-weight-bold">training at 1024<sup>3</sup>  resolution with just 8 GPUs</strong>—a task that previously required at least 32 GPUs for 256<sup>3</sup> volumetric training—making gigascale 3D generation both practical and accessible.
           </p>
         </div>
       </div>
@@ -438,7 +448,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
     <div class="column is-four-fifths">
       <h2 class="title is-3">A hundred thousand tokens? Hold my beer 🍺</h2>
     <div class="teaser-box">
-      <img id="teaser" src="assets/imgs/pipeline-speed.png" alt="speed‑up"/>
+      <img id="teaser" src="assets/imgs/pipeline-speed.png" alt="speed-up"/>
     </div>
     </div>
   </div>

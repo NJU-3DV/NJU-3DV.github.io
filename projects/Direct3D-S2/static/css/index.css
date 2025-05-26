@@ -245,7 +245,7 @@ video::-webkit-media-controls-treatment {
 /* Hero video */
 .teaser-image {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1080px;
   margin: 0 auto 3rem;
 }
 
@@ -277,6 +277,14 @@ video::-webkit-media-controls-treatment {
   border-collapse:collapse;
   table-layout:fixed;
   font-family:sans-serif;
+}
+
+.comp-media-table img.round-box {
+  width: 100%;          /* fill the whole cell */
+  height: auto;         /* keep aspect ratio   */
+  object-fit: contain;  /* or 'cover' if you want edge-to-edge */
+  border-radius: 8px;   /* same rounded corners for both      */
+  display: block;       /* removes inline gaps                */
 }
 
 .cond-image-block {
@@ -329,6 +337,11 @@ video::-webkit-media-controls-treatment {
   display: inline-block;            /* keeps the box tight to the image    */
 }
 
+.round-box-image {
+  border-radius: 12px; 
+  /* overflow: hidden; */
+}
+
 .announcement-box {
   background-color: #f0f4ff;
   border: 1px solid #a3c4f3;
@@ -353,3 +366,4 @@ video::-webkit-media-controls-treatment {
 .announcement-text a:hover {
   color: #0033aa;
 }
+.hidden-table { display: none; }

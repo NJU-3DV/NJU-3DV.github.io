@@ -9,6 +9,7 @@
   <!-- Bootstrap -->
   <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MKXKR65E15"></script>
@@ -124,10 +125,10 @@
               <a href="https://scholar.google.com/citations?user=nWT4vFcAAAAJ&hl=en">Feihu&nbsp;Zhang</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.linkedin.com/in/jannekontkanen/">Philip&nbsp;Torr</a><sup>4</sup>,
+              <a href="https://cite.nju.edu.cn">Xun&nbsp;Cao</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="https://cite.nju.edu.cn">Xun&nbsp;Cao</a><sup>1</sup>,
+              <a href="https://www.linkedin.com/in/jannekontkanen/">Philip&nbsp;Torr</a><sup>4</sup>,
             </span>
             <span class="author-block">
               <a href="https://www.linkedin.com/in/jannekontkanen/">Yao&nbsp;Yao</a><sup>1†</sup>
@@ -412,15 +413,15 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+    <div class="is-centered has-text-centered">
+      <!-- <div class="column is-four-fifths"> -->
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
             Generating high-resolution 3D shapes using volumetric representations such as Signed Distance Functions (SDFs) presents substantial computational and memory challenges. We introduce <strong class="has-text-weight-bold">Direct3D-S2</strong>, a scalable 3D generation framework based on sparse volumes that achieves superior output quality with dramatically reduced training costs. Our key innovation is the <strong class="has-text-weight-bold">Spatial Sparse Attention (SSA)</strong> mechanism, which greatly enhances the efficiency of Diffusion Transformer (DiT) computations on sparse volumetric data. SSA allows the model to effectively process large token sets within sparse volumes, yielding a <em>3.9&times;</em> speed-up in the forward pass and a <em>9.6&times;</em> speed-up in the backward pass. The framework also includes a variational autoencoder (VAE) that maintains a consistent sparse volumetric format across input, latent, and output stages. Compared with prior 3D VAEs that rely on heterogeneous representations, this unified design markedly improves training efficiency and stability. Trained on publicly available datasets, <strong class="has-text-weight-bold">Direct3D-S2</strong> not only surpasses state-of-the-art methods in generation quality and efficiency, but also enables <strong class="has-text-weight-bold">training at 1024<sup>3</sup>  resolution with just 8 GPUs</strong>—a task that previously required at least 32 GPUs for 256<sup>3</sup> volumetric training—making gigascale 3D generation both practical and accessible.
           </p>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
     <!--/ Abstract. -->
 
@@ -463,7 +464,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
     <br>
     <div class=" is-centered has-text-centered">
       <!-- <div class="column is-four-fifths"> -->
-        <table class="comp-media-table">
+        <table id="closed-table" class="comp-media-table">
           <colgroup>
             <col style="width: 16.5%;">
             <col style="width: 16.5%;">
@@ -493,7 +494,8 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/civitai_man0_o.mp4" autoplay playsinline controls muted class="round-box"></video>
+                <video src="assets/videos/civitai_man0_o.mp4" autoplay playsinline controls muted class="round-box media-video"></video>
+                <img src="assets/imgs/civitai_man0_o.png" alt="civitai_man0_o" class="round-box-image media-img hidden-table">
               </td>
             </tr>
 
@@ -506,7 +508,8 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/meshy_jester_o.mp4" autoplay playsinline controls muted class="round-box"></video>
+                <video src="assets/videos/meshy_jester_o.mp4" autoplay playsinline controls muted class="round-box media-video"></video>
+                <img src="assets/imgs/meshy_jester_o.png" alt="civitai_man0_o" class="round-box-image media-img hidden-table">
               </td>
             </tr>
             <tr>
@@ -517,7 +520,8 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/civitai_animal4_o.mp4" autoplay playsinline controls muted class="round-box"></video>
+                <video src="assets/videos/civitai_animal4_o.mp4" autoplay playsinline controls muted class="round-box media-video"></video>
+                <img src="assets/imgs/civitai_animal4_o.png" alt="civitai_man0_o" class="round-box-image media-img hidden-table">
               </td>
             </tr>
             <tr>
@@ -528,7 +532,8 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/car0_o.mp4" autoplay playsinline controls muted class="round-box"></video>
+                <video src="assets/videos/car0_o.mp4" autoplay playsinline controls muted class="round-box media-video"></video>
+                <img src="assets/imgs/car0_o.png" alt="civitai_man0_o" class="round-box-image media-img hidden-table">
               </td>
             </tr>
             <tr>
@@ -539,7 +544,8 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/civitai_robot13_o.mp4" autoplay playsinline controls muted class="round-box"></video>
+                <video src="assets/videos/civitai_robot13_o.mp4" autoplay playsinline controls muted class="round-box media-video"></video>
+                <img src="assets/imgs/civitai_robot13_o.png" alt="civitai_man0_o" class="round-box-image media-img hidden-table">
               </td>
             </tr>
             <tr>
@@ -550,15 +556,65 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
               </td>
               <!-- one video stretches across the five model cells -->
               <td colspan="5">
-                <video src="assets/videos/lexica_character2_o.mp4" autoplay playsinline controls muted class="round-box"></video>
+                <video src="assets/videos/lexica_character2_o.mp4" autoplay playsinline controls muted class="round-box media-video"></video>
+                <img src="assets/imgs/lexica_character2_o.png" alt="civitai_man0_o" class="round-box-image media-img hidden-table">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <a href="#"  id='switch_models' onclick="switchModels(); return false;" class="w3-button w3-pale-red w3-block round-box" style="margin-top: 15px; max-width: 1380px; align-items: center;">Closed Source Models</a>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </section>
+
+
+<script>
+  /* page starts with videos visible (“Closed Source Models”) */
+  let showingVideos = false;
+
+  function switchModels () {
+
+    /* ---------- copy each video’s width to its paired image before hiding ---------- */
+    if (showingVideos) {                       // we’re about to *show images*
+      document.querySelectorAll('.media-video').forEach(v => {
+        const img = v.parentElement.querySelector('.media-img');
+        if (img) {
+          const w = v.getBoundingClientRect().width; // rendered width in px
+          img.style.width = w + 'px';                // lock snapshot to that width
+        }
+      });
+    } else {                                    // we’re about to *show videos*
+      document.querySelectorAll('.media-img').forEach(img => {
+        img.style.width = '';                   // remove inline lock, fall back to CSS
+      });
+    }
+
+    /* ---------- toggle visibility ---------- */
+    document.querySelectorAll('.media-video').forEach(v =>
+      v.classList.toggle('hidden-table', !showingVideos)
+    );
+    document.querySelectorAll('.media-img').forEach(img =>
+      img.classList.toggle('hidden-table',  showingVideos)
+    );
+
+    /* ---------- swap header text ---------- */
+    const openHdr = ["Image","Trellis","Hunyuan-2.0","TripoSG","Hi3DGen","Ours"];
+    const closedHdr   = ["Image","Model N","Model M","Model R","Model T","Ours"];
+    const newHdr    = showingVideos ? openHdr : closedHdr;
+    document.querySelectorAll('.comp-media-table thead th')
+            .forEach((th, i) => th.textContent = newHdr[i]);
+
+    /* ---------- update button label & state flag ---------- */
+    document.getElementById('switch_models').textContent =
+      showingVideos ?  'Closed Source Models' : 'Open Source Models';
+    showingVideos = !showingVideos;
+  }
+</script>
 
 <script>
 /**
@@ -612,9 +668,9 @@ new MutationObserver(muts => {
     <h2 class="title is-3"> Method Overview</h2>
   </div>
   <br>
-  <div class="containers">
+  <div class="container">
     <!-- Abstract. -->
-    <div class="is-centered has-text-centered">
+    <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <img src="assets/imgs/pipeline-arm.png" alt="dit Comparasions">
         <div class="content has-text-justified">
@@ -635,12 +691,12 @@ new MutationObserver(muts => {
 </section>
 
 <section class="section">
-  <div class="columns is-centered has-text-centered is-four-fifths">
+  <div class="is-centered has-text-centered">
     <h2 class="title">BibTeX</h2>
   </div>
-  <div class="container is-max-desktop">
+  <div class="container">
     <div class="columns is-centered">
-      <!-- <div class="column is-four-fifths"> -->
+      <div class="column is-four-fifths">
         <pre><code>
 @article{wu2025direct3ds2gigascale3dgeneration,
   title={Direct3D-S2: Gigascale 3D Generation Made Easy with Spatial Sparse Attention}, 
@@ -649,7 +705,7 @@ new MutationObserver(muts => {
   year={2025}
 }
       </code></pre>
-    <!-- </div> -->
+    </div>
   </div>
 </div>
 </section>

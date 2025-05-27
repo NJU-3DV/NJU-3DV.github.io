@@ -245,7 +245,7 @@ video::-webkit-media-controls-treatment {
 /* Hero video */
 .teaser-image {
   width: 100%;
-  max-width: 1080px;
+  max-width: 960px;
   margin: 0 auto 3rem;
 }
 

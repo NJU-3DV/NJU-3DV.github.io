@@ -459,6 +459,33 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
   </div>
 </section>
 
+<section>
+  <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3"> Method Overview</h2>
+  </div>
+  <br>
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="assets/imgs/pipeline-arm.png" alt="dit Comparasions">
+        <div class="content has-text-justified">
+          <p>
+          The framework of our Direct3D-S2. We propose a fully end-to-end sparse SDF VAE (SS-VAE), which employs a symmetric encoder-decoder network to efficiently encode high-resolution sparse SDF volumes into sparse latent representations. Then we train an image-conditioned diffusion transformer (SS-DiT) with a novel Spatial Sparse Attention (SSA) mechanism that significantly improves the training and inference efficiency of the DiT.
+          </p>
+        </div>
+        <br>
+        <img src="assets/imgs/pipeline-SSA-v4.png" alt="dit Comparasions" width=85%>
+        <br>
+        <div class="content has-text-justified">
+          <p>
+          The design of our Spatial Sparse Attention (SSA). We partition the input tokens into blocks based on their 3D coordinates, and then construct key-value pairs through three distinct modules. For each query token, we utilize sparse 3D compression module to capture global information, while the spatial blockwise selection module selects important blocks based on compression attention scores to extract fine-grained features, and the sparse 3D window module injects local features. Ultimately, we aggregate the final output of SSA from the three modules using predicted gate scores.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
 <section class="section"> 
   <!-- <div class="container"> -->
     <div class="is-centered has-text-centered">
@@ -666,40 +693,13 @@ new MutationObserver(muts => {
 }).observe(document.documentElement, { childList:true, subtree:true });
 </script>
 
-<section>
-  <div class="columns is-centered has-text-centered">
-    <h2 class="title is-3"> Method Overview</h2>
-  </div>
-  <br>
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <img src="assets/imgs/pipeline-arm.png" alt="dit Comparasions">
-        <div class="content has-text-justified">
-          <p>
-          The framework of our Direct3D-S2. We propose a fully end-to-end sparse SDF VAE (SS-VAE), which employs a symmetric encoder-decoder network to efficiently encode high-resolution sparse SDF volumes into sparse latent representations. Then we train an image-conditioned diffusion transformer (SS-DiT) with a novel Spatial Sparse Attention (SSA) mechanism that significantly improves the training and inference efficiency of the DiT.
-          </p>
-        </div>
-        <br>
-        <img src="assets/imgs/pipeline-SSA-v4.png" alt="dit Comparasions" width=85%>
-        <br>
-        <div class="content has-text-justified">
-          <p>
-          The design of our Spatial Sparse Attention (SSA). We partition the input tokens into blocks based on their 3D coordinates, and then construct key-value pairs through three distinct modules. For each query token, we utilize sparse 3D compression module to capture global information, while the spatial blockwise selection module selects important blocks based on compression attention scores to extract fine-grained features, and the sparse 3D window module injects local features. Ultimately, we aggregate the final output of SSA from the three modules using predicted gate scores.
-          </p>
-        </div>
-      </div>
-    </div>
-</section>
-
 <section class="section">
   <div class="is-centered has-text-centered">
     <h2 class="title">BibTeX</h2>
   </div>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
+  <div class="container">
+    <div class="is-centered">
+      <!-- <div class="column is-four-fifths"> -->
         <pre><code>
 @article{wu2025direct3ds2gigascale3dgeneration,
   title={Direct3D-S2: Gigascale 3D Generation Made Easy with Spatial Sparse Attention}, 
@@ -709,7 +709,7 @@ new MutationObserver(muts => {
 }
       </code></pre>
     </div>
-  </div>
+  <!-- </div> -->
 </div>
 </section>
 

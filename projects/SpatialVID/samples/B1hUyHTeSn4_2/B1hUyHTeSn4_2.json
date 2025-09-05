@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a static shot, then transitions to a slow dolly forward through a crowded crosswalk. The camera maintains a steady pace, moving through the pedestrian traffic. The dolly forward continues, keeping the focus on the people crossing the street and the illuminated buildings in the background. The camera remains at eye-level throughout the shot.",
+  "SceneDesc": "The scene depicts a bustling urban intersection at night, likely in Japan, with numerous pedestrians crossing the street under umbrellas in the rain. The wet pavement reflects the bright neon lights and advertisements of the surrounding buildings, including a prominent Don Quijote store. The atmosphere is vibrant and energetic, despite the rainy weather. The overall tone is one of urban activity and modern city life, with a sense of constant motion and commercial energy.",
+  "OptCamMotion": "The camera steadily moves forward, gliding through the rain-soaked crosswalk as it translates leftward, maintaining a consistent eye-level perspective. The motion is smooth and sustained, with a clear forward trajectory that captures the flowing pedestrian movement and glowing cityscape.",
+  "SceneSummary": "A neon-lit urban intersection in Tokyo at night, bustling with pedestrians under umbrellas, reflecting in puddles beneath vibrant store signs and towering buildings.",
+  "MotionTrends": [
+    "forward translate",
+    "left translate"
+  ],
+  "SceneTags": [
+    "nighttime",
+    "city street",
+    "rain",
+    "neon lights"
+  ],
+  "ShotImmersion": "The camera glides forward through the rain-slicked streets, its path weaving slightly to the left as it passes under umbrellas and past glowing storefronts. The wet pavement mirrors the electric glow of the city, capturing the rhythm of life in a busy, luminous Japanese crosswalk.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Urban",
+      "second": "Street Scene"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Night",
+    "weather": "Rainy",
+    "crowdDensity": "Crowded"
+  }
+}

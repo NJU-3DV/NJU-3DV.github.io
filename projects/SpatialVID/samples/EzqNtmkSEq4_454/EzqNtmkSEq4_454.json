@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a static shot, then slowly dollies forward towards a pier bustling with people. As it moves closer, the camera subtly pans right, keeping the pier and the buildings behind it in view. The forward dolly continues, bringing the viewer closer to the activity on the pier and the waterfront buildings. The camera maintains a steady, smooth motion throughout.",
+  "SceneDesc": "A picturesque Swiss village scene unfolds on a waterfront. A pier extends into the water, crowded with people walking and gathering. Behind the pier, colorful buildings line the waterfront, including a church with a distinctive dome. Lush green mountains rise in the background, partially obscured by clouds. The scene is bathed in soft, diffused light, suggesting an overcast day. The overall atmosphere is peaceful and inviting, capturing the charm of a lakeside European town.",
+  "OptCamMotion": "The camera smoothly translates forward, gradually moving toward the pier while subtly shifting right to maintain the scene's composition. The motion is steady and controlled, with a clear directional shift that brings the viewer closer to the bustling waterfront activity.",
+  "SceneSummary": "A serene lakeside Swiss village features a busy pier, colorful buildings, a church with a dome, and mountainous backdrop under soft overcast light, evoking a peaceful, picturesque atmosphere.",
+  "MotionTrends": [
+    "forward translate",
+    "right translate"
+  ],
+  "SceneTags": [
+    "lakeside village",
+    "pier",
+    "cloudy sky",
+    "European town"
+  ],
+  "ShotImmersion": "The camera glides forward along the waterfront, drawing viewers closer to the lively pier where people gather. As it moves, a gentle shift to the right keeps the vibrant buildings and towering mountains in frame, capturing the tranquil charm of a Swiss lakeside town under a soft, overcast sky.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Waterfront",
+      "second": "Lakeside Village"
+    },
+    "lighting": "Dim/Dark",
+    "timeOfDay": "Daytime (Midday/Noon/Afternoon)",
+    "weather": "Cloudy",
+    "crowdDensity": "Crowded"
+  }
+}

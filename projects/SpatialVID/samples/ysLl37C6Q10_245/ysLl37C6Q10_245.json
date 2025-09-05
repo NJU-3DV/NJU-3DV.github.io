@@ -1,0 +1,27 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward along a straight road, moving through a snow-covered valley. The motion continues at a steady pace, maintaining a consistent forward trajectory. The camera passes by parked cars and traditional wooden buildings on either side of the road, with snow-covered fields and mountains in the background. The dolly forward persists until the end of the clip.",
+  "SceneDesc": "A picturesque winter scene unfolds in a valley surrounded by towering mountains. A straight, paved road cuts through the snow-covered landscape, flanked by traditional wooden buildings and parked cars. The sky is a warm, golden hue, suggesting either sunrise or sunset. Snow blankets the ground and clings to the mountainsides, creating a serene and tranquil atmosphere. The overall tone is peaceful and inviting, showcasing the beauty of a mountain village in winter.",
+  "OptCamMotion": "The camera steadily moves forward along a straight path, gliding smoothly through the snowy valley. Its position consistently shifts in the positive z-direction, maintaining a steady pace as it passes wooden structures and parked vehicles. The motion is smooth and uninterrupted, with no significant lateral or vertical shifts.",
+  "SceneSummary": "A serene mountain village bathed in golden light, with a paved road winding through snow-covered fields and flanked by traditional wooden buildings under a vast, open sky.",
+  "MotionTrends": [
+    "forward translate"
+  ],
+  "SceneTags": [
+    "winter village",
+    "mountain valley",
+    "snow-covered",
+    "golden light"
+  ],
+  "ShotImmersion": "The camera glides forward through a quiet winter landscape, revealing a snow-draped road lined with wooden homes and parked cars. Towering mountains loom in the distance, their slopes blanketed in white, while the golden sky casts a warm glow over the peaceful scene.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Rural",
+      "second": "Mountain Village"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Dusk",
+    "weather": "Snowy",
+    "crowdDensity": "Deserted"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "CamMotion": "The camera begins with a static shot, then slowly dollies forward along the riverbank. The camera then pans slightly to the right, keeping the bridge in view. The camera continues to dolly forward, maintaining a low angle and capturing the reflections of the bridge lights in the water. The camera then pans slightly to the left, revealing more of the riverbank and the second bridge in the distance. The camera continues to dolly forward along the riverbank.",
+  "SceneDesc": "The scene depicts an evening view of the Han River in Seoul, South Korea. Two bridges illuminated with yellow and green lights span the river, their reflections shimmering in the water. The sky is overcast with dark clouds. Lush green vegetation lines the riverbank in the foreground. In the background, city lights twinkle, creating a vibrant urban backdrop. The overall atmosphere is serene and peaceful, showcasing the beauty of the city at dusk.",
+  "OptCamMotion": "The camera steadily moves forward along the riverbank, maintaining a low angle as it captures the shimmering reflections of the illuminated bridges. Slight right and left panning motions keep the structures in frame, with smooth, continuous motion throughout.",
+  "SceneSummary": "A serene evening scene of the Han River in Seoul, framed by glowing bridges, lush greenery, and a cityscape under dark, overcast skies.",
+  "MotionTrends": [
+    "forward translate",
+    "left translate",
+    "right translate"
+  ],
+  "SceneTags": [
+    "evening",
+    "river",
+    "cityscape",
+    "bridge"
+  ],
+  "ShotImmersion": "The camera glides forward along the quiet riverbank, its low angle highlighting the shimmering reflections of yellow and green lights on the water. As it subtly pans left and right, the towering bridges and distant city lights come into view, painting a peaceful, luminous portrait of Seoul at dusk.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Waterfront",
+      "second": "River View"
+    },
+    "lighting": "Dim/Dark",
+    "timeOfDay": "Dusk/Evening",
+    "weather": "Cloudy",
+    "crowdDensity": "Unknown"
+  }
+}

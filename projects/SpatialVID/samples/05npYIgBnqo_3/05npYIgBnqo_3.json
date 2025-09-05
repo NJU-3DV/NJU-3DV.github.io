@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a static shot, then initiates a slow dolly forward through a narrow stone passageway. As it progresses, the camera gradually rises, revealing more of the village beyond. The forward movement continues until the camera reaches a small courtyard, where it comes to a complete stop, maintaining a static position.",
+  "SceneDesc": "The scene depicts a quaint Swiss village nestled in a mountainous region. The camera looks through a stone passageway into a small courtyard surrounded by traditional stone buildings with slate roofs. A patch of green grass occupies the center of the courtyard. In the background, a towering mountain rises against a blue sky. The lighting is natural, with the sky and mountains appearing in their true colors, creating a realistic atmosphere. The overall tone is peaceful and serene, evoking a sense of timelessness.",
+  "OptCamMotion": "The camera slowly moves forward through the stone passageway, gradually ascending as it reveals the village beyond. It maintains a steady forward translate until reaching the courtyard, where it comes to a complete stop, offering a stable view of the serene landscape.",
+  "SceneSummary": "A peaceful Swiss village sits in a mountainous setting, framed by stone buildings and a natural, blue-hued sky that enhances its realistic, timeless atmosphere.",
+  "MotionTrends": [
+    "forward translate",
+    "upward translate"
+  ],
+  "SceneTags": [
+    "Swiss village",
+    "mountain pass",
+    "blue sky",
+    "stone courtyard"
+  ],
+  "ShotImmersion": "The camera glides forward through the narrow stone corridor, rising slightly as the village unfolds before it. The tranquil courtyard emerges, bathed in a natural glow, with slate-roofed buildings and a patch of green grass at its heart, all set against a vivid, realistic sky.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Rural",
+      "second": "Alpine Village"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Daytime",
+    "weather": "Sunny",
+    "crowdDensity": "Deserted"
+  }
+}

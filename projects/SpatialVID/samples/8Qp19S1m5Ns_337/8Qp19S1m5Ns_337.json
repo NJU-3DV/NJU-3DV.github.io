@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward along a cobblestone street lined with shops. The motion is smooth and steady, maintaining a consistent forward trajectory. As the camera progresses, it subtly adjusts to maintain focus on the center of the street, creating a slight, almost imperceptible pan. The dolly continues at a constant speed, showcasing the street's length and the activity within it.",
+  "SceneDesc": "The scene depicts a quaint, cobblestone street in a traditional Chinese town, likely during the daytime. The sky is overcast, casting a soft, diffused light. Shops line both sides of the street, adorned with traditional architecture and illuminated by warm lights and lanterns. Several people stroll along the street, some dressed in traditional attire, adding to the cultural ambiance. The overall tone is peaceful and inviting, evoking a sense of cultural immersion. The atmosphere is calm and serene.",
+  "OptCamMotion": "The camera steadily moves forward along the cobblestone street, with a slight leftward drift as it tracks the center of the path. The motion remains smooth and consistent, with minimal lateral adjustments, maintaining a stable perspective on the traditional shops and lantern-lit environment.",
+  "SceneSummary": "A quiet, traditional Chinese street during the day, lined with warmly-lit shops and winding cobblestones, under an overcast sky that enhances its serene atmosphere.",
+  "MotionTrends": [
+    "forward translate",
+    "left translate"
+  ],
+  "SceneTags": [
+    "traditional town",
+    "cobblestone street",
+    "daytime",
+    "lanterns"
+  ],
+  "ShotImmersion": "The camera glides forward down a narrow, lantern-lit street, its path gently shifting left to keep the bustling scene in frame. The soft glow of warm lights reflects off the stones, casting shadows as people move through the peaceful setting.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Urban",
+      "second": "Cobblestone Street Scene"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Daytime",
+    "weather": "Cloudy",
+    "crowdDensity": "Moderate"
+  }
+}

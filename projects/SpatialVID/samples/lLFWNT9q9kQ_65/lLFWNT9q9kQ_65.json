@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward along a narrow path carved into a rock face, with a river flowing to the left. The camera continues to dolly forward, maintaining a steady pace along the path, passing a small wooden platform. The path curves slightly to the right as the camera continues its forward movement, eventually passing a large rock formation on the right.",
+  "SceneDesc": "A vibrant, lush canyon scene unfolds, featuring a rushing river cascading over rocks on the left. A narrow, paved path runs along the right side, carved into the rock face, with a metal railing separating it from the steep drop to the river. Dense green foliage covers the canyon walls and trees reach towards the sky, creating a sense of depth and enclosure. The lighting is somewhat muted, casting soft shadows and enhancing the natural colors. The overall tone is serene and peaceful, inviting viewers to immerse themselves in the beauty of the natural environment.",
+  "OptCamMotion": "The camera steadily moves forward along a narrow path, with a gradual rightward shift. The motion is smooth and consistent, maintaining a steady pace as it progresses through the rocky terrain.",
+  "SceneSummary": "A serene canyon with a rushing river, lush greenery, and a winding path carved into the rock face, bathed in soft, natural light.",
+  "MotionTrends": [
+    "forward translate",
+    "right translate"
+  ],
+  "SceneTags": [
+    "canyon",
+    "river",
+    "rocky path",
+    "natural landscape"
+  ],
+  "ShotImmersion": "The camera glides forward along a narrow, rocky path, framed by towering walls and a rushing river to the left. As it moves, the path curves gently to the right, revealing dense foliage and a sense of quiet majesty in the natural world.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Natural Landscape",
+      "second": "Canyon"
+    },
+    "lighting": "Dim/Dark",
+    "timeOfDay": "Unknown",
+    "weather": "Unknown",
+    "crowdDensity": "Deserted"
+  }
+}

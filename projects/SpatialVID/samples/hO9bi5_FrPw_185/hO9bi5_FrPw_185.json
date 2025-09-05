@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a slow dolly right along a wet city street at night, showcasing storefronts. The movement continues at a steady pace, revealing more of the street and pedestrians walking under umbrellas. The dolly right continues, passing by shops and street signs, eventually slowing to a stop.",
+  "SceneDesc": "A rainy night in Seoul, South Korea, is depicted with glistening streets reflecting neon lights. Pedestrians with umbrellas walk along the sidewalk. The storefronts are brightly lit, displaying clothing and currency exchange services. The atmosphere is calm and subdued, with the rain creating a reflective surface on the pavement. The scene conveys a sense of urban life continuing despite the weather, with a mix of traditional and modern elements in the architecture and signage.",
+  "OptCamMotion": "The camera glides steadily to the right, moving through a wet urban landscape at night. It maintains a consistent pace, revealing storefronts and pedestrians under umbrellas, before gradually coming to a halt.",
+  "SceneSummary": "A rainy night in Seoul features glistening streets, neon reflections, and bustling yet calm pedestrian activity amid a blend of traditional and modern architecture.",
+  "MotionTrends": [
+    "right translate",
+    "forward translate"
+  ],
+  "SceneTags": [
+    "rainy night",
+    "city street",
+    "neon lights",
+    "urban life"
+  ],
+  "ShotImmersion": "The camera smoothly drifts right along a rain-slicked street, its path illuminated by glowing neon signs. Pedestrians with umbrellas move past brightly lit shops, their reflections shimmering on the wet pavement as the scene pulses with quiet urban energy.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Urban",
+      "second": "Street Scene"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Night",
+    "weather": "Rainy",
+    "crowdDensity": "Sparse"
+  }
+}

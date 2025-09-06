@@ -1,0 +1,29 @@
+{
+  "CamMotion": "The camera begins with a slow aerial dolly forward over a rocky mountain ridge. The movement continues, gradually descending and tilting downward to reveal the steep drop-off. The camera then pans slightly to the right, following the contours of the mountain. The dolly continues forward and downward, providing a dramatic perspective of the rugged terrain and the clouds below. The camera then tilts further down, emphasizing the depth of the valley.",
+  "SceneDesc": "The scene showcases a dramatic mountain landscape with jagged peaks and steep cliffs. A thick layer of clouds fills the valleys below, creating a sense of depth and mystery. The rocky terrain is sparsely covered with patches of green vegetation. The lighting is soft and diffused, suggesting an overcast day. The overall tone is awe-inspiring and serene, emphasizing the grandeur and scale of nature. The scene evokes a feeling of tranquility and invites contemplation.",
+  "OptCamMotion": "The camera glides forward and downward, tracing a dynamic path along the mountain ridge. It shifts slightly right as it descends, revealing the steep drop below. The motion is smooth and continuous, with a steady acceleration that emphasizes the vastness of the landscape.",
+  "SceneSummary": "A towering mountain range stretches beneath a brooding sky, its jagged peaks shrouded in swirling clouds, evoking a sense of quiet majesty and natural grandeur.",
+  "MotionTrends": [
+    "forward translate",
+    "downward translate",
+    "right translate"
+  ],
+  "SceneTags": [
+    "mountain",
+    "clouds",
+    "overcast",
+    "rugged terrain"
+  ],
+  "ShotImmersion": "The camera surges forward through the air, descending along the rocky ridge as mist curls below. A gentle shift to the right reveals the sheer drop of the valley, the soft light casting long shadows across the barren slopes, capturing the raw beauty of the untamed landscape.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Natural Landscape",
+      "second": "Mountain Range"
+    },
+    "lighting": "Dim/Dark",
+    "timeOfDay": "Unknown",
+    "weather": "Cloudy",
+    "crowdDensity": "Unknown"
+  }
+}

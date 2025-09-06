@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a static shot, then slowly pans right, revealing a stone structure and a view of a lake and mountains. The pan continues, gradually showing more of the landscape and the architecture. The camera maintains a steady pace, concluding with a wide view of the lake and surrounding scenery.",
+  "SceneDesc": "The scene presents a picturesque landscape featuring a stone structure overlooking a lake and mountains. The water has a turquoise hue, and the foliage is lush green. The stone structure appears aged and weathered, with a glimpse of a garden visible through an archway. The mountains in the background are bathed in a soft, blue light, creating a tranquil atmosphere. The overall tone is serene and peaceful.",
+  "OptCamMotion": "The camera glides smoothly to the right, maintaining a steady forward motion as it reveals a vast landscape. Its path is consistent, with no abrupt changes—only a smooth, continuous translation that emphasizes the expansive scene ahead.",
+  "SceneSummary": "An aged stone structure overlooks a turquoise-hued lake beneath softly lit mountains, evoking a tranquil atmosphere filled with natural color and quiet majesty.",
+  "MotionTrends": [
+    "right translate",
+    "forward translate"
+  ],
+  "SceneTags": [
+    "landscape",
+    "stone structure",
+    "turquoise lake",
+    "mountain vista"
+  ],
+  "ShotImmersion": "The camera drifts right and forward, unveiling a timeless stone edifice perched above a shimmering lake. The water glows turquoise under a bright sky, while distant mountains bathed in light frame a scene of serene beauty.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Waterfront",
+      "second": "Lake View"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Daytime",
+    "weather": "Sunny",
+    "crowdDensity": "Deserted"
+  }
+}

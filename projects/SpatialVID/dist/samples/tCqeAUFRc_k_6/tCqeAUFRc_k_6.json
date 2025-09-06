@@ -1,0 +1,29 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward along a narrow stone path, moving towards a quaint stone cottage. The path is bordered by a stream on the left and a stone wall on the right. The dolly continues, gradually approaching the cottage, with a slight upward tilt to maintain the cottage in the frame. The movement concludes as the camera gets closer to the cottage's entrance.",
+  "SceneDesc": "A picturesque village scene unfolds with a stone cottage as the focal point, nestled beside a gently flowing stream. Lush greenery surrounds the cottage, with trees and foliage climbing the hillside in the background. A narrow stone path leads towards the cottage, bordered by a stone wall adorned with climbing plants. A car is parked near a garage to the left of the stream. The lighting suggests an overcast day, casting soft shadows and creating a tranquil, idyllic atmosphere. The scene evokes a sense of peace and timeless charm.",
+  "OptCamMotion": "The camera glides steadily forward along a narrow path, gradually shifting left as it approaches the cottage. It ascends slightly to maintain framing, with smooth, consistent motion throughout the sequence.",
+  "SceneSummary": "A serene stone cottage sits beside a gentle stream in a lush, overcast village, surrounded by greenery and climbing walls, evoking timeless rural charm.",
+  "MotionTrends": [
+    "forward translate",
+    "left translate",
+    "upward drift"
+  ],
+  "SceneTags": [
+    "village",
+    "stone cottage",
+    "stream",
+    "overcast"
+  ],
+  "ShotImmersion": "The camera moves smoothly forward along a winding stone path, flanked by a stream and ivy-covered walls. As it draws closer to a weathered cottage, the frame gently tilts upward, revealing a peaceful, timeless landscape bathed in soft, diffused light.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Rural",
+      "second": "Village Scene"
+    },
+    "lighting": "Dim/Dark",
+    "timeOfDay": "Unknown",
+    "weather": "Cloudy",
+    "crowdDensity": "Deserted"
+  }
+}

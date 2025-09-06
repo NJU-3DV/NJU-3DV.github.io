@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a static shot of a street scene. It then dollies forward along the road, passing a parked car. As the camera moves, it slightly pans to the left, revealing more of the buildings and the waterfall in the background. The dolly forward continues at a steady pace, maintaining a consistent angle on the street and surrounding environment.",
+  "SceneDesc": "The scene depicts a quaint street in a Swiss village, likely in the Alps, with traditional wooden buildings and a hotel. A waterfall cascades down a cliff face in the background, adding to the picturesque setting. A white SUV is parked near the hotel entrance. People stroll along the sidewalk, suggesting a relaxed, touristy atmosphere. The lighting is bright, indicating a sunny day, and the overall tone is peaceful and inviting. Flags flutter in the breeze, adding a touch of local color.",
+  "OptCamMotion": "The camera steadily moves forward along the street, with a slight leftward drift as it progresses. The motion is smooth and consistent, maintaining a stable perspective on the village scene. The forward translate dominates, with minimal lateral adjustment.",
+  "SceneSummary": "A peaceful Swiss village street with wooden buildings, a hotel, and a cascading waterfall, set under bright sunlight and fluttering flags, evoking a serene alpine atmosphere.",
+  "MotionTrends": [
+    "forward translate",
+    "left translate"
+  ],
+  "SceneTags": [
+    "Swiss village",
+    "waterfall",
+    "sunny day",
+    "alpine street"
+  ],
+  "ShotImmersion": "The camera glides forward down a charming Alpine street, passing a parked SUV and revealing a backdrop of lush greenery and a roaring waterfall. A gentle leftward shift frames the traditional buildings and bustling sidewalk, capturing the tranquil, picturesque essence of the village.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Rural",
+      "second": "Village Street"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Daytime (Midday/Noon/Afternoon)",
+    "weather": "Sunny",
+    "crowdDensity": "Moderate"
+  }
+}

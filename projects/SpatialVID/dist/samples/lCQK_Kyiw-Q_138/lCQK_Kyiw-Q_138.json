@@ -1,0 +1,27 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward along a paved road in a village. The camera continues to move forward at a consistent pace, maintaining a steady shot of the street and buildings on either side. The motion is smooth and controlled, suggesting a stable camera platform.",
+  "SceneDesc": "The scene depicts a quaint village street lined with traditional buildings, set against a backdrop of towering mountains. People stroll along the sidewalks, browsing in shops and enjoying the scenery. The sky is overcast, casting a soft, diffused light over the scene. The overall atmosphere is peaceful and inviting, evoking a sense of charm and tranquility. The village appears to be a popular tourist destination, with a mix of locals and visitors exploring the area.",
+  "OptCamMotion": "The camera steadily moves forward along a paved village street, gliding smoothly past traditional buildings and bustling pedestrians. Its path remains consistent, with no lateral or vertical shifts, maintaining a stable, forward-facing perspective through the tranquil setting.",
+  "SceneSummary": "A peaceful village street is framed by traditional architecture, surrounded by towering mountains under an overcast sky, with people strolling and shopping in a charming, tourist-friendly atmosphere.",
+  "MotionTrends": [
+    "forward translate"
+  ],
+  "SceneTags": [
+    "village street",
+    "traditional buildings",
+    "overcast sky",
+    "mountain backdrop"
+  ],
+  "ShotImmersion": "The camera glides forward along a quiet village road, capturing the warm, weathered facades of shops and homes. Pedestrians pass by, their silhouettes softened by the diffused light, as the distant mountains loom silently behind, reinforcing the serene, timeless charm of the scene.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Rural",
+      "second": "Village Street"
+    },
+    "lighting": "Dim/Dark",
+    "timeOfDay": "Daytime (Midday/Noon/Afternoon)",
+    "weather": "Cloudy",
+    "crowdDensity": "Moderate"
+  }
+}

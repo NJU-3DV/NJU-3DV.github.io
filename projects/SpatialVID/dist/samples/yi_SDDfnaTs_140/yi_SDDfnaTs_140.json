@@ -1,0 +1,27 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward through a long, narrow walk-in closet. The camera continues moving forward at a steady pace, maintaining a low angle, as it navigates the length of the closet. The movement remains consistent, focusing on the central pathway between the shelving units and clothing racks.",
+  "SceneDesc": "The scene depicts a long, luxurious walk-in closet with dark wood shelving and drawers lining both sides. A man in a suit walks towards the camera from the far end of the closet. The closet is well-lit with integrated lighting in the shelves and a skylight providing natural light. Clothes hang neatly on racks, and folded items are stacked on shelves. The overall atmosphere is modern and upscale, conveying a sense of organization and opulence. The cool lighting creates a calm and sophisticated mood.",
+  "OptCamMotion": "The camera steadily translates forward, gliding along the central path of the closet. Its movement is smooth and consistent, maintaining a low angle as it progresses through the space, revealing the organized shelves and clothing racks in steady progression.",
+  "SceneSummary": "A sleek, modern walk-in closet with dark wood shelving, integrated lighting, and a skylight, showcasing an organized, upscale environment with a man walking toward the camera.",
+  "MotionTrends": [
+    "forward translate"
+  ],
+  "SceneTags": [
+    "closet",
+    "luxury",
+    "modern",
+    "skylight"
+  ],
+  "ShotImmersion": "The camera glides forward through the polished, well-lit closet, capturing the elegant arrangement of clothes and shelves. The low-angle shot emphasizes the space's sophistication, as a man walks toward the lens, framed by the orderly display of garments and natural light filtering from above.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Interior",
+      "second": "Walk-in Closet"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Daytime (Midday/Noon/Afternoon)",
+    "weather": "Unknown",
+    "crowdDensity": "Deserted"
+  }
+}

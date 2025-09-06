@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward along a pedestrian street, maintaining a steady pace. As it moves, there's a slight leftward drift, subtly adjusting the framing of the street scene. The dolly continues smoothly, passing by shops and outdoor seating areas, before gradually coming to a stop near the end of the street.",
+  "SceneDesc": "The scene depicts a bustling pedestrian street lined with shops and cafes. People stroll along the cobblestone pavement, some browsing in store windows, others seated at outdoor tables enjoying refreshments. Bicycles are parked along the side, adding to the urban atmosphere. In the background, mountains rise, providing a scenic backdrop. The lighting suggests late afternoon or early evening, with a warm, slightly muted tone. The overall mood is relaxed and inviting, capturing the essence of a vibrant city center.",
+  "OptCamMotion": "The camera steadily moves forward along the street, with a subtle leftward shift in framing. The motion is smooth and consistent, maintaining a steady pace as it passes shops and cafes, gradually building momentum before coming to a stop.",
+  "SceneSummary": "A lively pedestrian street lined with shops and cafes, framed by cobblestone paths and a mountainous backdrop, bathed in warm late-afternoon light that enhances its inviting, urban charm.",
+  "MotionTrends": [
+    "forward translate",
+    "left translate"
+  ],
+  "SceneTags": [
+    "pedestrian street",
+    "city center",
+    "late afternoon",
+    "mountain backdrop"
+  ],
+  "ShotImmersion": "The camera glides forward down a bustling street, its path gently shifting left to frame the vibrant scene of shops and outdoor seating. The warm glow of dusk casts long shadows over the cobblestones, capturing the relaxed energy of a city alive with life.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Urban",
+      "second": "Street Scene"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Dusk/Evening",
+    "weather": "Sunny",
+    "crowdDensity": "Crowded"
+  }
+}

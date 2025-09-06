@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward through a narrow, stepped alleyway. The movement is smooth and steady, maintaining a consistent forward trajectory. As the camera progresses, it passes under an arched stone structure, continuing its dolly forward along the path. The motion remains constant, with no panning or tilting, until the end of the clip.",
+  "SceneDesc": "The scene depicts a charming, narrow alleyway in an old European town. The alley is lined with stone buildings, adorned with vibrant purple flower pots hanging on the walls and placed on the steps. The path ascends gently, leading under a stone archway that frames a glimpse of brighter light at the far end. The lighting is soft and diffused, creating a tranquil and inviting atmosphere. The overall tone is peaceful and picturesque, evoking a sense of history and quaint beauty.",
+  "OptCamMotion": "The camera glides steadily forward, moving smoothly along a winding path. As it progresses, it shifts slightly to the left, maintaining a consistent direction. The motion remains smooth and unbroken, with no abrupt changes in speed or orientation.",
+  "SceneSummary": "A narrow, historic European alleyway lined with stone buildings, flower pots, and a soft, inviting light, evoking a peaceful, timeless atmosphere.",
+  "MotionTrends": [
+    "forward translate",
+    "left translate"
+  ],
+  "SceneTags": [
+    "old town",
+    "stone alleyway",
+    "soft light",
+    "historic village"
+  ],
+  "ShotImmersion": "The camera drifts forward through a quiet, cobbled alley, flanked by weathered stone walls and blooming purple flowers. A low archway looms ahead, casting a warm glow that hints at a hidden world beyond, as the path gently curves to the left, drawing the viewer deeper into the scene's serene charm.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Urban",
+      "second": "Narrow Alleyway"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Daytime (Midday/Noon/Afternoon)",
+    "weather": "Sunny",
+    "crowdDensity": "Deserted"
+  }
+}

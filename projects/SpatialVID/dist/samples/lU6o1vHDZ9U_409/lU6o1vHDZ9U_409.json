@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward along a snow-covered path through a bamboo forest. The movement is steady, maintaining a low angle perspective. As the camera progresses, there's a slight upward tilt, emphasizing the height of the bamboo stalks. The dolly continues at a consistent pace, keeping the path and a distant figure centered in the frame. The motion concludes with a subtle zoom in on the figure.",
+  "SceneDesc": "A serene winter scene unfolds within a dense bamboo forest, the tall stalks dusted with snow. A narrow path, also covered in snow, cuts through the forest, creating a tunnel-like effect. A lone figure walks along the path, appearing small against the towering bamboo. The lighting is soft and diffused, typical of an overcast day, casting a muted, ethereal glow on the landscape. The overall atmosphere is tranquil and contemplative, evoking a sense of solitude and peace within the snowy bamboo grove.",
+  "OptCamMotion": "The camera steadily moves forward along a snow-covered path, gliding smoothly through the bamboo forest. It maintains a low angle, tracking the distant figure with consistent motion. The trajectory shows a gradual shift to the left, subtly repositioning the frame as it progresses deeper into the scene.",
+  "SceneSummary": "A tranquil winter bamboo forest bathed in soft light, with a narrow snowy path leading toward a solitary figure, evoking quiet contemplation and natural serenity.",
+  "MotionTrends": [
+    "forward translate",
+    "left translate"
+  ],
+  "SceneTags": [
+    "snowy forest",
+    "winter",
+    "bamboo grove",
+    "serene"
+  ],
+  "ShotImmersion": "The camera glides forward through a hushed bamboo forest, its path illuminated by soft, diffused light. Snow clings to the towering stalks as the frame slowly shifts left, revealing the vast, silent expanse and a lone figure walking ahead, lost in the stillness of the winter world.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Natural Landscape",
+      "second": "Snowy Bamboo Forest"
+    },
+    "lighting": "Dim/Dark",
+    "timeOfDay": "Unknown",
+    "weather": "Snowy",
+    "crowdDensity": "Deserted"
+  }
+}

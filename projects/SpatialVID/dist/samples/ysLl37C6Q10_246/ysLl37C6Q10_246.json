@@ -1,0 +1,28 @@
+{
+  "CamMotion": "The camera begins with a slow dolly forward along a paved road, maintaining a low angle. As the camera advances, it gradually pans slightly to the right, revealing more of the surrounding landscape. The dolly continues at a steady pace, eventually coming to a stop at an intersection. The pan becomes more pronounced as the camera settles into a static position, showcasing the intersection and nearby buildings.",
+  "SceneDesc": "The scene depicts a winter landscape in a mountainous region. A paved road cuts through the snow-covered terrain, flanked by steep mountain faces and a building on the right. The sky is a warm, golden hue, suggesting either sunrise or sunset. A car drives along the road, adding a dynamic element to the otherwise still environment. The overall tone is serene and majestic, highlighting the beauty of the natural landscape despite the cold, snowy conditions. The scene evokes a sense of tranquility and awe.",
+  "OptCamMotion": "The camera steadily moves forward along a snowy road, with a slight rightward drift as it progresses. The motion is smooth and consistent, maintaining a low angle that emphasizes the vast mountainous landscape ahead.",
+  "SceneSummary": "A serene winter mountain landscape features a paved road winding through snow-covered terrain, framed by steep cliffs and a golden-hued sky, evoking tranquility and grandeur.",
+  "MotionTrends": [
+    "forward translate",
+    "right translate"
+  ],
+  "SceneTags": [
+    "winter landscape",
+    "mountain pass",
+    "snowy road",
+    "golden hour"
+  ],
+  "ShotImmersion": "The camera glides forward along a quiet, snow-dusted road, its low angle capturing the towering mountains and the warm glow of the sky. As it moves, a gentle shift to the right reveals more of the vast, frozen expanse, emphasizing the stillness and majesty of the scene.",
+  "LLM": "qwen3-30b-a3b",
+  "CategoryTag": {
+    "sceneType": {
+      "first": "Natural Landscape",
+      "second": "Mountainous Winter Scene"
+    },
+    "lighting": "Bright",
+    "timeOfDay": "Dusk",
+    "weather": "Snowy",
+    "crowdDensity": "Deserted"
+  }
+}

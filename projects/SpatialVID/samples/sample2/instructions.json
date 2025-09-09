@@ -1,0 +1,39 @@
+{
+  "0->1": [
+    "Stay"
+  ],
+  "1->8": [
+    "Dolly In"
+  ],
+  "8->13": [
+    "Dolly In",
+    "Truck Right"
+  ],
+  "13->31": [
+    "Dolly In",
+    "Truck Right",
+    "Pan Left"
+  ],
+  "31->32": [
+    "Dolly In",
+    "Pan Left"
+  ],
+  "32->36": [
+    "Dolly In"
+  ],
+  "36->39": [
+    "Dolly In",
+    "Truck Left"
+  ],
+  "39->43": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right"
+  ],
+  "43->49": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Pan Right"
+  ]
+}

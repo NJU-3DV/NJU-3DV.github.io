@@ -1,0 +1,142 @@
+{
+  "0->2": [
+    "Stay"
+  ],
+  "2->8": [
+    "Dolly In"
+  ],
+  "8->9": [
+    "Dolly In",
+    "Pedestal Up"
+  ],
+  "9->10": [
+    "Dolly In",
+    "Pedestal Up",
+    "Roll CCW"
+  ],
+  "10->22": [
+    "Dolly In",
+    "Pedestal Up",
+    "Tilt Down",
+    "Roll CCW"
+  ],
+  "22->24": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Up",
+    "Tilt Down",
+    "Roll CCW"
+  ],
+  "24->26": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Up",
+    "Tilt Down"
+  ],
+  "26->27": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Up",
+    "Pan Right",
+    "Tilt Down"
+  ],
+  "27->31": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right",
+    "Tilt Down"
+  ],
+  "31->32": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right",
+    "Roll CW"
+  ],
+  "32->35": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Pan Right",
+    "Roll CW"
+  ],
+  "35->37": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Roll CW"
+  ],
+  "37->38": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Tilt Up",
+    "Roll CW"
+  ],
+  "38->46": [
+    "Dolly In",
+    "Pedestal Down",
+    "Tilt Up",
+    "Roll CW"
+  ],
+  "46->48": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Tilt Up",
+    "Roll CW"
+  ],
+  "48->60": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Pan Right",
+    "Tilt Up",
+    "Roll CW"
+  ],
+  "60->65": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Pan Right",
+    "Roll CW"
+  ],
+  "65->68": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right",
+    "Roll CW"
+  ],
+  "68->69": [
+    "Dolly In",
+    "Pan Right",
+    "Roll CW"
+  ],
+  "69->70": [
+    "Dolly In",
+    "Pedestal Up",
+    "Pan Right",
+    "Roll CW"
+  ],
+  "70->72": [
+    "Dolly In",
+    "Pedestal Up",
+    "Roll CW"
+  ],
+  "72->73": [
+    "Dolly In",
+    "Pedestal Up",
+    "Tilt Down",
+    "Roll CW"
+  ],
+  "73->76": [
+    "Dolly In",
+    "Pedestal Up",
+    "Tilt Down"
+  ],
+  "76->89": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Up",
+    "Tilt Down"
+  ]
+}

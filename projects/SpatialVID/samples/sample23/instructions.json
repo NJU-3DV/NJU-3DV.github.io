@@ -1,0 +1,91 @@
+{
+  "0->3": [
+    "Stay"
+  ],
+  "3->13": [
+    "Dolly In",
+    "Pan Right"
+  ],
+  "13->18": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right"
+  ],
+  "18->19": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Pan Right"
+  ],
+  "19->21": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right"
+  ],
+  "21->24": [
+    "Dolly In",
+    "Truck Left",
+    "Pedestal Down",
+    "Pan Right"
+  ],
+  "24->25": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right"
+  ],
+  "25->26": [
+    "Dolly In",
+    "Pedestal Down",
+    "Pan Right"
+  ],
+  "26->27": [
+    "Dolly In",
+    "Pedestal Down"
+  ],
+  "27->29": [
+    "Dolly In"
+  ],
+  "29->31": [
+    "Dolly In",
+    "Pedestal Down"
+  ],
+  "31->32": [
+    "Dolly In",
+    "Pedestal Down",
+    "Pan Left"
+  ],
+  "32->56": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Down",
+    "Pan Left"
+  ],
+  "56->57": [
+    "Dolly In",
+    "Truck Right",
+    "Pan Left"
+  ],
+  "57->59": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Down",
+    "Pan Left"
+  ],
+  "59->62": [
+    "Dolly In",
+    "Truck Right",
+    "Pan Left"
+  ],
+  "62->72": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Down",
+    "Pan Left"
+  ],
+  "72->81": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Down",
+    "Tilt Up"
+  ]
+}

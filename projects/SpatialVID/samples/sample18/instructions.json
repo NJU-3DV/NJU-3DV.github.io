@@ -1,0 +1,28 @@
+{
+  "0->1": [
+    "Stay"
+  ],
+  "1->46": [
+    "Dolly In"
+  ],
+  "46->50": [
+    "Dolly In",
+    "Pedestal Up"
+  ],
+  "50->56": [
+    "Dolly In",
+    "Pedestal Up",
+    "Tilt Down"
+  ],
+  "56->64": [
+    "Dolly In",
+    "Pedestal Up"
+  ],
+  "64->69": [
+    "Dolly In"
+  ],
+  "69->73": [
+    "Dolly In",
+    "Truck Right"
+  ]
+}

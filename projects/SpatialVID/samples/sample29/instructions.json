@@ -1,0 +1,81 @@
+{
+  "0->1": [
+    "Stay"
+  ],
+  "1->3": [
+    "Pan Right"
+  ],
+  "3->7": [
+    "Truck Left",
+    "Pan Right"
+  ],
+  "7->26": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right",
+    "Roll CW"
+  ],
+  "26->32": [
+    "Dolly In",
+    "Truck Left",
+    "Pan Right",
+    "Tilt Up",
+    "Roll CW"
+  ],
+  "32->39": [
+    "Dolly In",
+    "Pan Right",
+    "Tilt Up",
+    "Roll CW"
+  ],
+  "39->42": [
+    "Dolly In",
+    "Truck Right",
+    "Pan Right"
+  ],
+  "42->49": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Up"
+  ],
+  "49->51": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Up",
+    "Pan Right"
+  ],
+  "51->56": [
+    "Dolly In",
+    "Truck Right",
+    "Pan Right"
+  ],
+  "56->57": [
+    "Dolly In",
+    "Truck Right"
+  ],
+  "57->59": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Up"
+  ],
+  "59->61": [
+    "Dolly In",
+    "Truck Right"
+  ],
+  "61->68": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Up"
+  ],
+  "68->69": [
+    "Dolly In",
+    "Truck Right",
+    "Pedestal Up",
+    "Roll CCW"
+  ],
+  "69->79": [
+    "Truck Right",
+    "Pedestal Up",
+    "Roll CCW"
+  ]
+}

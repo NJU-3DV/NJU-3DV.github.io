@@ -5,11 +5,7 @@
   "2->45": [
     "Dolly In"
   ],
-  "45->47": [
-    "Dolly In",
-    "Truck Left"
-  ],
-  "47->56": [
+  "45->56": [
     "Dolly In",
     "Truck Left",
     "Pan Right"

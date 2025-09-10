@@ -11,12 +11,10 @@
   ],
   "13->31": [
     "Dolly In",
-    "Truck Right",
-    "Pan Left"
+    "Truck Right"
   ],
   "31->32": [
-    "Dolly In",
-    "Pan Left"
+    "Dolly In"
   ],
   "32->36": [
     "Dolly In"

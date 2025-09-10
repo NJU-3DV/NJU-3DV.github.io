@@ -8,25 +8,16 @@
   ],
   "7->10": [
     "Dolly Out",
-    "Pedestal Down",
     "Pan Left"
   ],
   "10->29": [
-    "Dolly Out",
-    "Pedestal Down"
-  ],
-  "29->49": [
-    "Dolly Out",
-    "Truck Right",
-    "Pedestal Down"
-  ],
-  "49->54": [
     "Dolly Out"
   ],
-  "54->56": [
-    "Stay"
+  "29->42": [
+    "Dolly Out",
+    "Truck Right"
   ],
-  "56->67": [
+  "42->67": [
     "Dolly In"
   ]
 }

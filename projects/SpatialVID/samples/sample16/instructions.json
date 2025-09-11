@@ -1,8 +1,5 @@
 {
-  "0->1": [
-    "Stay"
-  ],
-  "1->10": [
+  "0->10": [
     "Dolly In",
     "Truck Right",
     "Pan Right"

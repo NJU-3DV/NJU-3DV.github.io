@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ComGS: Efficient 3D Object-Scene Composition via Surface Octahedral Probes">
+    <meta name="keywords" content="Object-Scene Composition, Gaussian Splatting, 3D Reconstruction, Relighting, ">
+    <!-- Open Graph tags for social media -->
+    <meta property="og:title" content="ComGS">
+    <meta property="og:description" content="Realistic 3D object–scene composition">
+    <meta property="og:image" content="img/pipeline.svg">
+    
+    <title>ComGS</title>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/dics.min.css">
+    <link rel="stylesheet" href="css/teaser-examples.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="scripts/dics.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', domReady);
+        function domReady() {
+            for (const e of document.querySelectorAll(".b-dics")) {
+                new Dics({
+                    container: e,
+                    textPosition: "top"
+                });
+            }
+        }
+    </script>
+    <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
+    
+    <style>
+        :root {
+            --primary-color: #3273dc;
+            --primary-color-rgb: 50, 115, 220;
+            --secondary-color: #363636;
+            --accent-color: #0a5eb2;
+            --light-bg: #f5f5f5;
+            --section-padding: 3rem 0;
+            --border-radius: 5px;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 56px; /* Space for fixed navbar */
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+        }
+        
+        .navbar-light .navbar-nav .nav-link {
+            color: var(--secondary-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
+        }
+        
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 4rem 0;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+        
+        section {
+            padding: var(--section-padding);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .text-justify {
+            text-align: justify;
+        }
+        
+        .author-links a {
+            color: var(--secondary-color);
+            transition: color 0.3s;
+        }
+        
+        .author-links a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        /* Custom video player styles */
+        .video-container {
+            margin-bottom: 2rem;
+        }
+        
+        .video-controls {
+            background-color: rgba(255,255,255,0.9);
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Loading indicator for videos */
+        .video-wrapper {
+            position: relative;
+        }
+        
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        /* Section dividers */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            margin: 2rem 0;
+        }
+        
+        /* Footer buttons styling */
+        .footer-btn {
+            display: inline-flex;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .footer-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .footer-btn .icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .footer-btn:hover .icon-container {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Custom range input styling */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 5px;
+            background: #ddd;
+            outline: none;
+            border-radius: 5px;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+        }
+        
+        /* Video loading improvements */
+        .video-wrapper {
+            position: relative;
+        }
+        
+        .video-wrapper video {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .video-wrapper video.loaded {
+            opacity: 1;
+        }
+        
+        .comparison-video {
+            transition: transform 0.3s ease;
+        }
+        
+        .comparison-video:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Material Editing Controls */
+        .material-controls .btn {
+            border-radius: 4px;
+            margin: 0 2px;
+            font-size: 0.85rem;
+            padding: 0.375rem 0.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .material-controls .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .material-controls .btn.active {
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .material-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+        }
+        
+        @media (max-width: 767.98px) {
+            .material-controls .btn {
+                padding: 0.25rem;
+                font-size: 0.75rem;
+            }
+            
+            .material-controls .material-icon {
+                margin-right: 0 !important;
+            }
+            
+            .material-controls .btn span.material-icon + span {
+                display: none; /* Hide text on mobile, show only icons */
+            }
+        }
+        
+        .composition-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .composition-video.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .composition-video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        
+        .teaser-comp-video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">ComGS</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#abstract">Abstract</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#method">Method</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comparison">Comparison</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#syncom">SynCom</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#phone-captured">Phone-Captured</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="mb-4">ComGS: Efficient 3D Object-Scene Composition</h1>
+                    <h2 class="mb-4">via Surface Octahedral Probes</h2>
+                    <div class="author-links" style="max-width: 70%; margin: 0 auto; text-align: center;">
+                        <h5 class="mb-3"> 
+                            <a href="https://ygaojiany.github.io" target="_blank">Jian Gao</a><sup>1*</sup>,
+                            <a href="https://github.com/mq-yuan" target="_blank">Mengqi Yuan</a><sup>1*</sup>,
+                            <a href="https://scholar.google.com/citations?user=qwrmvRQAAAAJ" target="_blank">Yifei Zeng</a><sup>1</sup>,
+                            <a href="https://github.com/ozchango" target="_blank">Chang Zeng</a><sup>1</sup>,
+                            <a href="https://scholar.google.com/citations?user=4cuefJ0AAAAJ" target="_blank">Zhihao Li</a><sup>2</sup>,
+                            <a href="https://scholar.google.com/citations?user=hon4EsIAAAAJ" target="_blank">Zhenyu Chen</a><sup>2</sup>,
+                            <a href="https://scholar.google.com/citations?user=9_AUwFUAAAAJ" target="_blank">Weichao Qiu</a><sup>2</sup>,
+                            <a href="https://www.xxlong.site" target="_blank">Xiao-Xiao Long</a><sup>1</sup>,
+                            <a href="http://zhuhao.cc/home" target="_blank">Hao Zhu</a><sup>1</sup>,
+                            <a href="https://cite.nju.edu.cn" target="_blank">Xun Cao</a><sup>1</sup>,
+                            <a href="https://yoyo000.github.io" target="_blank">Yao Yao</a><sup>1✉</sup>
+                        </h5>
+                        <h6 class="mb-0">
+                            <sup>1</sup>Nanjing University, <sup>2</sup>Huawei Noah's Ark Lab
+                        </h6>
+                        <p class="mb-0">
+                            <sup>*</sup>Equal contribution.
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="" class="btn btn-dark mx-2" target="_blank" style="background-color: #343a40; border-color: #343a40;">
+                    <i class="fas fa-file-pdf mr-2"></i>Paper
+                </a>
+                <a href="" class="btn btn-dark mx-2" target="_blank" style="background-color: #343a40; border-color: #343a40;">
+                    <i class="fab fa-github mr-2"></i>Code
+                </a>
+                <a href="" class="btn btn-dark mx-2" target="_blank" style="background-color: #343a40; border-color: #343a40;">
+                    <i class="fas fa-database mr-2"></i>Dataset
+                </a>
+            </div>
+        </div>
+    </section>
+
+     <!-- Combined Introduction & Videos Section -->
+     <section class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body bg-light">
+                            <div class="d-flex align-items-center">
+                                <div class="mr-3" style="min-width: 60px;">
+                                    <span style="font-weight: 600; color: var(--primary-color); font-size: 0.95rem;">TL;DR</span>
+                                </div>
+                                <p class="mb-0" style="line-height: 1.6;">
+                                    We introduce <strong>ComGS</strong>, a framework for <strong>realistic 3D object–scene composition</strong>, achieving real-time rendering with 
+                                    <strong>harmonious appearance</strong> and <strong>realistic shadows</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene and Composition Videos with Navigation -->
+            <div class="row justify-content-center mb-3 position-relative">
+                <!-- Navigation Arrows -->
+                <div class="navigation-arrows">
+                    <button class="nav-arrow prev-arrow" id="prevExample">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="nav-arrow next-arrow" id="nextExample">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Videos Container -->
+                <div class="col-12">
+                    <div class="teaser-examples">
+                        <!-- Bull Example (Default) -->
+                        <div class="teaser-example active" data-example="bull" data-has-materials="true">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card h-100 video-wrapper">
+                                        <div class="row no-gutters">
+                                            <!-- Empty Scene Video -->
+                                            <div class="col-md-6">
+                                                <div class="loading-spinner">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <video class="card-img-top empty-scene-video" width="100%" playsinline autoplay loop muted preload="auto">
+                                                    <source src="img/videos/teaser/bull/empty.mp4" type="video/mp4">
+                                                </video>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Empty Scene</h5>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Composition Video -->
+                                            <div class="col-md-6">
+                                                <div class="loading-spinner">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Video Container with all videos stacked -->
+                                                <div class="composition-video-container">
+                                                    <!-- Main Composition Video (default) -->
+                                                    <video class="composition-video active" id="bull-comp-video" playsinline autoplay loop muted preload="auto">
+                                                        <source src="img/videos/teaser/bull/comp.mp4" type="video/mp4">
+                                                    </video>
+                                                    
+                                                    <!-- Material Editing Videos (initially hidden) -->
+                                                    <video class="composition-video" id="bull-silver-video" playsinline loop muted preload="auto">
+                                                        <source src="img/videos/teaser/bull/silver.mp4" type="video/mp4">
+                                                    </video>
+                                                    
+                                                    <video class="composition-video" id="bull-stone-video" playsinline loop muted preload="auto">
+                                                        <source src="img/videos/teaser/bull/stone.mp4" type="video/mp4">
+                                                    </video>
+                                                    
+                                                    <video class="composition-video" id="bull-red-matte-video" playsinline loop muted preload="auto">
+                                                        <source src="img/videos/teaser/bull/red_matte.mp4" type="video/mp4">
+                                                    </video>
+                                                    
+                                                    <video class="composition-video" id="bull-red-glossy-video" playsinline loop muted preload="auto">
+                                                        <source src="img/videos/teaser/bull/red_glossy.mp4" type="video/mp4">
+                                                    </video>
+                                                </div>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Object-Scene Composition</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Material Controls moved inside the card -->
+                                        <div class="card-footer material-controls-container p-2">
+                                            <div class="d-flex justify-content-center material-controls">
+                                                <div class="btn-group" role="group" aria-label="Material controls">
+                                                    <button type="button" class="btn btn-outline-secondary" data-material="default" data-video-id="bull-comp-video">
+                                                        <i class="fas fa-sync-alt mr-1"></i> Default
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-material="silver" data-video-id="bull-silver-video">
+                                                        <span class="material-icon">
+                                                            <i class="fas fa-circle mr-1" style="color: #C0C0C0;"></i>
+                                                        </span>
+                                                        Silver
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-material="stone" data-video-id="bull-stone-video">
+                                                        <span class="material-icon">
+                                                            <i class="fas fa-circle mr-1" style="color: #A9A9A9;"></i>
+                                                        </span>
+                                                        Stone
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-material="red-matte" data-video-id="bull-red-matte-video">
+                                                        <span class="material-icon">
+                                                            <i class="fas fa-circle mr-1" style="color: #CD5C5C;"></i>
+                                                        </span>
+                                                        Red Matte
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-material="red-glossy" data-video-id="bull-red-glossy-video">
+                                                        <span class="material-icon">
+                                                            <i class="fas fa-circle mr-1" style="color: #FF0000;"></i>
+                                                        </span>
+                                                        Red Glossy
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bell Example -->
+                        <div class="teaser-example" data-example="bell" data-has-materials="false">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card h-100 video-wrapper">
+                                        <div class="row no-gutters">
+                                            <!-- Empty Scene Video -->
+                                            <div class="col-md-6">
+                                                <div class="loading-spinner">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <video class="card-img-top empty-scene-video" width="100%" playsinline loop muted preload="auto">
+                                                    <source src="img/videos/teaser/bell/empty.mp4" type="video/mp4">
+                                                </video>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Empty Scene</h5>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Composition Video -->
+                                            <div class="col-md-6">
+                                                <div class="loading-spinner">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <video class="card-img-top teaser-comp-video" width="100%" playsinline loop muted preload="auto">
+                                                    <source src="img/videos/teaser/bell/comp.mp4" type="video/mp4">
+                                                </video>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Object-Scene Composition</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Egg Example -->
+                        <div class="teaser-example" data-example="egg" data-has-materials="false">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card h-100 video-wrapper">
+                                        <div class="row no-gutters">
+                                            <!-- Empty Scene Video -->
+                                            <div class="col-md-6">
+                                                <div class="loading-spinner">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <video class="card-img-top empty-scene-video" width="100%" playsinline loop muted preload="auto">
+                                                    <source src="img/videos/teaser/egg/empty.mp4" type="video/mp4">
+                                                </video>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Empty Scene</h5>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Composition Video -->
+                                            <div class="col-md-6">
+                                                <div class="loading-spinner">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <video class="card-img-top teaser-comp-video" width="100%" playsinline loop muted preload="auto">
+                                                    <source src="img/videos/teaser/egg/comp.mp4" type="video/mp4">
+                                                </video>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Object-Scene Composition</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stone Example -->
+                        <div class="teaser-example" data-example="stone" data-has-materials="false">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card h-100 video-wrapper">
+                                        <div class="row no-gutters">
+                                            <!-- Empty Scene Video -->
+                                            <div class="col-md-6">
+                                                <div class="loading-spinner">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <video class="card-img-top empty-scene-video" width="100%" playsinline loop muted preload="auto">
+                                                    <source src="img/videos/teaser/stone/empty.mp4" type="video/mp4">
+                                                </video>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Empty Scene</h5>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Composition Video -->
+                                            <div class="col-md-6">
+                                                <div class="loading-spinner">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                </div>
+                                                <video class="card-img-top teaser-comp-video" width="100%" playsinline loop muted preload="auto">
+                                                    <source src="img/videos/teaser/stone/comp.mp4" type="video/mp4">
+                                                </video>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Object-Scene Composition</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Data source note -->
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center text-muted small mt-0">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Scene images are from <i>Tanks and Temples</i>, and object images are from <i>BlendedMVS</i>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abstract Section -->
+    <section id="abstract" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h2>Abstract</h2>
+                        <div class="section-divider my-3"></div>
+                    </div>
+                    
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <!-- Introduction -->
+                            <div class="abstract-section mb-4">
+                                <div class="content-box">
+                                    <p class="text-justify">Gaussian Splatting (GS) enables immersive rendering, but realistic 3D object–scene composition remains challenging. Baked appearance and shadow information in GS radiance fields cause inconsistencies when combining objects and scenes. Addressing this requires relightable object reconstruction and scene lighting estimation. For relightable object reconstruction, existing Gaussian-based inverse rendering methods often rely on ray tracing, leading to low efficiency. We introduce Surface Octahedral Probes (SOPs), which store lighting and occlusion information and allow efficient 3D querying via interpolation, avoiding expensive ray tracing. SOPs provide at least a 2x speedup in reconstruction and enable real-time shadow computation in Gaussian scenes. For lighting estimation, existing Gaussian-based inverse rendering methods struggle to model intricate light transport and often fail in complex scenes, while learning-based methods predict lighting from a single image and are viewpoint-sensitive. We observe that 3D object–scene composition primarily concerns the object’s appearance and nearby shadows. Thus, we simplify the challenging task of full scene lighting estimation by focusing on the environment lighting at the object’s placement. Specifically, we capture a 360° reconstructed radiance field of the scene at the location and fine-tune a diffusion model to complete the lighting. Building on these advances, we propose ComGS, a novel 3D object–scene composition framework. Our method achieves high-quality, real-time rendering at around <b>28 FPS</b>, produces <b>visually harmonious</b> results with <b>vivid shadows</b>, and requires only 36 seconds for editing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Overview Section -->
+    <section id="method" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center mb-4">
+                        <h2>Method Overview</h2>
+                        <div class="section-divider my-3"></div>
+                    </div>
+                    
+                    <div class="pipeline-container">
+                        <div class="card shadow-sm mb-0 border-0">
+                            <div class="card-body p-0">
+                                <img src="img/pipeline.svg" alt="Pipeline Diagram" class="img-fluid w-100">
+                            </div>
+                        </div>
+                        
+                        <div class="method-overview-content bg-white shadow-sm rounded-bottom pt-4 px-4">
+                            <h4 class="mb-3"><span class="text-primary">Realistic 3D Object-Scene Composition Pipeline</span></h4>
+                            <p class="method-text">
+                                Our approach comprises three main stages, creating a seamless workflow for realistic object-scene composition:
+                            </p>
+                                
+                                <div class="row method-steps mt-4">
+                                    <div class="col-md-4">
+                                        <div class="step-card">
+                                            <div class="step-number">1</div>
+                                            <h5>Reconstruction</h5>
+                                            <p class="text-justify">From multi-view image collections, we reconstruct both the Gaussian scene and relightable Gaussian object. We achieve at least <i>2x faster object reconstruction</i> with SOPs.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="step-card">
+                                            <div class="step-number">2</div>
+                                            <h5>Editing</h5>
+                                            <p class="text-justify">We perform <i>lighting estimation</i> from the reconstructed scene radiance field, and use Surface Octahedral Probes (SOPs) to perform <i>occlusion caching</i> for fast shadow calculation.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="step-card">
+                                            <div class="step-number">3</div>
+                                            <h5>Rendering</h5>
+                                            <p class="text-justify">We perform Gaussian splatting, object relighting, shadow casting, and depth compositing, resulting in <i>visually harmonious</i> composition with <i>realistic shadowing</i> effects.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="method-drawer-toggle" class="text-center mt-4">
+                                    <button class="btn btn-outline-primary">
+                                        <i class="fas fa-caret-down mr-1"></i> See Reconstruction Process Details
+                                    </button>
+                                </div>
+                                
+                                <div id="method-drawer" class="method-drawer">
+                                    <div class="card shadow-sm mt-3">
+                                        <div class="card-body">
+                                            <h4 class="text-primary mb-3">Inverse Rendering with Surface Octahedral Probes (SOPs).</h4>
+                                            <img src="img/invpbr.svg" alt="Reconstruction Process" class="img-fluid">
+
+                                            <p class="text-justify">
+                                                We utilize trained relightable 2D Gaussians to generate GBuffers via splatting, followed 
+                                                by deferred physically based rendering for a render image. Illumination is split into direct 
+                                                lighting from environment map, indirect lighting and occlusion captured by textures in SOPs. 
+                                                Both the environment map and textures are stored as octahedral maps. Low-discrepancy ray sampling 
+                                                is used to compute illumination at shading point, with indirect light and occlusion derived via kNN 
+                                                interpolation from nearby probes. SOPs are initialized with ray tracing and optimized under its guidance, 
+                                                avoiding intensive ray tracing per optimization iteration and boosting inverse rendering efficiency.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <style>
+                        .pipeline-container {
+                            max-width: 100%;
+                            margin-bottom: 3rem;
+                        }
+                        .method-overview-content {
+                            margin-top: -1px;
+                        }
+                        .method-text {
+                            font-size: 1.1rem;
+                            line-height: 1.7;
+                        }
+                        .method-drawer {
+                            max-height: 0;
+                            overflow: hidden;
+                            transition: all 0.5s ease-out;
+                            opacity: 0;
+                        }
+                        .method-drawer.open {
+                            max-height: 800px; /* Adjust based on your image size */
+                            opacity: 1;
+                            transition: all 0.5s ease-in;
+                        }
+                        .method-steps .step-card {
+                            background-color: white;
+                            border-radius: 8px;
+                            padding: 1.5rem;
+                            height: 100%;
+                            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+                            transition: all 0.3s ease;
+                            position: relative;
+                            border-top: 3px solid var(--primary-color);
+                        }
+                        .method-steps .step-card:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.15);
+                        }
+                        #method-drawer-toggle {
+                            margin-bottom: 15px;
+                        }
+                        #method-drawer-toggle button {
+                            transition: all 0.3s ease;
+                        }
+                        #method-drawer-toggle button.active {
+                            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+                        }
+                        .step-number {
+                            position: absolute;
+                            top: -15px;
+                            left: 20px;
+                            width: 30px;
+                            height: 30px;
+                            background-color: var(--primary-color);
+                            color: white;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-weight: bold;
+                        }
+                    </style>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center mb-4">
+                        <h2>Method Comparison on SynCom Dataset</h2>
+                        <div class="section-divider my-3"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scene Selection Buttons -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="text-center">
+                        <div class="btn-group btn-group-lg" role="group" aria-label="Scene Selection">
+                            <button type="button" class="btn btn-primary active" id="scene-bottle">
+                                <i class="fas fa-flask mr-2"></i>Bottle in Room
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="scene-kettle">
+                                <i class="fas fa-coffee mr-2"></i>Kettle in Forest
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="video-container" class="mt-4">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card h-100 video-wrapper">
+                            <div class="loading-spinner">
+                                <div class="spinner-border text-primary" role="status">
+                                </div>
+                            </div>
+                            <video width="100%" playsinline muted preload class="comparison-video" id="final-comparison-video">
+                                <source src="img/videos/comparison/bottle_in_room/output.mp4" type="video/mp4" 
+                                    data-bottle="img/videos/comparison/bottle_in_room/output.mp4"
+                                    data-kettle="img/videos/comparison/kettle_in_forest/output.mp4">
+                            </video>
+                            <div class="card-body text-center">
+                                <div class="row" style="margin-top: 10px; display: flex; justify-content: center; text-align: center;">
+                                    <div class="col-12">
+                                        <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 30px;">
+                                            <div style="display: flex; align-items: center; margin-right: 40px;">
+                                                <span style="display: inline-block; width: 20px; height: 20px; background-color: #eeeeee; border: 1px solid #bdbdbd; margin-right: 15px;"></span>
+                                                References
+                                            </div>
+                                            <div style="display: flex; align-items: center; margin-right: 40px;">
+                                                <span style="display: inline-block; width: 20px; height: 20px; background-color: #cfe8fc; border: 1px solid #64b5f6; margin-right: 15px;"></span>
+                                                2D Image Composition
+                                            </div>
+                                            <div style="display: flex; align-items: center; margin-right: 40px;">
+                                                <span style="display: inline-block; width: 20px; height: 20px; background-color: #ffecb3; border: 1px solid #ffd54f; margin-right: 15px;"></span>
+                                                Gaussian-based Inverse Rendering
+                                            </div>
+                                            <div style="display: flex; align-items: center;">
+                                                <span style="display: inline-block; width: 20px; height: 20px; background-color: #c8e6c9; border: 1px solid #81c784; margin-right: 15px;"></span>
+                                                Our Variants
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-muted small">Comprehensive comparison of all methods including DiffHarmony, ZeroComp, GS-IR, IRGS, DiffusionLight, and our variants</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="video-controls text-center">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <button id="play-pause-btn" class="btn btn-primary">
+                                <i class="fas fa-play mr-1"></i> Play
+                            </button>
+                            <div class="mx-3 flex-grow-1" style="max-width: 70%;">
+                                <input type="range" id="video-progress" class="form-control-range" min="0" max="100" value="0" step="0.1">
+                            </div>
+                            <span id="time-display" class="text-monospace">0:00 / 0:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title text-center mb-3">Composition Performance on SynCom Dataset</h4>
+                            <div class="text-center text-muted small mb-4">
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item mx-md-3 my-1"><i class="fas fa-bullseye mr-1"></i> <strong>PSNR/SSIM</strong>: Against ground truth</li>
+                                    <li class="list-inline-item mx-md-3 my-1"><i class="fas fa-users mr-1"></i> <strong>3D Consistency (Con.) & Harmony (Harm.)</strong>: From user study
+                                    <li class="list-inline-item mx-md-3 my-1"><i class="fas fa-tachometer-alt mr-1"></i> <strong>FPS</strong>: Rendering Speed</li>
+                                    <li class="list-inline-item mx-md-3 my-1"><i class="fas fa-clock mr-1"></i> <strong>T(Edit)</strong>: Editing Time (s)</li>
+                                </ul>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped text-center" style="vertical-align: middle;">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Method</th>
+                                            <th scope="col">PSNR ↑</th>
+                                            <th scope="col">SSIM ↑</th>
+                                            <th scope="col">Con. ↑</th>
+                                            <th scope="col">Harm. ↑</th>
+                                            <th scope="col">FPS ↑</th>
+                                            <th scope="col">T(Edit) ↓</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>DiffHarmony</td>
+                                            <td>22.436</td>
+                                            <td>0.825</td>
+                                            <td>2.106</td>
+                                            <td>1.641</td>
+                                            <td>0.01</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ZeroComp</td>
+                                            <td>20.344</td>
+                                            <td>0.780</td>
+                                            <td>1.932</td>
+                                            <td>1.603</td>
+                                            <td>0.40</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>GS-IR</td>
+                                            <td>22.418</td>
+                                            <td>0.824</td>
+                                            <td>2.339</td>
+                                            <td>1.608</td>
+                                            <td>2.11</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>IRGS</td>
+                                            <td>22.417</td>
+                                            <td>0.799</td>
+                                            <td>2.967</td>
+                                            <td>2.419</td>
+                                            <td>0.03</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>DiffusionLight</td>
+                                            <td>21.842</td>
+                                            <td>0.841</td>
+                                            <td>1.464</td>
+                                            <td>1.817</td>
+                                            <td>0.02</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ours (Trace)</td>
+                                            <td><strong>24.597</strong></td>
+                                            <td><strong>0.848</strong></td>
+                                            <td><strong>4.197</strong></td>
+                                            <td><strong>4.111</strong></td>
+                                            <td><u>3.48</u></td>
+                                            <td>14.59</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ours (SOPs)</td>
+                                            <td><u>24.456</u></td>
+                                            <td><u>0.847</u></td>
+                                            <td><u>4.151</u></td>
+                                            <td><u>4.052</u></td>
+                                            <td><strong>28.45</strong></td>
+                                            <td>36.12</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="syncom" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center mb-4">
+                        <h2>More Results on SynCom Dataset</h2>
+                        <div class="section-divider my-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Horse in Art Wall - Empty -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 video-wrapper">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                        </div>
+                        <video class="card-img-top" width="100%" playsinline autoplay loop muted preload="auto">
+                            <source src="img/videos/high/horse_in_artwall/empty.mp4" type="video/mp4">
+                        </video>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Horse in Art Wall - Empty Scene</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Horse in Art Wall - Composition -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 video-wrapper">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                        </div>
+                        <video class="card-img-top" width="100%" playsinline autoplay loop muted preload="auto">
+                            <source src="img/videos/high/horse_in_artwall/composition.mp4" type="video/mp4">
+                        </video>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Horse in Art Wall - Composition</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Toy in Attic - Empty -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 video-wrapper">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                        </div>
+                        <video class="card-img-top" width="100%" playsinline autoplay loop muted preload="auto">
+                            <source src="img/videos/high/toy_in_attic/empty.mp4" type="video/mp4">
+                        </video>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Toy in Attic - Empty Scene</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toy in Attic - Composition -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 video-wrapper">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                        </div>
+                        <video class="card-img-top" width="100%" playsinline autoplay loop muted preload="auto">
+                            <source src="img/videos/high/toy_in_attic/composition.mp4" type="video/mp4">
+                        </video>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Toy in Attic - Composition</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="phone-captured" class="py-5">
+        <!-- Phone captured results -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center mb-4">
+                        <h2>Real-World Phone Captured Results</h2>
+                        <div class="section-divider my-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Box in hall - Empty -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 video-wrapper">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                        </div>
+                        <video class="card-img-top" width="100%" playsinline autoplay loop muted preload="auto">
+                            <source src="img/videos/real/box_in_hall/empty.mp4" type="video/mp4">
+                        </video>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Box in Hall - Empty Scene</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box in hall - Composition -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 video-wrapper">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                        </div>
+                        <video class="card-img-top" width="100%" playsinline autoplay loop muted preload="auto">
+                            <source src="img/videos/real/box_in_hall/composition.mp4" type="video/mp4">
+                        </video>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Box in Hall - Composition</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Figurine in Courtyard - Empty -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 video-wrapper">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                        </div>
+                        <video class="card-img-top" width="100%" playsinline autoplay loop muted preload="auto">
+                            <source src="img/videos/real/figurine_in_courtyard/empty.mp4" type="video/mp4">
+                        </video>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Figurine in Courtyard - Empty Scene</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Figurine in Courtyard - Composition -->
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 video-wrapper">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                        </div>
+                        <video class="card-img-top" width="100%" playsinline autoplay loop muted preload="auto">
+                            <source src="img/videos/real/figurine_in_courtyard/composition.mp4" type="video/mp4">
+                        </video>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Figurine in Courtyard - Composition</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Custom Video Control Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            'use strict';
+            
+            // Method Section Drawer Animation
+            const drawerToggle = document.getElementById('method-drawer-toggle');
+            const methodDrawer = document.getElementById('method-drawer');
+            
+            if (drawerToggle && methodDrawer) {
+                const toggleButton = drawerToggle.querySelector('button');
+                
+                // Preload the image
+                let preloadImage = new Image();
+                preloadImage.src = "img/invpbr.svg";
+                
+                // Toggle drawer on button click
+                toggleButton.addEventListener('click', function(e) {
+                    if (methodDrawer.classList.contains('open')) {
+                        methodDrawer.classList.remove('open');
+                        toggleButton.classList.remove('active');
+                        toggleButton.innerHTML = '<i class="fas fa-caret-down mr-1"></i> See Reconstruction Process Details';
+                    } else {
+                        methodDrawer.classList.add('open');
+                        toggleButton.classList.add('active');
+                        toggleButton.innerHTML = '<i class="fas fa-caret-up mr-1"></i> Hide Reconstruction Details';
+                    }
+                });
+            }
+            
+            // DOM Elements
+            const video = document.querySelector('.comparison-video');
+            const teaserVideos = document.querySelectorAll('.card-img-top');
+            const progressBar = document.getElementById('video-progress');
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const timeDisplay = document.getElementById('time-display');
+            const bottleBtn = document.getElementById('scene-bottle');
+            const kettleBtn = document.getElementById('scene-kettle');
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            // State variables
+            let isPlaying = false;
+            let currentScene = 'bottle'; // Default scene
+            let isVideoReady = false;
+            
+            // Utility functions
+            const formatTime = (timeInSeconds) => {
+                const minutes = Math.floor(timeInSeconds / 60);
+                const seconds = Math.floor(timeInSeconds % 60).toString().padStart(2, '0');
+                return `${minutes}:${seconds}`;
+            };
+            
+            // Loading management
+            const handleVideoLoading = (videoElement) => {
+                const wrapper = videoElement.closest('.video-wrapper');
+                if (!wrapper) return;
+                
+                const spinner = wrapper.querySelector('.loading-spinner');
+                if (!spinner) return;
+
+                const hideSpinner = () => {
+                    spinner.style.display = 'none';
+                    videoElement.classList.add('loaded');
+                    isVideoReady = true;
+                    initializeControls();
+                };
+
+                // Hide spinner immediately if video is already loaded
+                if (videoElement.readyState >= 4) { // HAVE_ENOUGH_DATA
+                    hideSpinner();
+                } else {
+                    // Add event listeners for loading states
+                    ['loadeddata', 'canplaythrough', 'playing'].forEach(event => {
+                        videoElement.addEventListener(event, hideSpinner, { once: true });
+                    });
+                    
+                    // Fallback timeout
+                    setTimeout(hideSpinner, 2000);
+                }
+            };
+
+            // Initialize loading handling for all videos
+            document.querySelectorAll('video').forEach(handleVideoLoading);
+            
+            // Initialize video loading listeners
+            if (video) {
+                // Check if video is already loaded
+                if (video.readyState >= 2) { // HAVE_CURRENT_DATA or better
+                    isVideoReady = true;
+                    initializeControls();
+                }
+                
+                // Listen for video load events
+                video.addEventListener('loadeddata', function() {
+                    isVideoReady = true;
+                    initializeControls();
+                });
+                
+                // Prevent autoplay
+                video.pause();
+            }
+            
+            // Scene switching
+            const updateSceneButtons = (scene) => {
+                if (scene === 'bottle') {
+                    bottleBtn.classList.add('active', 'btn-primary');
+                    bottleBtn.classList.remove('btn-secondary');
+                    
+                    kettleBtn.classList.remove('active', 'btn-primary');
+                    kettleBtn.classList.add('btn-secondary');
+                } else {
+                    kettleBtn.classList.add('active', 'btn-primary');
+                    kettleBtn.classList.remove('btn-secondary');
+                    
+                    bottleBtn.classList.remove('active', 'btn-primary');
+                    bottleBtn.classList.add('btn-secondary');
+                }
+            };
+            
+            const changeScene = (scene) => {
+                currentScene = scene;
+                
+                // Stop video if playing
+                if (isPlaying && video) {
+                    video.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play mr-1"></i> Play';
+                    isPlaying = false;
+                }
+                
+                // Reset progress
+                progressBar.value = 0;
+                
+                // Update video source and reload
+                if (video) {
+                    const source = video.querySelector('source');
+                    const newSrc = source.getAttribute(`data-${scene}`);
+                    source.setAttribute('src', newSrc);
+                    video.load();
+                    
+                    // Wait for video to load
+                    video.addEventListener('loadeddata', function() {
+                        initializeControls();
+                    }, { once: true });
+                }
+            };
+            
+            // Scene button event listeners
+            bottleBtn.addEventListener('click', () => {
+                if (currentScene !== 'bottle') {
+                    changeScene('bottle');
+                    updateSceneButtons('bottle');
+                }
+            });
+            
+            kettleBtn.addEventListener('click', () => {
+                if (currentScene !== 'kettle') {
+                    changeScene('kettle');
+                    updateSceneButtons('kettle');
+                }
+            });
+            
+            // Video play/pause handler
+            const handlePlayPause = (event) => {
+                // If clicked on video while playing, just pause
+                if (event && event.target && event.target.tagName === 'VIDEO' && isPlaying) {
+                    video.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play mr-1"></i> Play';
+                    isPlaying = false;
+                    return;
+                }
+                
+                if (isPlaying) {
+                    // Pause video
+                    video.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play mr-1"></i> Play';
+                } else {
+                    // Play video if ready
+                    if (video && video.readyState >= 2) {
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise.then(() => {
+                                playPauseBtn.innerHTML = '<i class="fas fa-pause mr-1"></i> Pause';
+                            }).catch(error => {
+                                console.log('Autoplay prevented:', error);
+                                playPauseBtn.innerHTML = '<i class="fas fa-play mr-1"></i> Play';
+                                isPlaying = false;
+                                return;
+                            });
+                        } else {
+                            playPauseBtn.innerHTML = '<i class="fas fa-pause mr-1"></i> Pause';
+                        }
+                    }
+                }
+                
+                isPlaying = !isPlaying;
+            };
+            
+            // Initialize video controls
+            function initializeControls() {
+                if (!video) return;
+                
+                // Use video's duration as reference
+                const duration = video.duration || 0;
+                
+                // Update time display
+                timeDisplay.textContent = `0:00 / ${formatTime(duration)}`;
+                
+                // Set up play/pause button
+                playPauseBtn.removeEventListener('click', handlePlayPause);
+                playPauseBtn.addEventListener('click', handlePlayPause);
+                
+                // Progress bar controls
+                progressBar.addEventListener('input', function() {
+                    // Pause if playing
+                    if (isPlaying) {
+                        video.pause();
+                        playPauseBtn.innerHTML = '<i class="fas fa-play mr-1"></i> Play';
+                        isPlaying = false;
+                    }
+                    
+                    // Set video time
+                    const newTime = (progressBar.value / 100) * duration;
+                    video.currentTime = newTime;
+                    
+                    // Update time display
+                    timeDisplay.textContent = `${formatTime(newTime)} / ${formatTime(duration)}`;
+                });
+                
+                // Update progress bar as video plays
+                video.addEventListener('timeupdate', function() {
+                    if (video.duration) {
+                        const progress = (video.currentTime / video.duration) * 100;
+                        progressBar.value = progress;
+                        timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+                    }
+                });
+                
+                // Handle video ended
+                video.addEventListener('ended', function() {
+                    playPauseBtn.innerHTML = '<i class="fas fa-play mr-1"></i> Play';
+                    isPlaying = false;
+                    progressBar.value = 0;
+                    timeDisplay.textContent = `0:00 / ${formatTime(duration)}`;
+                });
+                
+                // Add click handler to video
+                video.removeEventListener('click', handlePlayPause);
+                video.addEventListener('click', handlePlayPause);
+            };
+            
+            // Back to top button functionality
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Enable smooth scrolling for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+            
+            // Initialize lazy loading for videos
+            if ('IntersectionObserver' in window) {
+                const videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const video = entry.target;
+                            const source = video.querySelector('source');
+                            if (source.dataset.src) {
+                                source.src = source.dataset.src;
+                                video.load();
+                                videoObserver.unobserve(video);
+                            }
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                document.querySelectorAll('video[data-lazy="true"]').forEach(video => {
+                    videoObserver.observe(video);
+                });
+            };
+
+        });
+    </script>
+    <script src="js/teaser-examples.js"></script>
+</body>
+</html>

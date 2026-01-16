@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="High-Fidelity Free-view synthesis of emotional 3D talking head.">
+  <meta name="keywords" content="3DGS, Talking Head, Multi-View Synthesis (MVS)">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FaceScape: a Large-scale High Quality 3D Face Dataset and Detailed Riggable 3D Face Prediction</title>
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="http://zhuhao.cc/">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More our research
+          </a>
+          <!-- 请把剩下几个工作都链接都放这里头 -->
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://zjwfufu.github.io/FATE-page/">
+              FATE (CVPR2025)
+            </a>
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/EmoTalk3D/">
+              EmoTalk3D (ECCV2024)
+            </a>
+            <a class="navbar-item" href="https://nju-3dv.github.io/projects/Head360/">
+              Head360 (ECCV2024)
+            </a>
+            <a class="navbar-item" href="https://mhwu2017.github.io/">
+              Describe3D (CVPR2023) 
+            </a>            <a class="navbar-item" href="https://longwg.github.io/projects/RAFaRe/">
+              RAFaRe (AAAI 2023) 
+            </a>            <a class="navbar-item" href="https://yiyuzhuang.github.io/mofanerf/">
+              MoFaNeRF (ECCV2022) 
+            </a>            <a class="navbar-item" href="https://humanaigc.github.io/vivid-talk/">
+              VividTalk (3DV2025) 
+            </a>            <a class="navbar-item" href="https://jixinya.github.io/projects/EAMM/">
+              EAMM (SIGGRAPH Conf. 2022) 
+            </a>            <a class="navbar-item" href="https://yuanxunlu.github.io/projects/LiveSpeechPortraits/">
+              LSP (SIGGRAPH Asia 2021) 
+            </a>            <a class="navbar-item" href="https://jixinya.github.io/projects/evp/">
+              EVP (CVPR 2021) 
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- 这里整个section都要改 -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title"><span class="emotalk">FaceScape</span>: a Large-scale High Quality 
+              3D Face Dataset and Detailed Riggable 3D Face Prediction</h1>
+
+            <!-- <div class="is-size-6 publication-authors">
+              <span class="author-block">
+                <a href="http://zhuhao.cc/home/">Hao Zhu</a><sup>*1,2,5</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=LH71RGkAAAAJ&hl=en">Haotian Yang</a><sup>*1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=FHhIbwQAAAAJ&hl=en">Longwei Guo</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Yidi Zhang</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="">Yanru Wang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Mingkai Huang</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=B1RZfgYAAAAJ&hl=en">Menghua Wu</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://shenqiu.njucite.cn/">Qiu Shen</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=yveq40QAAAAJ&hl=en">Ruigang Yang</a><sup>2,3,4,5</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://cite.nju.edu.cn/People/Faculty/20190621/i5054.html">Xun Cao</a><sup>1</sup>
+              </span>
+            </div><br> -->
+
+            <!-- <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>1</sup> Nanjing University </span><br>
+              <span class="author-block"><sup>2</sup> Baidu Research &nbsp;&nbsp;</span>
+              <span class="author-block"><sup>3</sup> University of Kentucky</span>
+              <span class="author-block"><sup>4</sup> Inceptio Inc. </span>
+              <span class="author-block"><sup>5</sup> National Engineering Laboratory for Deep Learning Technology and Applications, China </span>
+            </div> -->
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <span class="link-block">
+                  <a href="#Data_Access" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data Access</span>
+                  </a>
+                  <!-- <div class="content is-5">
+                    <sup>* Due to privacy and copyright issues, please fill in the
+                      <a href="./static/license/License_Agreement_EmoTalk3D.docx" download>License Agreement</a>, then click this button to send us an email with a
+                      non-commercial use request.</sup>
+                  </div> -->
+                </span>
+
+                <!-- PDF Link. 请上传完arxiv后更新这两条 -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2111.01082" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper (T-PAMI 2023)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2003.13989" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper (CVPR 2020)</span>
+                  </a>
+                </span>
+                <!-- <span class="link-block">
+                  <a href="https://arxiv.org/abs/2011.12948" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv (Coming soon)</span>
+                  </a>
+                </span> -->
+
+                <!-- Video Link. -->
+                <!-- <span class="link-block">
+                  <a href="#our_video"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span> -->
+                <!-- Dataset Link. -->
+                
+                <span class="link-block">
+                  <a href="https://github.com/zhuhao-nju/facescape" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Tools@Github</span>
+                  </a>
+                </span>
+              </div>
+
+              <div class="content has-text-justified py-3 is-marginless">
+                This webpage is the most up-to-date project page providing data access. 
+                Please note that the previous website (<a href="https://facescape.nju.edu.cn/" target="_blank">https://facescape.nju.edu.cn/</a>) has been decommissioned 
+                and will no longer be accessible.
+              </div>
+              <img src="./static/images/facescape_ts.png" width="960" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container is-max-desktop">
+
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 id="our_video" class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present a large-scale detailed 3D face dataset, <span class="facescape">FaceScape</span>, and 
+              propose a novel algorithm that is able to predict elaborate riggable 3D face models from a single 
+              image input. FaceScape dataset provides 3D face models, parametric models and multi-view images in 
+              large-scale and high-quality. The camera parameters, the age and gender of the subjects are also included. 
+              The data have been released to public for non-commercial research purpose. 
+            </p>
+          </div>
+
+          <!-- 主视频 -->
+          <div class="publication-video">
+            <video id="teaser" autoplay muted controls playsinline height="100%">
+              <source src="./static/videos/facescape_video.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Dataset</h2>
+          <div class="content has-text-justified">
+            <p>
+              The data available for downloading contains <strong>847 subjects x 20 expressions</strong>, in a total 
+              of 16,940 models, which is roughly 90% of the complete data. The other 10% of data are not released for 
+              potential evaluation or benchmark in the future. The available data includes: 
+            </p>
+            <h3 class="title is-4">Data Description</h3>
+              <h4 class="title is-6">1. Information</h3>
+                <ul>
+                  <li>
+                    Information List <strong>(size: 1KB)</strong> 
+                    <div style="margin-top: 5px;"> A text file containing the ages and gender of the subjects. From left to right, each row is the index, 
+                    gender (m-male, f-female), age, and valid label. '-' means this information is not provided. Valid label is 
+                    [1 + 4] binary number, 1-True, 0-False. The first number means if the model for this person is complete and valid, 
+                    and the rest four means if obj-model, mtl-material, jpg-texture, and png-dpmap are missing. 
+                    </div>
+                  </li>
+                  <li>
+                    Publishable List <strong>(size: 1KB)</strong> 
+                    <div style="margin-top: 5px;"> A text file containing the indexes of the model that can be used for paper publication or presentation. 
+                    Please read the 4th term in the license for more about this policy. The publishable list may be updated in the future. 
+                    </div>
+                  </li>
+                </ul>
+        
+              <h4 class="title is-6">2. TU Models (size: 120GB)</h3>
+                <p>
+                  There are 847 tuple of topologically uniformed models. Each tuple of data consists of: 
+                </p>
+                <ul>
+                  <li> 20 base mesh models (<code>/models_reg/$IDENTITY$_$EXPRESSION$.obj</code>) </li>
+                  <li> 20 displacement maps (<code>/dpmap/$IDENTITY$_$EXPRESSION$.png</code>) </li>
+                  <li> 1 base material file (<code>/models_reg/$IDENTITY$_$EXPRESSION$.obj.mtl</code>) </li>
+                  <li> 1 texture (<code>/models_reg/$IDENTITY$_$EXPRESSION$.jpg</code>) where <code>$IDENTITY$</code> is 
+                    the index of identity (1 - 847), <code>$EXPRESSION$</code> is the index of expression (0 - 20). 
+                    Please note that some of the model's texture maps (index: 360 - 847) were mosaics 
+                    around the eyes to protect the privacy of some participants.  </li>
+                </ul>
+                <img src="./static/images/facescape_teaser_12.jpg" width="960" alt="">
+              
+              <h4 class="title is-6">3. Multi-view Data</h3>
+                <p>
+                  FaceScape provides multi-view images, camera paramters and reconstructed 3D shapes. 
+                  There are 359 subjects x 20 expressions = 7120 tuples of data. The number of available images reaches to over 400k. 
+                </p>
+                <p>
+                  Please view 
+                  <a href="https://github.com/zhuhao-nju/facescape/blob/master/doc/doc_mview_model.md" target="_blank">here</a> 
+                  for detailed description and usage of the multi-view data. 
+                </p>
+
+              <h4 class="title is-6">4. Bilinear model (size: 4.67GB)</h3>
+                <p>
+                  Our bilinear model is a statistical model which transforms the base shape of the faces into a vector space representation. 
+                  We provide two 3DMM with different numbers of identity parameters: 
+                </p>
+                <ul>
+                  <li><code>core_847_50_52.npy</code> - bilinear model with 52 expression parameters and 50 identity parameters. </li>
+                  <li><code>core_847_300_52.npy</code> - bilinear model with 52 expression parameters and 300 identity parameters.</li>
+                  <li><code>factors_id_847_50_52.npy</code> and <code> factors_id_847_300_52.npy</code> are identity parameters corresponding to 847 subjects in the dataset. </li>
+                </ul>
+                <p>
+                  Please see
+                  <a href="https://github.com/zhuhao-nju/facescape/blob/master/doc/doc_bilinear_model.md" target="_blank">here</a> 
+                  for the usage and the demo code. 
+                </p>
+                <img src="./static/images/facescape_teaser_34.jpg" width="960" alt="">
+
+              <h4 class="title is-6">5. Tools</h3>
+              <p>
+                We provide Python code to extract facial landmarks and facial region from the TU-models. Please keep a watch on 
+                our project page where the latest resources will be updated in the future. 
+              </p>
+
+            <h3 class="title is-4">Preview</h3>
+              <p>
+                One sample is rendered online as shown below. The online-rendered model is the down-sampled version of provided model, 
+                because high-resolution displacement map is too slow to be rendered online. The rendering result with the high-resolution 
+                displacement map is shown in the figure below the online-renderer. 
+              </p>
+              <ul>
+                <li> 
+                  <strong>Online Rendering (Down-Sampled)</strong>
+                  <div class="sketchfab-embed-wrapper" style="margin: 15px 0;"> 
+                    <iframe title="Example_Model" width="90%" height="480" 
+                            frameborder="0" allowfullscreen mozallowfullscreen="true" 
+                            webkitallowfullscreen="true" 
+                            allow="autoplay; fullscreen; xr-spatial-tracking" 
+                            xr-spatial-tracking execution-while-out-of-viewport 
+                            execution-while-not-rendered web-share 
+                            src="https://sketchfab.com/models/0a5900c6552046bf9ecd9889b7bd5eec/embed?autostart=1"> 
+                    </iframe> 
+                  </div>
+                </li>
+                
+                <li>
+                  <strong>Offline Rendering</strong> </li>
+                  <img src="./static/images/fig_disp_rend.35395bd.jpg" width="90%" height="480"  alt="">
+                
+                <li>
+                  <code>factors_id_847_50_52.npy</code> and <code>factors_id_847_300_52.npy</code> are identity parameters corresponding to 847 subjects in the dataset. 
+                </li>
+              </ul>
+            <h3 class="title is-4">Features</h3>
+              <h4 class="title is-6">1. Topologically uniformed. </h3>
+                <p>
+                  The geometric models of different identities and different expressions share the same mesh topology, 
+                  which makes the features on faces easy to be aligned. This also helps in building a 3D morphable model.  
+                </p>
+              <h4 class="title is-6"> 2. Displacement map + base mesh. </h3>
+                <p>
+                  We use base shapes to represent rough geometry and displacement maps to represent detailed geometry, 
+                  which is a two-layer representation for our extremely detailed face shape. Some light-weight software 
+                  like MeshLab can only visualize the base mesh model/texture. Displacement maps can be loaded and visualized in MAYA, ZBrush, 3D MAX, etc. 
+                </p>
+              <h4 class="title is-6"> 3. 20 specific expressions. </h3>
+                <p>
+                  The subjects are asked to perform 20 specific expressions for capturing: neutral, smile, mouth-stretch, anger, jaw-left, 
+                  jaw-right, jaw-forward, mouth-left, mouth-right, dimpler, chin-raiser, lip-puckerer, lip-funneler, sadness, lip-roll, grin, 
+                  cheek-blowing, eye-closed, brow-raiser, brow-lower. 
+                </p>
+              <h4 class="title is-6"> 4. High resolution. </h3>
+                <p>
+                  The texture maps and displacement maps reach 4K resolution, which preserving maximum detailed texture and geometry. 
+                </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Acquisition. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 id="Data_Access" class="title is-3">Data Access</h2>
+          <div class="content has-text-justified">
+            <p>
+            For downloading the dataset, please complete the <a href='./static/license/LicenseAgreement_FaceScape.pdf' download>License Agreement</a> and 
+            send it to <a href='mailto:nju3dv@nju.edu.cn'>nju3dv@nju.edu.cn</a>, and download from  <a href='https://drive.google.com/drive/folders/1zz_VUGdQInrD7fmoWqr158UdWUeZPQAG'>
+            download link (Google Drive)</a> or <a href='https://pan.baidu.com/s/1b4f8rnGNEJbeznl4NAGuHw?pwd=3qwe'>download link (Baidu Netdisk)</a>. 
+            </p>
+            When you submit request, which means you have read, understand, and commit to the entirety of the License Agreement. 
+            There are, still, a few KEY POINTS which need to emphasise again: 
+            <ul>
+              <li>The email subject should be [FaceScape Dataset Request].</li>
+              <li><strong> NO COMMERCIAL USE:</strong> The license granted is for internal, non-commercial research, evaluation or testing purposes only. 
+                Any use of the DATA or its contents to manufacture or sell products or technologies (or portions thereof) either directly 
+                or indirectly for any direct or indirect for-profit purposes is strictly prohibited. </li>
+              <li><strong> NO WARRANTY:</strong> The data are provided "as is" and any express or implied warranties are disclaimed.</li>
+              <li><strong> RESTRICTED USE IN RESEARCH: </strong> The portraits including images and rendered model cannot be published in any form, except for the data as listed in the publishable list. </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--/ Data Acquisition. -->
+
+      <!-- QA. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 id="FAQ" class="title is-3">FAQ</h2>
+          <div class="content has-text-justified">
+            
+            <style>
+              /* 为折叠菜单添加一点简单的样式 */
+              details {
+                border-bottom: 1px solid #eee;
+                padding: 10px 0;
+                cursor: pointer;
+              }
+              summary {
+                font-weight: bold;
+                list-style: none; /* 隐藏部分浏览器默认的箭头 */
+                position: relative;
+                padding-left: 25px;
+              }
+              summary::before {
+                content: "▶"; /* 自定义箭头 */
+                position: absolute;
+                left: 0;
+                transition: transform 0.2s;
+              }
+              details[open] summary::before {
+                transform: rotate(90deg); /* 展开时旋转箭头 */
+              }
+              details div {
+                padding: 10px 25px;
+                color: #4a4a4a;
+              }
+            </style>
+
+            <details>
+              <summary>1. How can an undergraduate or graduate student get access to the data?</summary>
+              <div>
+                Undergraduates or graduate students can ask their supervisor to apply for the downloading. 
+                Please forgive us for adopting a strict authorization process due to the sensibilities of facial data. 
+                We're doing our best to keep the data from being misused. 
+              </div>
+            </details>
+
+            <details>
+              <summary>2. Can I use the data in paper publication or presentation?</summary>
+              <div>
+                Only publishable data (see publishable list in data format section) can be used in paper publication or presentation. 
+                Other data are forbidden to be published in any form, including publication of papers, presentations, etc. This has been declared in the 4th clause of the license. 
+              </div>
+            </details>
+
+            <details>
+              <summary>3. Why using displacement map?</summary>
+              <div>
+                For a detailed 3D face model, Displacement map + base mesh is much more space-efficient than simply mesh with massive vertices. 
+              </div>
+            </details>
+
+            <details>
+              <summary>4. Can I transform a "displacement map + base mesh" model to a high-vertex mesh?</summary>
+              <div>
+                Yes, if you want to get the detailed mesh model from the displacement map, one can refer to the function [apply displacement map] in software like ZBrush. 
+              </div>
+            </details>
+
+            <details>
+              <summary>5. Why are some textures blurry around the eyes?</summary>
+              <div>
+                Some of the model's texture maps (index: 360-847) were mosaics around the eyes to protect the privacy of some participants. 
+              </div>
+            </details>
+
+            <details>
+              <summary>6. How to extract the facial region from the whole head?</summary>
+              <div>
+                We use a <a href="https://user-images.githubusercontent.com/40872587/86399298-93b10b00-bcd9-11ea-9434-6dfaa45e5b8c.png" target="_blank">binary texture map</a> 
+                to render the facial mask, and then use the mask to extract the facial part. All experiments in our paper use the same binary texture map 
+                to extract the facial region. 
+              </div>
+            </details>
+
+          </div>
+        </div>
+      </div>
+
+      <!--/ QA. -->
+      
+      <!-- Data Acquisition. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 id="Contact Information" class="title is-3">Contact Information</h2>
+          <div class="content has-text-justified">
+            <p>
+              If you have some questions, please refer to the issue section of our <a href="https://github.com/zhuhao-nju/facescape" target="_blank">GitHub repository</a>, 
+              or send email to <a href='mailto:nju3dv@nju.edu.cn'>nju3dv@nju.edu.cn</a> and cc <a href='mailto:zh@nju.edu.cn'>zh@nju.edu.cn</a>. 
+              We recommend to firstly browse the FAQ and the solved issues in GitHub repository, where the answer you want may has been given.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Data Acquisition. -->
+
+      <div class="is-size-6 is-centered has-text-centered">
+        <a class="back-to-top" href="#" onclick="scrollToTop(); return false;">(back to top)</a>
+      </div>    
+    <br>
+  </section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{zhu2023facescape,
+  title={Facescape: 3d facial dataset and benchmark for single-view 3d face reconstruction},
+  author={Zhu, Hao and Yang, Haotian and Guo, Longwei and Zhang, Yidi and Wang, Yanru and Huang, Mingkai and Wu, Menghua and Shen, Qiu and Yang, Ruigang and Cao, Xun},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={45},
+  number={12},
+  pages={14528--14545},
+  year={2023},
+  publisher={IEEE}
+}
+@inproceedings{yang2020facescape,
+  author={Yang, Haotian and Zhu, Hao, Wang, Yanru and Huang, Mingkai and Shen, Qiu and Yang, Ruigang and Cao, Xun},
+  title={FaceScape: A Large-Scale High Quality 3D Face Dataset and Detailed Riggable 3D Face Prediction},
+  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month={June},
+  year={2020},
+  page={601--610}
+}</code></pre>
+  </div>
+</section>
+
+</body>
+
+</html>
